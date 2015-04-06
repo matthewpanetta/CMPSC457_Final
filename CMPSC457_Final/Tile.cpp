@@ -9,10 +9,10 @@ Tile::Tile()
 	setValues();
 }
 
-Tile::Tile(int crops, int animals, int lumber, int bricks)
+Tile::Tile(int crops, int meat, int lumber, int bricks)
 {
 	this->crops = crops;
-	this->animals = animals;
+	this->meat = meat;
 	this->lumber = lumber;
 	this->bricks = bricks;
 }

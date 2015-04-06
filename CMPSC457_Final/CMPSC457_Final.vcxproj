@@ -73,12 +73,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Building.cpp" />
+    <ClCompile Include="BuildingFactory.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Building.h" />
+    <ClInclude Include="BuildingFactory.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>

@@ -11,7 +11,7 @@ public:
 	~Tile();
 private:
 	int crops;
-	int animals;
+	int meat;
 	int lumber;
 	int bricks;
 };

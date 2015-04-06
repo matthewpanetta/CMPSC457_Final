@@ -28,7 +28,6 @@ using namespace std;
 #define WinW 500
 #define WinH 500
 
-vector<Building> buildings;
 World w(10,10);
 
 /*
@@ -46,10 +45,10 @@ void Display(void)
 	/* insert graphics code here that draws the scene */
 	cout << "Display event occurred" << endl;
 
-	for (vector<Building>::iterator it = buildings.begin(); it != buildings.end(); ++it) {
-		cout << "Added building" << endl;
-		it->draw_building();
-	}
+	//for (vector<Building>::iterator it = buildings.begin(); it != buildings.end(); ++it) {
+	//	cout << "Added building" << endl;
+	//	it->draw_building();
+	//}
 
 	/* before returning, flush the graphics buffer
 	* so all graphics appear in the window */
