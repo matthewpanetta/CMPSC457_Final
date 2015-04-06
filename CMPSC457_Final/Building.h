@@ -13,4 +13,3 @@ public:
 private:
 	GLfloat x, y, z;
 };
-

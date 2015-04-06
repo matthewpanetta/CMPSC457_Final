@@ -14,10 +14,13 @@
 #endif
 
 #include "Building.h"
+#include "Tile.h"
+
 #include <math.h>
 #include <stdlib.h>
 #include <iostream>
 #include <vector> 
+#include <time.h>
 
 using namespace std;
 
@@ -45,6 +48,9 @@ void Display(void)
 		cout << "Added building" << endl;
 		it->draw_building();
 	}
+
+	Tile t;
+	t.setValues();
 
 	/* before returning, flush the graphics buffer
 	* so all graphics appear in the window */
@@ -171,6 +177,8 @@ void myInit()
 
 	/* Enable hidden--surface--removal */
 	glEnable(GL_DEPTH_TEST);
+
+	srand(time(NULL));
 }
 
 void main(int argc, char ** argv)
@@ -187,7 +195,7 @@ void main(int argc, char ** argv)
 	glutInitWindowPosition(0, 0);
 
 	/* create the window */
-	glutCreateWindow("Name of Project Here");
+	glutCreateWindow("CMPSC 457 Final Project");
 
 	/* register callback functions */
 	glutDisplayFunc(Display);
