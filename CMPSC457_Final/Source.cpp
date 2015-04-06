@@ -17,7 +17,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <iostream>
-#include <vector>
+#include <vector> 
 
 using namespace std;
 
@@ -42,6 +42,7 @@ void Display(void)
 	cout << "Display event occurred" << endl;
 
 	for (vector<Building>::iterator it = v.begin(); it != v.end(); ++it) {
+		cout << "Added building" << endl;
 		it->draw_building();
 	}
 
@@ -82,13 +83,33 @@ void Reshape(int w, int h)
 */
 void Mouse(int button, int state, int x, int y)
 {
-	cout << "The mouse event occurred." << endl;
-	cout << "button: " << button << endl;
-	cout << "state:  " << state << endl;
-	cout << "x:      " << x << endl;
-	cout << "y:      " << y << endl;
-	Building b;
-	v.push_back(b);
+	if ((button == GLUT_LEFT_BUTTON) && (state == GLUT_DOWN))
+	{
+		GLdouble model[16];
+		GLdouble projection[16];
+		GLint viewport[4];
+		GLfloat winX, winY, z;
+		GLdouble x_pos, y_pos, z_pos;
+
+		glGetDoublev(GL_MODELVIEW_MATRIX, model);
+		glGetDoublev(GL_PROJECTION_MATRIX, projection);
+		glGetIntegerv(GL_VIEWPORT, viewport);
+
+		winX = (float)x;
+		winY = (float)viewport[3] - (float)y;
+
+		glReadPixels(winX, winY, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &z);
+
+		gluUnProject(x, y, z, model, projection, viewport, &x_pos, &y_pos, &z_pos);
+
+		cout << "Creating a building object at" << endl;
+		cout << "X: " << x_pos << endl;
+		cout << "Y: " << y_pos << endl;
+		cout << "Z: " << z_pos << endl;
+
+		Building b(x_pos, y_pos, z_pos);
+		v.push_back(b);
+	}
 }
 
 /*
