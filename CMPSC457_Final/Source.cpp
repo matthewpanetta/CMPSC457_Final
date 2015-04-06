@@ -41,6 +41,10 @@ void Display(void)
 	/* insert graphics code here that draws the scene */
 	cout << "Display event occurred" << endl;
 
+	for (vector<Building>::iterator it = v.begin(); it != v.end(); ++it) {
+		it->draw_building();
+	}
+
 	/* before returning, flush the graphics buffer
 	* so all graphics appear in the window */
 	glFlush();
@@ -83,6 +87,8 @@ void Mouse(int button, int state, int x, int y)
 	cout << "state:  " << state << endl;
 	cout << "x:      " << x << endl;
 	cout << "y:      " << y << endl;
+	Building b;
+	v.push_back(b);
 }
 
 /*
