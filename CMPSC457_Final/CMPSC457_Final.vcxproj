@@ -41,6 +41,9 @@
   <PropertyGroup>
     <NuGetPackageImportStamp>646364b5</NuGetPackageImportStamp>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ReferencePath>$(ProjectDir);$(ReferencePath)</ReferencePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -70,6 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Lab 5\Lab 5\Lab5\Source.cpp" />
+    <ClCompile Include="Building.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Building.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
