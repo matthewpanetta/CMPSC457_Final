@@ -1,6 +1,7 @@
 #include "Tile.h"
 #include <iostream>
 #include <stdlib.h>     /* srand, rand */
+#include <vector>
 
 
 Tile::Tile()
@@ -29,6 +30,17 @@ void Tile::setValues()
 
 	bricks	= rand() % 10;
 	std::cout << bricks << std::endl;
+}
+
+std::vector<int> Tile::getValues()
+{
+	std::vector<int> v;
+	v.push_back(crops);
+	v.push_back(animals);
+	v.push_back(lumber);
+	v.push_back(bricks);
+
+	return v;
 }
 
 Tile::~Tile()

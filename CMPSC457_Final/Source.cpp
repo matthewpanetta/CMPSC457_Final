@@ -15,6 +15,7 @@
 
 #include "Building.h"
 #include "Tile.h"
+#include "World.h"
 
 #include <math.h>
 #include <stdlib.h>
@@ -27,7 +28,8 @@ using namespace std;
 #define WinW 500
 #define WinH 500
 
-vector<Building> v;
+vector<Building> buildings;
+World w(10,10);
 
 /*
 *  This function is called whenever the display needs to redrawn.
@@ -44,13 +46,10 @@ void Display(void)
 	/* insert graphics code here that draws the scene */
 	cout << "Display event occurred" << endl;
 
-	for (vector<Building>::iterator it = v.begin(); it != v.end(); ++it) {
+	for (vector<Building>::iterator it = buildings.begin(); it != buildings.end(); ++it) {
 		cout << "Added building" << endl;
 		it->draw_building();
 	}
-
-	Tile t;
-	t.setValues();
 
 	/* before returning, flush the graphics buffer
 	* so all graphics appear in the window */
@@ -114,7 +113,7 @@ void Mouse(int button, int state, int x, int y)
 		cout << "Z: " << z_pos << endl;
 
 		Building b(x_pos, y_pos, z_pos);
-		v.push_back(b);
+		buildings.push_back(b);
 	}
 }
 
@@ -179,6 +178,17 @@ void myInit()
 	glEnable(GL_DEPTH_TEST);
 
 	srand(time(NULL));
+
+	vector<Tile> t = w.getTiles();
+	
+	for (vector<Tile>::iterator it = t.begin(); it != t.end(); ++it) {
+		cout << "Crops" << it->getValues().at(0) << endl;
+		cout << "Animals" << it->getValues().at(1) << endl;
+		cout << "Lumber" << it->getValues().at(2) << endl;
+		cout << "Bricks" << it->getValues().at(3) << endl;
+
+		cout << "\n\n" << endl;
+	}
 }
 
 void main(int argc, char ** argv)
