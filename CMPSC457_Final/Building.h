@@ -1,5 +1,6 @@
 #pragma once
 #include "GL\freeglut.h"
+#include "Tile.h"
 
 class Building
 {
@@ -9,7 +10,11 @@ public:
 	GLfloat get_y();
 	GLfloat get_z();
 	void draw_building();
+	void set_tile(Tile t);
+	void set_perk();
+	void apply_perk();
+	void apply_cost();
 	~Building();
 private:
-	GLfloat x, y, z;
+	GLdouble x, y, z;
 };

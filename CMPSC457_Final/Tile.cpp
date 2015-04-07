@@ -31,6 +31,21 @@ std::vector<int> Tile::getValues()
 	return v;
 }
 
+int Tile::getSoil()
+{
+	return soil;
+}
+
+int Tile::getStone()
+{
+	return stone;
+}
+
+int Tile::getTrees()
+{
+	return trees;
+}
+
 Tile::~Tile()
 {
 }
