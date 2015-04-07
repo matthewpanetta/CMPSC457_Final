@@ -1,7 +1,5 @@
 #include "Tile.h"
-#include <iostream>
 #include <stdlib.h>     /* srand, rand */
-#include <vector>
 
 
 Tile::Tile()
@@ -9,36 +7,26 @@ Tile::Tile()
 	setValues();
 }
 
-Tile::Tile(int crops, int meat, int lumber, int bricks)
+Tile::Tile(int trees, int soil, int stone)
 {
-	this->crops = crops;
-	this->meat = meat;
-	this->lumber = lumber;
-	this->bricks = bricks;
+	this->trees = trees;
+	this->soil = soil;
+	this->stone - stone;
 }
 
 void Tile::setValues()
 {
-	crops	= rand() % 10;
-	std::cout << crops << std::endl;
-
-	animals = rand() % 10;
-	std::cout << animals << std::endl;
-
-	lumber	= rand() % 10;
-	std::cout << lumber << std::endl;
-
-	bricks	= rand() % 10;
-	std::cout << bricks << std::endl;
+	trees	= rand() % 10;
+	soil	= rand() % 10;
+	stone	= rand() % 10;
 }
 
 std::vector<int> Tile::getValues()
 {
 	std::vector<int> v;
-	v.push_back(crops);
-	v.push_back(animals);
-	v.push_back(lumber);
-	v.push_back(bricks);
+	v.push_back(trees);
+	v.push_back(soil);
+	v.push_back(stone);
 
 	return v;
 }

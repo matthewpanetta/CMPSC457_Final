@@ -28,7 +28,7 @@ using namespace std;
 #define WinW 500
 #define WinH 500
 
-World w(10,10);
+World w(10,10);		// Create a 10x10 world.
 
 /*
 *  This function is called whenever the display needs to redrawn.
@@ -44,11 +44,6 @@ void Display(void)
 
 	/* insert graphics code here that draws the scene */
 	cout << "Display event occurred" << endl;
-
-	//for (vector<Building>::iterator it = buildings.begin(); it != buildings.end(); ++it) {
-	//	cout << "Added building" << endl;
-	//	it->draw_building();
-	//}
 
 	/* before returning, flush the graphics buffer
 	* so all graphics appear in the window */
@@ -111,8 +106,8 @@ void Mouse(int button, int state, int x, int y)
 		cout << "Y: " << y_pos << endl;
 		cout << "Z: " << z_pos << endl;
 
-		Building b(x_pos, y_pos, z_pos);
-		buildings.push_back(b);
+		/*Building b(x_pos, y_pos, z_pos);
+		buildings.push_back(b);*/
 	}
 }
 
@@ -178,16 +173,7 @@ void myInit()
 
 	srand(time(NULL));
 
-	vector<Tile> t = w.getTiles();
-	
-	for (vector<Tile>::iterator it = t.begin(); it != t.end(); ++it) {
-		cout << "Crops" << it->getValues().at(0) << endl;
-		cout << "Animals" << it->getValues().at(1) << endl;
-		cout << "Lumber" << it->getValues().at(2) << endl;
-		cout << "Bricks" << it->getValues().at(3) << endl;
-
-		cout << "\n\n" << endl;
-	}
+	vector<Tile> t = w.getTiles();		// Initialize random tiles.
 }
 
 void main(int argc, char ** argv)
