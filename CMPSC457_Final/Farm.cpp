@@ -25,7 +25,7 @@ void Farm::apply_initial_cost(OutputResources &o)
 
 void Farm::apply_cost_per_tick(OutputResources &o)
 {
-	o.set_money(o.get_money() - 2 * ((o.get_employed() / 20) + 1);
+	o.set_money(o.get_money() - 2 * ((o.get_employed() / 20) + 1));
 }
 
 Farm::~Farm()
