@@ -5,7 +5,7 @@ OutputResources::OutputResources()
 {
 	food		= 5;
 	money		= 1000;
-	population	= 20;
+	unemployed	= 20;
 }
 
 std::vector<int> OutputResources::get_resources()
@@ -15,7 +15,7 @@ std::vector<int> OutputResources::get_resources()
 	v.push_back(wood);
 	v.push_back(bricks);
 	v.push_back(money);
-	v.push_back(population);
+	v.push_back(unemployed);
 
 	return v;
 }

@@ -28,7 +28,84 @@ using namespace std;
 #define WinW 500
 #define WinH 500
 
+int grid[10][10];
+double color[3] = { 255, 0, 0 };
+double rotate = 0;
+double currposx = 5;
+double currposz = 9;
+
 World w(10,10);		// Create a 10x10 world.
+
+
+void DrawSubgrid(double xi, double zi, double color[3])
+{
+
+	glColor3d(color[0], color[1], color[2]);
+
+	glPushMatrix();
+
+	glTranslated(xi, 0, zi);
+
+	glBegin(GL_POLYGON);
+	glVertex3d(-0.5, 0, -0.5);
+	glVertex3d(0.5, 0, -0.5);
+	glVertex3d(0.5, 0, 0.5);
+	glVertex3d(-0.5, 0, 0.5);
+	glEnd();
+
+	glPopMatrix();
+}
+
+void DrawCursor()
+{
+	glColor3d(1, 1, 1);
+
+	glPushMatrix();
+
+	glTranslated(currposx, 0.01, currposz);
+
+	glBegin(GL_POLYGON);
+	glVertex3d(-0.45, 0, 0.45);
+	glVertex3d(-0.45, 0, 0.5);
+	glVertex3d(0.5, 0, 0.5);
+	glVertex3d(0.5, 0, 0.45);
+	glEnd();
+	glBegin(GL_POLYGON);
+	glVertex3d(0.45, 0, 0.45);
+	glVertex3d(0.5, 0, 0.45);
+	glVertex3d(0.5, 0, -0.5);
+	glVertex3d(0.45, 0, -0.5);
+	glEnd();
+	glBegin(GL_POLYGON);
+	glVertex3d(0.45, 0, -0.45);
+	glVertex3d(0.45, 0, -0.5);
+	glVertex3d(-0.5, 0, -0.5);
+	glVertex3d(-0.5, 0, -0.45);
+	glEnd();
+	glBegin(GL_POLYGON);
+	glVertex3d(-0.45, 0, -0.45);
+	glVertex3d(-0.5, 0, -0.45);
+	glVertex3d(-0.5, 0, 0.5);
+	glVertex3d(-0.45, 0, 0.5);
+	glEnd();
+
+	glPopMatrix();
+}
+
+
+void DrawGrid()
+{
+	for (int row = 0; row < 10; row++)
+	{
+		for (int column = 0; column < 10; column++)
+		{
+			color[0] = row * 0.1;
+			color[1] = column * 0.1;
+			DrawSubgrid(column, row, color);
+		}
+	}
+}
+
 
 /*
 *  This function is called whenever the display needs to redrawn.
@@ -36,6 +113,11 @@ World w(10,10);		// Create a 10x10 world.
 */
 void Display(void)
 {
+
+	glLoadIdentity();
+
+	gluLookAt(0.0 + currposx, 3.0, 10.0 + currposz, currposx, 0.0, currposz, 0.0, 1.0, 0.0);
+
 	/* draw to the back buffer */
 	glDrawBuffer(GL_BACK);
 
@@ -47,6 +129,11 @@ void Display(void)
 
 	/* before returning, flush the graphics buffer
 	* so all graphics appear in the window */
+
+	DrawGrid();
+
+	DrawCursor();
+
 	glFlush();
 	glutSwapBuffers();
 }
@@ -58,16 +145,12 @@ void Display(void)
 */
 void Reshape(int w, int h)
 {
-	glViewport(0, 0, w, h);
+	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	if (w <= h)
-		glOrtho(-2.0, 2.0, -2.0 * (GLfloat)h / (GLfloat)w,
-		2.0 * (GLfloat)h / (GLfloat)w, -10.0, 10.0);
-	else
-		glOrtho(-2.0 * (GLfloat)w / (GLfloat)h,
-		2.0 * (GLfloat)w / (GLfloat)h, -2.0, 2.0, -10.0, 10.0);
+	gluPerspective(30.0, (GLfloat)w / (GLfloat)h, 1.0, 200.0);
 	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 }
 
 /*
@@ -127,6 +210,34 @@ void Keyboard(unsigned char key, int x, int y)
 	}
 }
 
+void SpecialKeys(int key, int x, int y)
+{
+	switch (key)
+	{
+	case GLUT_KEY_UP:
+		if (currposz - 1 >= 0)
+			currposz -= 1;
+		break;
+	case GLUT_KEY_DOWN:
+		if (currposz + 1 <= 9)
+			currposz += 1;
+		break;
+	case GLUT_KEY_LEFT:
+		if (currposx - 1 >= 0)
+			currposx -= 1;
+		break;
+	case GLUT_KEY_RIGHT:
+		if (currposx + 1 <= 9)
+			currposx += 1;
+		break;
+	}
+
+	cout << "currposx:      " << currposx << endl;
+	cout << "currposz:      " << currposz << endl;
+
+	glutPostRedisplay();
+}
+
 
 /*
 * An idle event is generated when no other
@@ -166,7 +277,7 @@ void myInit()
 	/* set up orthographic projection */
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-2, 2, -2, 2, -10.0, 10.0);
+	//glOrtho(-2, 2, -2, 2, -10.0, 10.0);
 
 	/* Enable hidden--surface--removal */
 	glEnable(GL_DEPTH_TEST);
@@ -195,6 +306,7 @@ void main(int argc, char ** argv)
 	/* register callback functions */
 	glutDisplayFunc(Display);
 	glutKeyboardFunc(Keyboard);
+	glutSpecialFunc(SpecialKeys);
 	glutMouseFunc(Mouse);
 	glutReshapeFunc(Reshape);
 	/* glutTimerFunc( 100, Timer, 1 );

@@ -20,7 +20,7 @@ void Farm::apply_perk(OutputResources &o)
 void Farm::apply_initial_cost(OutputResources &o)
 {
 	o.set_money(o.get_money() - 150);
-	o.set_unemployed(o.get_unemployed - 2);
+	o.set_unemployed(o.get_unemployed() - 2);
 }
 
 void Farm::apply_cost_per_tick(OutputResources &o)
