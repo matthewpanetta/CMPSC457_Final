@@ -16,12 +16,14 @@
 #include "Building.h"
 #include "Tile.h"
 #include "World.h"
+#include "Cursor.h"
 
 #include <math.h>
 #include <stdlib.h>
 #include <iostream>
 #include <vector> 
 #include <time.h>
+
 
 using namespace std;
 
@@ -35,7 +37,7 @@ double currposx = 5;
 double currposz = 9;
 
 World w(10,10);		// Create a 10x10 world.
-
+Cursor cursor;
 
 void DrawSubgrid(double xi, double zi, double color[3])
 {
@@ -56,43 +58,6 @@ void DrawSubgrid(double xi, double zi, double color[3])
 	glPopMatrix();
 }
 
-void DrawCursor()
-{
-	glColor3d(1, 1, 1);
-
-	glPushMatrix();
-
-	glTranslated(currposx, 0.01, currposz);
-
-	glBegin(GL_POLYGON);
-	glVertex3d(-0.45, 0, 0.45);
-	glVertex3d(-0.45, 0, 0.5);
-	glVertex3d(0.5, 0, 0.5);
-	glVertex3d(0.5, 0, 0.45);
-	glEnd();
-	glBegin(GL_POLYGON);
-	glVertex3d(0.45, 0, 0.45);
-	glVertex3d(0.5, 0, 0.45);
-	glVertex3d(0.5, 0, -0.5);
-	glVertex3d(0.45, 0, -0.5);
-	glEnd();
-	glBegin(GL_POLYGON);
-	glVertex3d(0.45, 0, -0.45);
-	glVertex3d(0.45, 0, -0.5);
-	glVertex3d(-0.5, 0, -0.5);
-	glVertex3d(-0.5, 0, -0.45);
-	glEnd();
-	glBegin(GL_POLYGON);
-	glVertex3d(-0.45, 0, -0.45);
-	glVertex3d(-0.5, 0, -0.45);
-	glVertex3d(-0.5, 0, 0.5);
-	glVertex3d(-0.45, 0, 0.5);
-	glEnd();
-
-	glPopMatrix();
-}
-
-
 void DrawGrid()
 {
 	for (int row = 0; row < 10; row++)
@@ -106,17 +71,28 @@ void DrawGrid()
 	}
 }
 
-
 /*
 *  This function is called whenever the display needs to redrawn.
 *  First call when program starts.
 */
 void Display(void)
 {
-
+	//Load the identity matrix
 	glLoadIdentity();
 
-	gluLookAt(0.0 + currposx, 3.0, 10.0 + currposz, currposx, 0.0, currposz, 0.0, 1.0, 0.0);
+	//Set the view to follow the cursor
+	gluLookAt
+	(
+		0.0 + cursor.getPostion()[0], 
+		3.0, 
+		10.0 + cursor.getPostion()[1], 
+		cursor.getPostion()[0], 
+		0.0, 
+		cursor.getPostion()[1], 
+		0.0, 
+		1.0, 
+		0.0
+	);
 
 	/* draw to the back buffer */
 	glDrawBuffer(GL_BACK);
@@ -125,14 +101,16 @@ void Display(void)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	/* insert graphics code here that draws the scene */
-	cout << "Display event occurred" << endl;
+	//cout << "Display event occurred" << endl;
 
 	/* before returning, flush the graphics buffer
 	* so all graphics appear in the window */
 
 	DrawGrid();
 
-	DrawCursor();
+	//Set cursor color to white
+	glColor3d(1.0, 1.0, 1.0);
+	cursor.draw();
 
 	glFlush();
 	glutSwapBuffers();
@@ -215,25 +193,25 @@ void SpecialKeys(int key, int x, int y)
 	switch (key)
 	{
 	case GLUT_KEY_UP:
-		if (currposz - 1 >= 0)
-			currposz -= 1;
+		if (cursor.getPostion()[1] - 1 >= 0)
+			cursor.moveUp();
 		break;
 	case GLUT_KEY_DOWN:
-		if (currposz + 1 <= 9)
-			currposz += 1;
+		if (cursor.getPostion()[1] + 1 <= 9)
+			cursor.moveDown();
 		break;
 	case GLUT_KEY_LEFT:
-		if (currposx - 1 >= 0)
-			currposx -= 1;
+		if (cursor.getPostion()[0] - 1 >= 0)
+			cursor.moveLeft();
 		break;
 	case GLUT_KEY_RIGHT:
-		if (currposx + 1 <= 9)
-			currposx += 1;
+		if (cursor.getPostion()[0] + 1 <= 9)
+			cursor.moveRight();
 		break;
 	}
 
-	cout << "currposx:      " << currposx << endl;
-	cout << "currposz:      " << currposz << endl;
+	cout << "cursor x: " << cursor.getPostion()[0] << endl;
+	cout << "cursor z: " << cursor.getPostion()[1] << endl << endl;
 
 	glutPostRedisplay();
 }

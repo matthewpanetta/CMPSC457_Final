@@ -74,6 +74,7 @@
   <ItemGroup>
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="BuildingFactory.cpp" />
+    <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Farm.cpp" />
     <ClCompile Include="OutputResources.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -83,6 +84,7 @@
   <ItemGroup>
     <ClInclude Include="Building.h" />
     <ClInclude Include="BuildingFactory.h" />
+    <ClInclude Include="Cursor.h" />
     <ClInclude Include="Farm.h" />
     <ClInclude Include="OutputResources.h" />
     <ClInclude Include="Tile.h" />
