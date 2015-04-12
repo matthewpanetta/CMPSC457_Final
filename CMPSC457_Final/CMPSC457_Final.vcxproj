@@ -39,7 +39,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <NuGetPackageImportStamp>646364b5</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>777f1017</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ReferencePath>$(ProjectDir);$(ReferencePath)</ReferencePath>
@@ -78,11 +78,13 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Farm.cpp" />
     <ClCompile Include="House.cpp" />
+    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Mill.cpp" />
     <ClCompile Include="Mine.cpp" />
     <ClCompile Include="OutputResources.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Temple.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -93,10 +95,12 @@
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Farm.h" />
     <ClInclude Include="House.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="Mill.h" />
     <ClInclude Include="Mine.h" />
     <ClInclude Include="OutputResources.h" />
     <ClInclude Include="Temple.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
@@ -107,6 +111,8 @@
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\nupengl.core.redist.0.0.0.1\build\native\nupengl.core.redist.targets" Condition="Exists('..\packages\nupengl.core.redist.0.0.0.1\build\native\nupengl.core.redist.targets')" />
     <Import Project="..\packages\nupengl.core.0.0.0.1\build\native\nupengl.core.targets" Condition="Exists('..\packages\nupengl.core.0.0.0.1\build\native\nupengl.core.targets')" />
+    <Import Project="..\packages\freetype.redist.2.4.2.1\build\native\freetype.redist.targets" Condition="Exists('..\packages\freetype.redist.2.4.2.1\build\native\freetype.redist.targets')" />
+    <Import Project="..\packages\freetype.2.4.2.1\build\native\freetype.targets" Condition="Exists('..\packages\freetype.2.4.2.1\build\native\freetype.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -114,5 +120,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\nupengl.core.redist.0.0.0.1\build\native\nupengl.core.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nupengl.core.redist.0.0.0.1\build\native\nupengl.core.redist.targets'))" />
     <Error Condition="!Exists('..\packages\nupengl.core.0.0.0.1\build\native\nupengl.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nupengl.core.0.0.0.1\build\native\nupengl.core.targets'))" />
+    <Error Condition="!Exists('..\packages\freetype.redist.2.4.2.1\build\native\freetype.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\freetype.redist.2.4.2.1\build\native\freetype.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\freetype.2.4.2.1\build\native\freetype.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\freetype.2.4.2.1\build\native\freetype.targets'))" />
   </Target>
 </Project>
