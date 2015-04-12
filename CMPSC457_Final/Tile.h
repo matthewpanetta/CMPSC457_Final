@@ -9,11 +9,11 @@ class Tile
 public:
 	Tile();
 	Tile(int, int, int);
-	std::vector<int> getValues();
-	void setValues();
-	int getTrees();
-	int getSoil();
-	int getStone();
+	std::vector<int> get_values();
+	void set_values();
+	int get_trees();
+	int get_soil();
+	int get_stone();
 	~Tile();
 private:
 	int trees;

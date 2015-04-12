@@ -72,23 +72,31 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bank.cpp" />
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="BuildingFactory.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Farm.cpp" />
+    <ClCompile Include="House.cpp" />
     <ClCompile Include="Mill.cpp" />
+    <ClCompile Include="Mine.cpp" />
     <ClCompile Include="OutputResources.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Temple.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bank.h" />
     <ClInclude Include="Building.h" />
     <ClInclude Include="BuildingFactory.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Farm.h" />
+    <ClInclude Include="House.h" />
     <ClInclude Include="Mill.h" />
+    <ClInclude Include="Mine.h" />
     <ClInclude Include="OutputResources.h" />
+    <ClInclude Include="Temple.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>

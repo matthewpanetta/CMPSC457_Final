@@ -3,7 +3,6 @@
 #define FARM_H
 
 #include "Building.h"
-#include "OutputResources.h"
 
 class Farm :
 	public Building

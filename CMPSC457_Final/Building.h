@@ -4,6 +4,7 @@
 
 #include "GL\freeglut.h"
 #include "Tile.h"
+#include "OutputResources.h"
 
 class Building
 {
@@ -14,9 +15,9 @@ public:
 	GLfloat get_z();
 	void draw_building();
 	void set_tile(Tile t);
-	void set_perk();
-	void apply_perk();
-	void apply_cost();
+	void apply_perk(OutputResources &);
+	void apply_initial_cost(OutputResources &);
+	void apply_cost_per_tick(OutputResources &);
 	~Building();
 private:
 	GLdouble x, y, z;
