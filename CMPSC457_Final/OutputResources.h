@@ -1,4 +1,7 @@
 #pragma once
+#ifndef OUTPUTRESOURCES_H
+#define OUTPUTRESOURCES_H
+
 #include <vector>
 class OutputResources
 {
@@ -24,3 +27,4 @@ private:
 	int food, wood, bricks, money, unemployed, employed;
 };
 
+#endif

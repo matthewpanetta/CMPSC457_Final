@@ -4,7 +4,7 @@
 
 Tile::Tile()
 {
-	setValues();
+	set_values();
 }
 
 Tile::Tile(int trees, int soil, int stone)
@@ -14,14 +14,14 @@ Tile::Tile(int trees, int soil, int stone)
 	this->stone - stone;
 }
 
-void Tile::setValues()
+void Tile::set_values()
 {
 	trees	= rand() % 10;
 	soil	= rand() % 10;
 	stone	= rand() % 10;
 }
 
-std::vector<int> Tile::getValues()
+std::vector<int> Tile::get_values()
 {
 	std::vector<int> v;
 	v.push_back(trees);
@@ -31,17 +31,17 @@ std::vector<int> Tile::getValues()
 	return v;
 }
 
-int Tile::getSoil()
+int Tile::get_soil()
 {
 	return soil;
 }
 
-int Tile::getStone()
+int Tile::get_stone()
 {
 	return stone;
 }
 
-int Tile::getTrees()
+int Tile::get_trees()
 {
 	return trees;
 }

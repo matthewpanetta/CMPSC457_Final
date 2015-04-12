@@ -6,7 +6,7 @@ World::World(int cols, int rows)
 {
 	for (int i = 0; i < (cols * rows); i++) {
 		Tile t;
-		t.setValues();
+		t.set_values();
 		tiles.push_back(t);
 	}
 }

@@ -1,26 +1,23 @@
 #pragma once
-#ifndef BUILDING_H
-#define BUILDING_H
+#ifndef HOUSE_H
+#define HOUSE_H
 
-#include "GL\freeglut.h"
-#include "Tile.h"
-#include "OutputResources.h"
+#include "Building.h"
 
-class Building
+class House :
+	public Building
 {
 public:
-	Building(GLdouble, GLdouble, GLdouble);
-	GLfloat get_x();
-	GLfloat get_y();
-	GLfloat get_z();
+	House(GLdouble, GLdouble, GLdouble);
 	void draw_building();
 	void set_tile(Tile t);
 	void apply_perk(OutputResources &);
 	void apply_initial_cost(OutputResources &);
 	void apply_cost_per_tick(OutputResources &);
-	~Building();
+	~House();
 private:
 	GLdouble x, y, z;
+	Tile t;
 };
 
 #endif

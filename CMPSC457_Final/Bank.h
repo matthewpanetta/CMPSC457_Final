@@ -1,20 +1,20 @@
 #pragma once
-#ifndef FARM_H
-#define FARM_H
+#ifndef BANK_H
+#define BANK_H
 
 #include "Building.h"
 
-class Farm :
+class Bank :
 	public Building
 {
 public:
-	Farm(GLdouble, GLdouble, GLdouble);
+	Bank(GLdouble, GLdouble, GLdouble);
 	void draw_building();
 	void set_tile(Tile);
 	void apply_perk(OutputResources &);
 	void apply_initial_cost(OutputResources &);
 	void apply_cost_per_tick(OutputResources &);
-	~Farm();
+	~Bank();
 private:
 	GLdouble x, y, z;
 	Tile t;
