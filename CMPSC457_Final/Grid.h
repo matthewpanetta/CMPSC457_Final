@@ -11,4 +11,3 @@ public:
 private:
 	std::vector<vector<Tile>> grid;
 };
-
