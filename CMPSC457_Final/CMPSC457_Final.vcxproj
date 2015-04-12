@@ -76,6 +76,7 @@
     <ClCompile Include="BuildingFactory.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Farm.cpp" />
+    <ClCompile Include="Mill.cpp" />
     <ClCompile Include="OutputResources.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -86,9 +87,13 @@
     <ClInclude Include="BuildingFactory.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Farm.h" />
+    <ClInclude Include="Mill.h" />
     <ClInclude Include="OutputResources.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="World.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\tile_specs.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

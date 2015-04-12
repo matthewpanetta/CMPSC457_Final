@@ -1,4 +1,7 @@
 #pragma once
+#ifndef FARM_H
+#define FARM_H
+
 #include "Building.h"
 #include "OutputResources.h"
 
@@ -18,3 +21,4 @@ private:
 	Tile t;
 };
 
+#endif

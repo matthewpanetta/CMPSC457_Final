@@ -1,4 +1,7 @@
 #pragma once
+#ifndef TILE_H
+#define TILE_H
+
 #include <vector>
 
 class Tile
@@ -17,3 +20,5 @@ private:
 	int soil;
 	int stone;
 };
+
+#endif

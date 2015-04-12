@@ -1,4 +1,7 @@
 #pragma once
+#ifndef BUILDING_FACTORY_H
+#define BUILDING_FACTORY_H
+
 #include "Building.h"
 #include <string>
 
@@ -10,3 +13,4 @@ public:
 	~BuildingFactory();
 };
 
+#endif

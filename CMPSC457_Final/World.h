@@ -1,4 +1,7 @@
 #pragma once
+#ifndef WORLD_H
+#define WORLD_H
+
 #include "Tile.h"
 #include "Building.h"
 #include <vector>
@@ -16,3 +19,4 @@ private:
 	vector<Tile> tiles;
 };
 
+#endif

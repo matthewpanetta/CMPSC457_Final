@@ -1,4 +1,7 @@
 #pragma once
+#ifndef CURSOR_H
+#define CURSOR_H
+
 class Cursor
 {
 public:
@@ -15,3 +18,4 @@ private:
 	int coordinate[2];
 };
 
+#endif

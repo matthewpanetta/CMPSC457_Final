@@ -1,4 +1,7 @@
 #pragma once
+#ifndef BUILDING_H
+#define BUILDING_H
+
 #include "GL\freeglut.h"
 #include "Tile.h"
 
@@ -18,3 +21,5 @@ public:
 private:
 	GLdouble x, y, z;
 };
+
+#endif
