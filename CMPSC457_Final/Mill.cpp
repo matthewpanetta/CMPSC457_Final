@@ -14,7 +14,7 @@ void Mill::set_tile(Tile t)
 
 void Mill::apply_perk(OutputResources &o)
 {
-	o.set_wood(o.get_wood() + t.getTrees());
+	o.set_wood(o.get_wood() + t.get_trees());
 }
 
 void Mill::apply_initial_cost(OutputResources &o)
