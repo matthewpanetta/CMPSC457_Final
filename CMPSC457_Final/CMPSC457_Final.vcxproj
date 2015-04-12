@@ -77,6 +77,7 @@
     <ClCompile Include="BuildingFactory.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Farm.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="Mill.cpp" />
     <ClCompile Include="Mine.cpp" />
@@ -92,6 +93,7 @@
     <ClInclude Include="BuildingFactory.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Farm.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="Mill.h" />
     <ClInclude Include="Mine.h" />

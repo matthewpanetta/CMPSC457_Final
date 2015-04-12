@@ -184,7 +184,7 @@ void Keyboard(unsigned char key, int x, int y)
 
 	switch (key)
 	{
-	case 'q':	exit(0);
+		case 'q':	exit(0);
 	}
 }
 
