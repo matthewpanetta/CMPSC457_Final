@@ -7,9 +7,9 @@ Bank::Bank(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 	this->z = z;
 }
 
-void Bank::set_tile(Tile t)
+void Bank::draw_building()
 {
-	this->t = t;
+
 }
 
 void Bank::apply_perk(OutputResources &o)

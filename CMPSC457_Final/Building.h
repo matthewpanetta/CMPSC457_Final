@@ -13,11 +13,12 @@ public:
 	GLfloat get_x();
 	GLfloat get_y();
 	GLfloat get_z();
-	void draw_building();
 	void set_tile(Tile t);
-	void apply_perk(OutputResources &);
-	void apply_initial_cost(OutputResources &);
-	void apply_cost_per_tick(OutputResources &);
+
+	virtual void draw_building() = 0;
+	virtual void apply_perk(OutputResources &) = 0;
+	virtual void apply_initial_cost(OutputResources &) = 0;
+	virtual void apply_cost_per_tick(OutputResources &) = 0;
 	~Building();
 private:
 	GLdouble x, y, z;

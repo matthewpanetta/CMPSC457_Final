@@ -7,9 +7,9 @@ Mine::Mine(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 	this->z = z;
 }
 
-void Mine::set_tile(Tile t)
+void Mine::draw_building()
 {
-	this->t = t;
+	
 }
 
 void Mine::apply_perk(OutputResources &o)

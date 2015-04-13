@@ -24,14 +24,6 @@ GLfloat Building::get_z()
 	return z;
 }
 
-void Building::draw_building() 
-{
-	glPushMatrix();
-	glTranslatef(x, y*-1, z);
-	glutSolidCube(1);
-	glPopMatrix();
-}
-
 Building::~Building()
 {
 }

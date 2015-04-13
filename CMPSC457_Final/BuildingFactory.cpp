@@ -10,45 +10,37 @@ BuildingFactory::BuildingFactory()
 {
 }
 
-Building BuildingFactory::create_building(std::string name, GLdouble x, GLdouble y, GLdouble z)
+Building* BuildingFactory::create_building(std::string name, GLdouble x, GLdouble y, GLdouble z)
 {
-	if (name.compare("Farm"))
+	if (name == "Farm")
 	{
-		Farm farm(x, y, z);
-		return farm;
+		return new Farm(x, y, z);
 	}
-	else if (name.compare("Mill"))
+	else if (name == "Mill")
 	{
-		Mill mill(x, y, z);
-		return mill;
+		return new Mill(x, y, z);
 	}
-	else if (name.compare("Mine"))
+	else if (name == "Mine")
 	{
-		Mine mine(x, y, z);
-		return mine;
+		return new Mine(x, y, z);
 	}
-	else if (name.compare("Bank"))
+	else if (name == "Bank")
 	{
-		Bank bank(x, y, z);
-		return bank;
+		return new Bank(x, y, z);
 	}
-	else if (name.compare("House"))
+	else if (name == "House")
 	{
-		House house(x, y, z);
-		return house;
+		return new House(x, y, z);
 	}
-	else if (name.compare("Temple"))
+	else if (name == "Temple")
 	{
-		Temple temple(x, y, z);
-		return temple;
+		return new Temple(x, y, z);
 	}
 	else
 	{
-		Building building(x, y, z);
-		return building;
+		return new Farm(x, y, z);
 	}
 }
-
 
 BuildingFactory::~BuildingFactory()
 {

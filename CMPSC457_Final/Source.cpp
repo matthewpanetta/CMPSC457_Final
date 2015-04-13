@@ -37,7 +37,7 @@ double rotate = 0;
 double currposx = 5;
 double currposz = 9;
 
-vector<Building> buildings;
+vector<Building*> buildings;
 
 World w(10,10);		// Create a 10x10 world.
 Cursor cursor;
@@ -109,7 +109,7 @@ void Display(void)
 	
 	for (int i = 0; i < buildings.size(); i++)
 	{
-		buildings.at(i).draw_building();
+		buildings.at(i)->draw_building();
 	}
 
 	/* before returning, flush the graphics buffer

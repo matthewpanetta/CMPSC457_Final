@@ -7,9 +7,12 @@ Farm::Farm(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 	this->z = z;
 }
 
-void Farm::set_tile(Tile t)
+void Farm::draw_building()
 {
-	this->t = t;
+	glPushMatrix();
+	glTranslatef(x, y*-1, z);
+	glutSolidCube(1);
+	glPopMatrix();
 }
 
 void Farm::apply_perk(OutputResources &o)

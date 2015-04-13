@@ -13,7 +13,7 @@ class World
 public:
 	World(int, int);
 	vector<Tile> getTiles();
-	void addBuilding(Building b);
+	void addBuilding(Building& b);
 	~World();
 private:
 	vector<Tile> tiles;

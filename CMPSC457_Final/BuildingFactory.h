@@ -9,7 +9,7 @@ class BuildingFactory
 {
 public:
 	BuildingFactory();
-	Building create_building(std::string, GLdouble, GLdouble, GLdouble);
+	Building* create_building(std::string, GLdouble, GLdouble, GLdouble);
 	~BuildingFactory();
 };
 

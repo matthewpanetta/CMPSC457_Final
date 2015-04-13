@@ -7,9 +7,9 @@ House::House(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 	this->z = z;
 }
 
-void House::set_tile(Tile t)
+void House::draw_building()
 {
-	this->t = t;
+
 }
 
 void House::apply_perk(OutputResources &o)

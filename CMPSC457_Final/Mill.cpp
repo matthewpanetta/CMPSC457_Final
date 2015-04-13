@@ -7,9 +7,9 @@ Mill::Mill(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 	this->z = z;
 }
 
-void Mill::set_tile(Tile t)
+void Mill::draw_building()
 {
-	this->t = t;
+	
 }
 
 void Mill::apply_perk(OutputResources &o)

@@ -7,9 +7,24 @@ Temple::Temple(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 	this->z = z;
 }
 
-void Temple::set_tile(Tile t)
+void Temple::draw_building()
 {
-	this->t = t;
+
+}
+
+void Temple::apply_perk(OutputResources &o)
+{
+
+}
+
+void Temple::apply_initial_cost(OutputResources &o)
+{
+
+}
+
+void Temple::apply_cost_per_tick(OutputResources &o)
+{
+
 }
 
 Temple::~Temple()
