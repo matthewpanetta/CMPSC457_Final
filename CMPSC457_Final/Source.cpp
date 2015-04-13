@@ -17,6 +17,7 @@
 #include "Tile.h"
 #include "World.h"
 #include "Cursor.h"
+#include "BuildingFactory.h"
 
 #include <math.h>
 #include <stdlib.h>
@@ -36,8 +37,11 @@ double rotate = 0;
 double currposx = 5;
 double currposz = 9;
 
+vector<Building> buildings;
+
 World w(10,10);		// Create a 10x10 world.
 Cursor cursor;
+BuildingFactory bf;
 
 void DrawSubgrid(double xi, double zi, double color[3])
 {
@@ -102,6 +106,11 @@ void Display(void)
 
 	/* insert graphics code here that draws the scene */
 	//cout << "Display event occurred" << endl;
+	
+	for (int i = 0; i < buildings.size(); i++)
+	{
+		buildings.at(i).draw_building();
+	}
 
 	/* before returning, flush the graphics buffer
 	* so all graphics appear in the window */
@@ -143,33 +152,7 @@ void Reshape(int w, int h)
 */
 void Mouse(int button, int state, int x, int y)
 {
-	if ((button == GLUT_LEFT_BUTTON) && (state == GLUT_DOWN))
-	{
-		GLdouble model[16];
-		GLdouble projection[16];
-		GLint viewport[4];
-		GLfloat winX, winY, z;
-		GLdouble x_pos, y_pos, z_pos;
 
-		glGetDoublev(GL_MODELVIEW_MATRIX, model);
-		glGetDoublev(GL_PROJECTION_MATRIX, projection);
-		glGetIntegerv(GL_VIEWPORT, viewport);
-
-		winX = (float)x;
-		winY = (float)viewport[3] - (float)y;
-
-		glReadPixels(winX, winY, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &z);
-
-		gluUnProject(x, y, z, model, projection, viewport, &x_pos, &y_pos, &z_pos);
-
-		cout << "Creating a building object at" << endl;
-		cout << "X: " << x_pos << endl;
-		cout << "Y: " << y_pos << endl;
-		cout << "Z: " << z_pos << endl;
-
-		/*Building b(x_pos, y_pos, z_pos);
-		buildings.push_back(b);*/
-	}
 }
 
 /*
@@ -177,15 +160,22 @@ void Mouse(int button, int state, int x, int y)
 */
 void Keyboard(unsigned char key, int x, int y)
 {
-	cout << "Keyboard event occurred\n";
-	cout << "key:    " << key << endl;
-	cout << "x:      " << x << endl;
-	cout << "y:      " << y << endl;
-
+	int x_pos, z_pos;
 	switch (key)
 	{
-		case 'q':	exit(0);
+		case 13:
+			cout << "Building Created" << endl;
+
+			x_pos = cursor.getPostion()[0];
+			z_pos = cursor.getPostion()[1];
+
+			buildings.push_back(bf.create_building("Farm", x_pos, -0.5, z_pos));
+			break;
+		case 'q':
+			exit(0);
 	}
+
+	glutPostRedisplay();
 }
 
 void SpecialKeys(int key, int x, int y)
