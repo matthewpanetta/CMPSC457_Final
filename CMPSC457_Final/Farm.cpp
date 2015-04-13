@@ -10,6 +10,7 @@ Farm::Farm(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 void Farm::draw_building()
 {
 	glPushMatrix();
+	glColor3f(0.69, 0.00, 0.16);
 	glTranslatef(x, y*-1, z);
 	glutSolidCube(1);
 	glPopMatrix();

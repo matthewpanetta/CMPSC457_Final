@@ -9,7 +9,11 @@ Mine::Mine(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 
 void Mine::draw_building()
 {
-	
+	glPushMatrix();
+	glColor3f(1.00, 0.94, 0.00);
+	glTranslatef(x, y*-1, z);
+	glutSolidCube(1);
+	glPopMatrix();
 }
 
 void Mine::apply_perk(OutputResources &o)

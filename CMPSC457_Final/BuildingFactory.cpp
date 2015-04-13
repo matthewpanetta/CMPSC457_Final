@@ -6,39 +6,41 @@
 #include "House.h"
 #include "Temple.h"
 
+#include <iostream>
+
 BuildingFactory::BuildingFactory()
 {
 }
 
-Building* BuildingFactory::create_building(std::string name, GLdouble x, GLdouble y, GLdouble z)
+int BuildingFactory::get_desired_building()
 {
-	if (name == "Farm")
+	int building_type = -1;
+
+	do {
+		std::cout << "Press number to build:\n\t[0] Bank\n\t[1] Farm\n\t[2] House\n\t[3] Mill\n\t[4] Mine" << std::endl;
+		std::cin >> building_type;
+		
+		if (!std::cin || building_type < 0 || building_type > 4)
+		{
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
+	} while (building_type < 0 || building_type > 4);
+
+	return building_type;
+}
+
+Building* BuildingFactory::create_building(GLdouble x, GLdouble y, GLdouble z)
+{
+	int building_type = get_desired_building();
+
+	switch (building_type)
 	{
-		return new Farm(x, y, z);
-	}
-	else if (name == "Mill")
-	{
-		return new Mill(x, y, z);
-	}
-	else if (name == "Mine")
-	{
-		return new Mine(x, y, z);
-	}
-	else if (name == "Bank")
-	{
-		return new Bank(x, y, z);
-	}
-	else if (name == "House")
-	{
-		return new House(x, y, z);
-	}
-	else if (name == "Temple")
-	{
-		return new Temple(x, y, z);
-	}
-	else
-	{
-		return new Farm(x, y, z);
+	case 0: return new Bank(x, y, z);
+	case 1: return new Farm(x, y, z);
+	case 2: return new House(x, y, z);
+	case 3: return new Mill(x, y, z);
+	case 4: return new Mine(x, y, z);
 	}
 }
 

@@ -9,7 +9,11 @@ House::House(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 
 void House::draw_building()
 {
-
+	glPushMatrix();
+	glColor3f(0.98, 0.81, 0.69);
+	glTranslatef(x, y*-1, z);
+	glutSolidCube(1);
+	glPopMatrix();
 }
 
 void House::apply_perk(OutputResources &o)

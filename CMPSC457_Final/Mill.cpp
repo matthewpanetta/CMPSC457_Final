@@ -9,7 +9,11 @@ Mill::Mill(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 
 void Mill::draw_building()
 {
-	
+	glPushMatrix();
+	glColor3f(0.54, 0.20, 0.14);
+	glTranslatef(x, y*-1, z);
+	glutSolidCube(1);
+	glPopMatrix();
 }
 
 void Mill::apply_perk(OutputResources &o)

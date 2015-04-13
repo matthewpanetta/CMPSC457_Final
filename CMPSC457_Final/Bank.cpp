@@ -9,7 +9,11 @@ Bank::Bank(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 
 void Bank::draw_building()
 {
-
+	glPushMatrix();
+	glColor3f(0.00, 0.19, 0.56);
+	glTranslatef(x, y*-1, z);
+	glutSolidCube(1);
+	glPopMatrix();
 }
 
 void Bank::apply_perk(OutputResources &o)

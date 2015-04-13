@@ -9,7 +9,11 @@ Temple::Temple(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 
 void Temple::draw_building()
 {
-
+	glPushMatrix();
+	glColor3f(0.18, 0.31, 0.31);
+	glTranslatef(x, y*-1, z);
+	glutSolidCube(1);
+	glPopMatrix();
 }
 
 void Temple::apply_perk(OutputResources &o)

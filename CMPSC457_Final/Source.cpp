@@ -164,12 +164,10 @@ void Keyboard(unsigned char key, int x, int y)
 	switch (key)
 	{
 		case 13:
-			cout << "Building Created" << endl;
-
 			x_pos = cursor.getPostion()[0];
 			z_pos = cursor.getPostion()[1];
 
-			buildings.push_back(bf.create_building("Farm", x_pos, -0.5, z_pos));
+			buildings.push_back(bf.create_building(x_pos, -0.5, z_pos));
 			break;
 		case 'q':
 			exit(0);
