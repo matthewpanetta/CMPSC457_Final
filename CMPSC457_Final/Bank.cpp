@@ -11,7 +11,7 @@ void Bank::draw_building()
 {
 	glPushMatrix();
 	glTranslatef(x, y*-1, z);
-	glScalef(1.0, 1.0, 0.9);
+	glScalef(0.9, 1.0, 0.8);
 
 	// draw building
 	glPushMatrix();

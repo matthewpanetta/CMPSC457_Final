@@ -10,8 +10,10 @@ Farm::Farm(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 void Farm::draw_building()
 {
 	glPushMatrix();
+	
 	glTranslatef(x, y*-1, z);
 	glTranslatef(0.0, -0.12, 0.0);
+	glScalef(0.9, 1.0, 0.9);
 	// barn
 	glPushMatrix();
 	glColor3f(0.89, 0.13, 0.11);
@@ -73,7 +75,6 @@ void Farm::draw_building()
 	glVertex3f(-1.0f, -1.0f, 1.0f);
 	glEnd();
 	glPopMatrix();
-
 	glPopMatrix();
 }
 

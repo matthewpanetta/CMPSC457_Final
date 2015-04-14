@@ -93,7 +93,7 @@ void Display(void)
 	gluLookAt
 	(
 		0.0 + cursor.getPostion()[0], 
-		3.0, 
+		4.0, 
 		10.0 + cursor.getPostion()[1], 
 		cursor.getPostion()[0], 
 		0.0, 
