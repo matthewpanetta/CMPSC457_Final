@@ -75,6 +75,11 @@ void DrawGrid()
 	}
 }
 
+void draw_bank()
+{
+	
+}
+
 /*
 *  This function is called whenever the display needs to redrawn.
 *  First call when program starts.
@@ -167,7 +172,7 @@ void Keyboard(unsigned char key, int x, int y)
 			x_pos = cursor.getPostion()[0];
 			z_pos = cursor.getPostion()[1];
 
-			buildings.push_back(bf.create_building(x_pos, -0.5, z_pos));
+			buildings.push_back(bf.create_building(x_pos, -0.51, z_pos));
 			break;
 		case 'q':
 			exit(0);

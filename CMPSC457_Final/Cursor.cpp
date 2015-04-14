@@ -5,8 +5,8 @@
 //Initialize cursor to 0,0 (x,z)
 Cursor::Cursor()
 {
-	coordinate[0] = 5;
-	coordinate[1] = 9;
+	coordinate[0] = 5;	// 5
+	coordinate[1] = 9;	// 9
 }
 
 //Return array containing the current position of the cursor

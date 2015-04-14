@@ -10,9 +10,76 @@ Bank::Bank(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
 void Bank::draw_building()
 {
 	glPushMatrix();
-	glColor3f(0.00, 0.19, 0.56);
 	glTranslatef(x, y*-1, z);
+	glScalef(1.0, 1.0, 0.9);
+
+	// draw building
+	glPushMatrix();
+	glColor3f(0.52, 0.52, 0.52);
+	glTranslatef(0.0, -0.2, -0.1);
+	glScalef(0.9, 0.6, 0.85);
 	glutSolidCube(1);
+	glPopMatrix();
+
+	// draw floor
+	glPushMatrix();
+	glColor3f(0.85, 0.82, 0.89);
+	glTranslatef(0.0, -0.5, 0.0);
+	glScalef(1.0, 0.05, 1.0);
+	glutSolidCube(1);
+
+	// draw elevated floor
+	glColor3f(0.73, 0.70, 0.71);
+	glTranslatef(0.0, 1.0, 0.0);
+	glScalef(0.95, 1.0, 1.0);
+	glutSolidCube(1);
+	glPopMatrix();
+
+	// draw four pillars
+	glPushMatrix();
+	glColor3f(0.86, 0.89, 0.91);
+	glTranslatef(-0.4, -0.2, 0.4);
+	glScalef(0.1, 0.6, 0.1);
+	glutSolidCube(1);
+
+	glTranslatef(2.7, 0.0, 0.0);
+	glutSolidCube(1);
+
+	glTranslatef(2.7, 0.0, 0.0);
+	glutSolidCube(1);
+
+	glTranslatef(2.7, 0.0, 0.0);
+	glutSolidCube(1);
+	glPopMatrix();
+
+	// draw roof
+	glPushMatrix();
+	glTranslatef(0.0, 0.5, 0.0);
+	glScalef(0.55, 0.3, 0.9);
+	glColor3f(0.30, 0.30, 0.30);
+	glBegin(GL_TRIANGLES);
+
+	// Front
+	glVertex3f(0.0f, 0.5f, 0.0f);
+	glVertex3f(-1.0f, -1.0f, 1.0f);
+	glVertex3f(1.0f, -1.0f, 1.0f);
+
+	// Right
+	glVertex3f(0.0f, 0.5f, 0.0f);
+	glVertex3f(1.0f, -1.0f, 1.0f);
+	glVertex3f(1.0f, -1.0f, -1.0f);
+
+	// Back
+	glVertex3f(0.0f, 0.5f, 0.0f);
+	glVertex3f(1.0f, -1.0f, -1.0f);
+	glVertex3f(-1.0f, -1.0f, -1.0f);
+
+	// Left
+	glVertex3f(0.0f, 0.5f, 0.0f);
+	glVertex3f(-1.0f, -1.0f, -1.0f);
+	glVertex3f(-1.0f, -1.0f, 1.0f);
+	glEnd();
+	glPopMatrix();
 	glPopMatrix();
 }
 
