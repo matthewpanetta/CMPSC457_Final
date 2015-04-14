@@ -121,6 +121,8 @@ void Display(void)
 	* so all graphics appear in the window */
 
 	DrawGrid();
+	//glScalef(2, 2, 2);
+	//draw_bank();
 
 	//Set cursor color to white
 	glColor3d(1.0, 1.0, 1.0);
@@ -249,6 +251,8 @@ void myInit()
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	//glOrtho(-2, 2, -2, 2, -10.0, 10.0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 
 	/* Enable hidden--surface--removal */
 	glEnable(GL_DEPTH_TEST);
