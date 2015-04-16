@@ -13,6 +13,7 @@
 #include <GL/glut.h>
 #endif
 
+#include "Grid.h"
 #include "Building.h"
 #include "Tile.h"
 #include "World.h"
@@ -25,7 +26,6 @@
 #include <vector> 
 #include <time.h>
 
-
 using namespace std;
 
 #define WinW 500
@@ -34,14 +34,14 @@ using namespace std;
 int grid[10][10];
 double color[3] = { 255, 0, 0 };
 double rotate = 0;
-double currposx = 5;
-double currposz = 9;
 
 vector<Building*> buildings;
 
 World w(10,10);		// Create a 10x10 world.
 Cursor cursor;
 BuildingFactory bf;
+Tile t;
+Grid gr(5, 5);
 
 void DrawSubgrid(double xi, double zi, double color[3])
 {
@@ -68,8 +68,8 @@ void DrawGrid()
 	{
 		for (int column = 0; column < 10; column++)
 		{
-			color[0] = row * 0.1;
-			color[1] = column * 0.1;
+			color[1] = row * 0.1;
+			color[2] = column * 0.1;
 			DrawSubgrid(column, row, color);
 		}
 	}
@@ -93,7 +93,7 @@ void Display(void)
 	gluLookAt
 	(
 		0.0 + cursor.getPostion()[0], 
-		4.0, 
+		5.0, 
 		10.0 + cursor.getPostion()[1], 
 		cursor.getPostion()[0], 
 		0.0, 
@@ -108,26 +108,30 @@ void Display(void)
 
 	/* clear the display */
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	/* insert graphics code here that draws the scene */
-	//cout << "Display event occurred" << endl;
 	
 	for (int i = 0; i < buildings.size(); i++)
 	{
 		buildings.at(i)->draw_building();
 	}
 
-	/* before returning, flush the graphics buffer
-	* so all graphics appear in the window */
-
 	DrawGrid();
 	//glScalef(2, 2, 2);
 	//draw_bank();
 
+	/*std::cout << "Trees: " << gr.getTile(0, 0)->trees << endl;
+
+	gr.getTile(0, 0)->trees = 5;
+
+	std::cout << "Trees: " << gr.getTile(0, 0)->get_trees() << endl;*/
+
 	//Set cursor color to white
 	glColor3d(1.0, 1.0, 1.0);
+
+	/*Draw cursor*/
 	cursor.draw();
 
+	/* before returning, flush the graphics buffer
+	* so all graphics appear in the window */
 	glFlush();
 	glutSwapBuffers();
 }
@@ -175,6 +179,7 @@ void Keyboard(unsigned char key, int x, int y)
 			z_pos = cursor.getPostion()[1];
 
 			buildings.push_back(bf.create_building(x_pos, -0.51, z_pos));
+
 			break;
 		case 'q':
 			exit(0);
@@ -205,12 +210,11 @@ void SpecialKeys(int key, int x, int y)
 		break;
 	}
 
-	cout << "cursor x: " << cursor.getPostion()[0] << endl;
-	cout << "cursor z: " << cursor.getPostion()[1] << endl << endl;
+	//cout << "cursor x: " << cursor.getPostion()[0] << endl;
+	//cout << "cursor z: " << cursor.getPostion()[1] << endl << endl;
 
 	glutPostRedisplay();
 }
-
 
 /*
 * An idle event is generated when no other
@@ -257,9 +261,11 @@ void myInit()
 	/* Enable hidden--surface--removal */
 	glEnable(GL_DEPTH_TEST);
 
+	/*Create random seed using the time(doesn't work, the object is initialized before the seed)*/
 	srand(time(NULL));
 
-	vector<Tile> t = w.getTiles();		// Initialize random tiles.
+	//t.set_values();
+	//vector<Tile> t = w.getTiles();		// Initialize random tiles.
 }
 
 void main(int argc, char ** argv)

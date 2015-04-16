@@ -2,7 +2,7 @@
 #include <windows.h>
 #include <GL/glut.h>
 
-//Initialize cursor to 0,0 (x,z)
+//Initialize cursor to (x,z) *need to add this
 Cursor::Cursor()
 {
 	coordinate[0] = 5;	// 5
@@ -27,13 +27,13 @@ void Cursor::moveLeft()
 	coordinate[0] -= 1;
 }
 
-//z = z + 1
+//z = z - 1
 void Cursor::moveUp()
 {
 	coordinate[1] -= 1;
 }
 
-//z = z - 1
+//z = z + 1
 void Cursor::moveDown()
 {
 	coordinate[1] += 1;
@@ -42,6 +42,15 @@ void Cursor::moveDown()
 //draw a cursor
 void Cursor::draw()
 {
+	if (selection)
+	{
+		glColor3d(1.0, 0.0, 0.0);
+	}
+	else
+	{
+		glColor3d(1.0, 1.0, 1.0);
+	}
+
 	glPushMatrix();
 
 	glTranslated(coordinate[0], 0.01, coordinate[1]);
@@ -72,6 +81,11 @@ void Cursor::draw()
 	glEnd();
 
 	glPopMatrix();
+}
+
+void Cursor::ChangeState()
+{
+	selection = !selection;
 }
 
 Cursor::~Cursor()

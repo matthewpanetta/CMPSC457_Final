@@ -6,6 +6,7 @@ class Cursor
 {
 public:
 	Cursor();
+	void ChangeState();
 	int* getPostion();
 	void moveRight();
 	void moveLeft();
@@ -16,6 +17,7 @@ public:
 
 private:
 	int coordinate[2];
+	bool selection = false;
 };
 
 #endif

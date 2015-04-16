@@ -5,9 +5,12 @@
 class Grid
 {
 public:
-	Grid(int, int, vector<int>);
+	Grid(int row, int column);
 	~Grid();
+	Tile* getTile(int row, int column);
+	
 
 private:
-	std::vector<vector<Tile>> grid;
+	int rows, columns;
+	vector<vector<Tile*>> tile_grid;
 };
