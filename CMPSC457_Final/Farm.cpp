@@ -1,6 +1,6 @@
 #include "Farm.h"
 
-Farm::Farm(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
+Farm::Farm(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
 	this->x = x;
 	this->y = y;

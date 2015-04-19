@@ -8,7 +8,7 @@ class House :
 	public Building
 {
 public:
-	House(GLdouble, GLdouble, GLdouble);
+	House(GLdouble, GLdouble, GLdouble, Tile);
 	void draw_building();
 	void apply_perk(OutputResources &);
 	void apply_initial_cost(OutputResources &);

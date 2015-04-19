@@ -9,7 +9,7 @@ class Mill :
 	public Building
 {
 public:
-	Mill(GLdouble, GLdouble, GLdouble);
+	Mill(GLdouble, GLdouble, GLdouble, Tile);
 	void draw_building();
 	void apply_perk(OutputResources &);
 	void apply_initial_cost(OutputResources &);

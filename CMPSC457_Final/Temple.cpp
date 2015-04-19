@@ -1,6 +1,6 @@
 #include "Temple.h"
 
-Temple::Temple(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
+Temple::Temple(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
 	this->x = x;
 	this->y = y;

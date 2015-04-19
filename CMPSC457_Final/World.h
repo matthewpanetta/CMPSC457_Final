@@ -4,6 +4,8 @@
 
 #include "Tile.h"
 #include "Building.h"
+#include "Grid.h"
+#include "Cursor.h"
 #include <vector>
 
 using namespace std;
@@ -12,11 +14,13 @@ class World
 {
 public:
 	World(int, int);
-	vector<Tile> getTiles();
-	void addBuilding(Building& b);
+	void initialize_world();
+	Cursor* get_cursor();
+	Grid get_grid();
 	~World();
 private:
-	vector<Tile> tiles;
+	Grid gr;
+	Cursor c;
 };
 
 #endif

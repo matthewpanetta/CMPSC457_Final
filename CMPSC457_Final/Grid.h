@@ -1,16 +1,21 @@
 #pragma once
-#include "World.h"
+#ifndef GRID_H
+#define GRID_H
+
 #include "Tile.h"
+#include <vector>
 
 class Grid
 {
 public:
 	Grid(int row, int column);
-	~Grid();
 	Tile* getTile(int row, int column);
-	
-
+	void drawGrid();
+	void drawSubgrid(double xi, double zi, double color[3]);
+	~Grid();
 private:
 	int rows, columns;
-	vector<vector<Tile*>> tile_grid;
+	std::vector<std::vector<Tile*>> tile_grid;
 };
+
+#endif

@@ -2,11 +2,14 @@
 #include <windows.h>
 #include <GL/glut.h>
 
-//Initialize cursor to (x,z) *need to add this
-Cursor::Cursor()
+//Initialize cursor with r rows and c cols. Initial cursor position = 0,0
+Cursor::Cursor(int r, int c)
 {
-	coordinate[0] = 5;	// 5
-	coordinate[1] = 9;	// 9
+	this->rows = r;
+	this->cols = c;
+
+	coordinate[0] = 0;
+	coordinate[1] = 0;
 }
 
 //Return array containing the current position of the cursor
@@ -18,25 +21,29 @@ int* Cursor::getPostion()
 //x = x + 1
 void Cursor::moveRight()
 {
-	coordinate[0] += 1;
+	if (coordinate[0] + 1 < cols)
+		coordinate[0] += 1;
 }
 
 //x = x - 1
 void Cursor::moveLeft()
 {
-	coordinate[0] -= 1;
+	if (coordinate[0] - 1 >= 0)
+		coordinate[0] -= 1;
 }
 
 //z = z - 1
 void Cursor::moveUp()
 {
-	coordinate[1] -= 1;
+	if (coordinate[1] - 1 >= 0)
+		coordinate[1] -= 1;
 }
 
 //z = z + 1
 void Cursor::moveDown()
 {
-	coordinate[1] += 1;
+	if (coordinate[1] + 1 < rows)
+		coordinate[1] += 1;
 }
 
 //draw a cursor

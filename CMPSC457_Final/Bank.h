@@ -8,7 +8,7 @@ class Bank :
 	public Building
 {
 public:
-	Bank(GLdouble, GLdouble, GLdouble);
+	Bank(GLdouble, GLdouble, GLdouble, Tile);
 	void draw_building();
 	void apply_perk(OutputResources &);
 	void apply_initial_cost(OutputResources &);

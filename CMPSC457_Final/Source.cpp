@@ -18,6 +18,7 @@
 #include "Tile.h"
 #include "World.h"
 #include "Cursor.h"
+#include "Farm.h"
 #include "BuildingFactory.h"
 
 #include <math.h>
@@ -32,53 +33,11 @@ using namespace std;
 #define WinH 500
 
 int grid[10][10];
-double color[3] = { 255, 0, 0 };
+
 double rotate = 0;
 
-vector<Building*> buildings;
-
 World w(10,10);		// Create a 10x10 world.
-Cursor cursor;
 BuildingFactory bf;
-Tile t;
-Grid gr(5, 5);
-
-void DrawSubgrid(double xi, double zi, double color[3])
-{
-
-	glColor3d(color[0], color[1], color[2]);
-
-	glPushMatrix();
-
-	glTranslated(xi, 0, zi);
-
-	glBegin(GL_POLYGON);
-	glVertex3d(-0.5, 0, -0.5);
-	glVertex3d(0.5, 0, -0.5);
-	glVertex3d(0.5, 0, 0.5);
-	glVertex3d(-0.5, 0, 0.5);
-	glEnd();
-
-	glPopMatrix();
-}
-
-void DrawGrid()
-{
-	for (int row = 0; row < 10; row++)
-	{
-		for (int column = 0; column < 10; column++)
-		{
-			color[1] = row * 0.1;
-			color[2] = column * 0.1;
-			DrawSubgrid(column, row, color);
-		}
-	}
-}
-
-void draw_bank()
-{
-	
-}
 
 /*
 *  This function is called whenever the display needs to redrawn.
@@ -92,12 +51,12 @@ void Display(void)
 	//Set the view to follow the cursor
 	gluLookAt
 	(
-		0.0 + cursor.getPostion()[0], 
+		0.0 + w.get_cursor()->getPostion()[0], 
 		5.0, 
-		10.0 + cursor.getPostion()[1], 
-		cursor.getPostion()[0], 
+		10.0 + w.get_cursor()->getPostion()[1], 
+		w.get_cursor()->getPostion()[0], 
 		0.0, 
-		cursor.getPostion()[1], 
+		w.get_cursor()->getPostion()[1], 
 		0.0, 
 		1.0, 
 		0.0
@@ -108,27 +67,11 @@ void Display(void)
 
 	/* clear the display */
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
-	for (int i = 0; i < buildings.size(); i++)
-	{
-		buildings.at(i)->draw_building();
-	}
 
-	DrawGrid();
-	//glScalef(2, 2, 2);
-	//draw_bank();
-
-	/*std::cout << "Trees: " << gr.getTile(0, 0)->trees << endl;
-
-	gr.getTile(0, 0)->trees = 5;
-
-	std::cout << "Trees: " << gr.getTile(0, 0)->get_trees() << endl;*/
+	w.initialize_world();
 
 	//Set cursor color to white
 	glColor3d(1.0, 1.0, 1.0);
-
-	/*Draw cursor*/
-	cursor.draw();
 
 	/* before returning, flush the graphics buffer
 	* so all graphics appear in the window */
@@ -175,10 +118,8 @@ void Keyboard(unsigned char key, int x, int y)
 	switch (key)
 	{
 		case 13:
-			x_pos = cursor.getPostion()[0];
-			z_pos = cursor.getPostion()[1];
-
-			buildings.push_back(bf.create_building(x_pos, -0.51, z_pos));
+			x_pos = w.get_cursor()->getPostion()[0];
+			z_pos = w.get_cursor()->getPostion()[1];
 
 			break;
 		case 'q':
@@ -193,25 +134,14 @@ void SpecialKeys(int key, int x, int y)
 	switch (key)
 	{
 	case GLUT_KEY_UP:
-		if (cursor.getPostion()[1] - 1 >= 0)
-			cursor.moveUp();
-		break;
+		w.get_cursor()->moveUp();		break;
 	case GLUT_KEY_DOWN:
-		if (cursor.getPostion()[1] + 1 <= 9)
-			cursor.moveDown();
-		break;
+		w.get_cursor()->moveDown();		break;
 	case GLUT_KEY_LEFT:
-		if (cursor.getPostion()[0] - 1 >= 0)
-			cursor.moveLeft();
-		break;
+		w.get_cursor()->moveLeft();		break;
 	case GLUT_KEY_RIGHT:
-		if (cursor.getPostion()[0] + 1 <= 9)
-			cursor.moveRight();
-		break;
+		w.get_cursor()->moveRight();	break;
 	}
-
-	//cout << "cursor x: " << cursor.getPostion()[0] << endl;
-	//cout << "cursor z: " << cursor.getPostion()[1] << endl << endl;
 
 	glutPostRedisplay();
 }

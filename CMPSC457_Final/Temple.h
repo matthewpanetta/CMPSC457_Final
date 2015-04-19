@@ -8,7 +8,7 @@ class Temple :
 	public Building
 {
 public:
-	Temple(GLdouble, GLdouble, GLdouble);
+	Temple(GLdouble, GLdouble, GLdouble, Tile);
 	void draw_building();
 	void apply_perk(OutputResources &);
 	void apply_initial_cost(OutputResources &);

@@ -30,17 +30,17 @@ int BuildingFactory::get_desired_building()
 	return building_type;
 }
 
-Building* BuildingFactory::create_building(GLdouble x, GLdouble y, GLdouble z)
+Building* BuildingFactory::create_building(GLdouble x, GLdouble y, GLdouble z, Tile t)
 {
 	int building_type = get_desired_building();
 
 	switch (building_type)
 	{
-	case 0: return new Bank(x, y, z);
-	case 1: return new Farm(x, y, z);
-	case 2: return new House(x, y, z);
-	case 3: return new Mill(x, y, z);
-	case 4: return new Mine(x, y, z);
+	case 0: return new Bank(x, y, z, t);
+	case 1: return new Farm(x, y, z, t);
+	case 2: return new House(x, y, z, t);
+	case 3: return new Mill(x, y, z, t);
+	case 4: return new Mine(x, y, z, t);
 	}
 }
 

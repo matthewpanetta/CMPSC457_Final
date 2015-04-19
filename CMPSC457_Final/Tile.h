@@ -14,6 +14,12 @@ public:
 	int get_trees();
 	int get_soil();
 	int get_stone();
+
+	bool operator==(const Tile& t) const
+	{
+		return (trees == t.trees && soil == t.soil && stone == t.stone);
+	};
+	
 	~Tile();
 private:
 	int trees;

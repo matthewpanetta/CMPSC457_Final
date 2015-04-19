@@ -1,17 +1,24 @@
 #include "World.h"
 
-World::World(int cols, int rows)
+World::World(int rows, int cols) : gr(rows, cols), c(rows, cols)
 {
-	for (int i = 0; i < (cols * rows); i++) {
-		Tile t;
-		t.set_values();
-		tiles.push_back(t);
-	}
+	
 }
 
-vector<Tile> World::getTiles()
+void World::initialize_world()
 {
-	return tiles;
+	gr.drawGrid();
+	c.draw();
+}
+
+Cursor* World::get_cursor()
+{
+	return &c;
+}
+
+Grid World::get_grid()
+{
+	return gr;
 }
 
 World::~World()

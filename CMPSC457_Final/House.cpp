@@ -1,6 +1,6 @@
 #include "House.h"
 
-House::House(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
+House::House(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
 	this->x = x;
 	this->y = y;

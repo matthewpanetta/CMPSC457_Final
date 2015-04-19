@@ -1,6 +1,6 @@
 #include "Bank.h"
 
-Bank::Bank(GLdouble x, GLdouble y, GLdouble z) : Building(x, y, z)
+Bank::Bank(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
 	this->x = x;
 	this->y = y;

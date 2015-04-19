@@ -5,7 +5,7 @@
 class Cursor
 {
 public:
-	Cursor();
+	Cursor(int, int);
 	void ChangeState();
 	int* getPostion();
 	void moveRight();
@@ -16,6 +16,7 @@ public:
 	~Cursor();
 
 private:
+	int rows, cols;
 	int coordinate[2];
 	bool selection = false;
 };

@@ -9,11 +9,21 @@
 class Building
 {
 public:
-	Building(GLdouble, GLdouble, GLdouble);
+	Building(GLdouble, GLdouble, GLdouble, Tile);
 	GLfloat get_x();
 	GLfloat get_y();
 	GLfloat get_z();
-	void set_tile(Tile t);
+	bool compare(const Building& b) const;
+
+	bool operator == (const Building& b) const {
+		return compare(b);
+	};
+
+	bool operator != (const Building& b) const {
+		return !compare(b);
+	};
+
+	Tile get_tile();
 
 	virtual void draw_building() = 0;
 	virtual void apply_perk(OutputResources &) = 0;
@@ -22,6 +32,7 @@ public:
 	~Building();
 private:
 	GLdouble x, y, z;
+	Tile t;
 };
 
 #endif
