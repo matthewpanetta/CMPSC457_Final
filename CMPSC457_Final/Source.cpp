@@ -33,8 +33,8 @@ using namespace std;
 #define WinH 500
 
 int grid[10][10];
-
 double rotate = 0;
+bool build_mode = false;
 
 World w(10,10);		// Create a 10x10 world.
 BuildingFactory bf;
@@ -51,12 +51,12 @@ void Display(void)
 	//Set the view to follow the cursor
 	gluLookAt
 	(
-		0.0 + w.get_cursor()->getPostion()[0], 
+		0.0 + w.get_cursor()->getPosition()[0], 
 		5.0, 
-		10.0 + w.get_cursor()->getPostion()[1], 
-		w.get_cursor()->getPostion()[0], 
+		10.0 + w.get_cursor()->getPosition()[1], 
+		w.get_cursor()->getPosition()[0], 
 		0.0, 
-		w.get_cursor()->getPostion()[1], 
+		w.get_cursor()->getPosition()[1], 
 		0.0, 
 		1.0, 
 		0.0
@@ -68,7 +68,7 @@ void Display(void)
 	/* clear the display */
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	w.initialize_world();
+	w.draw_world();
 
 	//Set cursor color to white
 	glColor3d(1.0, 1.0, 1.0);
@@ -114,19 +114,36 @@ void Mouse(int button, int state, int x, int y)
 */
 void Keyboard(unsigned char key, int x, int y)
 {
-	int x_pos, z_pos;
-	switch (key)
+	if (!build_mode)
 	{
+		switch (key)
+		{
 		case 13:
-			x_pos = w.get_cursor()->getPostion()[0];
-			z_pos = w.get_cursor()->getPostion()[1];
-
-			break;
+			build_mode = true;	break;
 		case 'q':
 			exit(0);
+		}
+	}
+	else
+	{
+		int x_pos = w.get_cursor()->getPosition()[0];
+		int z_pos = w.get_cursor()->getPosition()[1];
+		int choice = 0;
+
+		if (key >= 48 && key <= 52)
+		{
+			choice = key - 48;
+			w.create_building(choice, x_pos, -0.5, z_pos);
+		}
+		else
+		{
+			cout << "Invalid building type" << endl;
+		}
+
+		build_mode = false;
 	}
 
-	glutPostRedisplay();
+	glutPostRedisplay();	
 }
 
 void SpecialKeys(int key, int x, int y)
@@ -193,9 +210,6 @@ void myInit()
 
 	/*Create random seed using the time(doesn't work, the object is initialized before the seed)*/
 	srand(time(NULL));
-
-	//t.set_values();
-	//vector<Tile> t = w.getTiles();		// Initialize random tiles.
 }
 
 void main(int argc, char ** argv)
@@ -220,9 +234,7 @@ void main(int argc, char ** argv)
 	glutSpecialFunc(SpecialKeys);
 	glutMouseFunc(Mouse);
 	glutReshapeFunc(Reshape);
-	/* glutTimerFunc( 100, Timer, 1 );
-	glutIdleFunc(Idle);
-	*/
+
 	/* set window attributes */
 	myInit();
 

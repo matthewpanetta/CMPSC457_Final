@@ -7,7 +7,7 @@ class Cursor
 public:
 	Cursor(int, int);
 	void ChangeState();
-	int* getPostion();
+	int* getPosition();
 	void moveRight();
 	void moveLeft();
 	void moveUp();

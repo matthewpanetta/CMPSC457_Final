@@ -11,8 +11,9 @@ class BuildingManager
 public:
 	BuildingManager();
 	void add_building(Building& b);
-	void get_building(Tile t);
+	Building* get_building(Tile t);
 	void remove_building(Building& b);
+	void draw_buildings();
 	~BuildingManager();
 private:
 	std::vector<Building*> buildings;

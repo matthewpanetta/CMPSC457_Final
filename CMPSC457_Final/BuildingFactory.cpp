@@ -30,9 +30,9 @@ int BuildingFactory::get_desired_building()
 	return building_type;
 }
 
-Building* BuildingFactory::create_building(GLdouble x, GLdouble y, GLdouble z, Tile t)
+Building* BuildingFactory::create_building(int building_type, GLdouble x, GLdouble y, GLdouble z, Tile t)
 {
-	int building_type = get_desired_building();
+	//int building_type = get_desired_building();
 
 	switch (building_type)
 	{

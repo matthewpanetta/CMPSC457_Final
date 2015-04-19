@@ -13,7 +13,7 @@ Cursor::Cursor(int r, int c)
 }
 
 //Return array containing the current position of the cursor
-int* Cursor::getPostion()
+int* Cursor::getPosition()
 {
 	return coordinate;
 }

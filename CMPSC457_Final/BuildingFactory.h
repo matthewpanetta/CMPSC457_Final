@@ -9,7 +9,7 @@ class BuildingFactory
 {
 public:
 	BuildingFactory();
-	Building* create_building(GLdouble, GLdouble, GLdouble, Tile);
+	Building* create_building(int, GLdouble, GLdouble, GLdouble, Tile);
 	int get_desired_building();
 	~BuildingFactory();
 };
