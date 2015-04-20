@@ -2,6 +2,7 @@
 
 Mine::Mine(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
+	this->t = t;
 	this->x = x;
 	this->y = y;
 	this->z = z;
@@ -19,6 +20,22 @@ void Mine::draw_building()
 void Mine::apply_perk(OutputResources &o)
 {
 	o.set_bricks(o.get_bricks() + t.get_stone());
+}
+
+std::string Mine::check_cost(OutputResources& o)
+{
+	if (o.get_money() < 350)
+	{
+		return "Not Enough Money";
+	}
+	else if (o.get_unemployed() < 4)
+	{
+		return "Not Enough Unemployed";
+	}
+	else
+	{
+		return "Good";
+	}
 }
 
 void Mine::apply_initial_cost(OutputResources &o)

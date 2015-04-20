@@ -14,6 +14,7 @@ public:
 	void apply_perk(OutputResources &);
 	void apply_initial_cost(OutputResources &);
 	void apply_cost_per_tick(OutputResources &);
+	std::string check_cost(OutputResources &);
 	~Mine();
 private:
 	GLdouble x, y, z;

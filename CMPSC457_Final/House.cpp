@@ -2,6 +2,7 @@
 
 House::House(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
+	this->t = t;
 	this->x = x;
 	this->y = y;
 	this->z = z;
@@ -19,6 +20,26 @@ void House::draw_building()
 void House::apply_perk(OutputResources &o)
 {
 	o.set_food(o.get_food() + (t.get_soil() - t.get_stone()));
+}
+
+std::string House::check_cost(OutputResources &o)
+{
+	if (o.get_money() < 400)
+	{
+		return "Not Enough Money";
+	}
+	else if (o.get_wood() < 5)
+	{
+		return "Not Enough Wood";
+	}
+	else if (o.get_bricks() < 20)
+	{
+		return "Not Enough Bricks";
+	}
+	else
+	{
+		return "Good";
+	}
 }
 
 void House::apply_initial_cost(OutputResources &o)

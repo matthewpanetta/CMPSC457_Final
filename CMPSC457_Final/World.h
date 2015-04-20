@@ -21,13 +21,17 @@ public:
 	Grid* get_grid();
 	BuildingFactory* get_building_factory();
 	Tile* get_selected_tile();
-	void create_building(int, GLfloat, GLfloat, GLfloat);
+	OutputResources* get_resources();
+	void create_building(int);
+	void next_tick();
 	~World();
 private:
+	long tick;
 	Grid gr;
 	Cursor c;
 	BuildingManager bm;
 	BuildingFactory bf;
+	OutputResources o;
 };
 
 #endif

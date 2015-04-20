@@ -2,7 +2,7 @@
 
 World::World(int rows, int cols) : gr(rows, cols), c(rows, cols)
 {
-	
+	tick = 0;
 }
 
 void World::draw_world()
@@ -32,12 +32,33 @@ Tile* World::get_selected_tile()
 	return gr.getTile(c.getPosition()[0], c.getPosition()[1]);
 }
 
-void World::create_building(int choice, GLfloat x, GLfloat y, GLfloat z)
+void World::create_building(int choice)
 {
+	GLfloat x = c.getPosition()[0];
+	GLfloat y = -0.5f;
+	GLfloat z = c.getPosition()[1];
 	Tile tile = (*get_selected_tile());
-	bm.add_building(*bf.create_building(choice, x, y, z, tile));
+
+	bm.add_building(*bf.create_building(choice, x, y, z, tile), o);
+}
+
+void World::next_tick()
+{
+	tick++;
+	bm.next_tick(o);
+
+	if (tick % 10 == 0)
+	{
+		o.set_money(o.get_money() + 100);
+	}
+}
+
+OutputResources* World::get_resources()
+{
+	return &o;
 }
 
 World::~World()
 {
+
 }

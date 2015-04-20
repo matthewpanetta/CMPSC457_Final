@@ -2,6 +2,7 @@
 
 Temple::Temple(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
+	this->t = t;
 	this->x = x;
 	this->y = y;
 	this->z = z;
@@ -14,6 +15,11 @@ void Temple::draw_building()
 	glTranslatef(x, y*-1, z);
 	glutSolidCube(1);
 	glPopMatrix();
+}
+
+std::string Temple::check_cost(OutputResources& o)
+{
+	return "Good";
 }
 
 void Temple::apply_perk(OutputResources &o)

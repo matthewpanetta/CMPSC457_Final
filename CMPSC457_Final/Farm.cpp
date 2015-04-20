@@ -2,6 +2,7 @@
 
 Farm::Farm(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
+	this->t = t;
 	this->x = x;
 	this->y = y;
 	this->z = z;
@@ -81,6 +82,22 @@ void Farm::draw_building()
 void Farm::apply_perk(OutputResources &o)
 {
 	o.set_food(o.get_food() + t.get_soil());
+}
+
+std::string Farm::check_cost(OutputResources& o)
+{
+	if (o.get_money() < 150)
+	{
+		return "Not Enough Money";
+	}
+	else if (o.get_unemployed() < 2)
+	{
+		return "Not Enough Unemployed";
+	}
+	else
+	{
+		return "Good";
+	}
 }
 
 void Farm::apply_initial_cost(OutputResources &o)

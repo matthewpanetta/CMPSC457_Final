@@ -2,6 +2,7 @@
 
 Bank::Bank(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
+	this->t = t;
 	this->x = x;
 	this->y = y;
 	this->z = z;
@@ -86,6 +87,26 @@ void Bank::draw_building()
 void Bank::apply_perk(OutputResources &o)
 {
 	o.set_money(o.get_money() + (t.get_stone() - t.get_trees()));
+}
+
+std::string Bank::check_cost(OutputResources& o)
+{
+	if (o.get_money() < 1000)
+	{
+		return "Not Enough Money";
+	}
+	else if (o.get_wood() < 40)
+	{
+		return "Not Enough Wood";
+	}
+	else if (o.get_bricks() < 30)
+	{
+		return "Not Enough Bricks";
+	}
+	else
+	{
+		return "Good";
+	}
 }
 
 void Bank::apply_initial_cost(OutputResources &o)

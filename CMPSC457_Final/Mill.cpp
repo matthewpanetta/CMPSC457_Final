@@ -2,6 +2,7 @@
 
 Mill::Mill(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
+	this->t = t;
 	this->x = x;
 	this->y = y;
 	this->z = z;
@@ -20,6 +21,22 @@ void Mill::apply_perk(OutputResources &o)
 {
 	o.set_wood(o.get_wood() + t.get_trees());
 }
+std::string Mill::check_cost(OutputResources& o)
+{
+	if (o.get_money() < 300)
+	{
+		return "Not Enough Money";
+	}
+	else if (o.get_unemployed() < 3)
+	{
+		return "Not Enough Unemployed";
+	}
+	else
+	{
+		return "Good";
+	}
+}
+
 
 void Mill::apply_initial_cost(OutputResources &o)
 {

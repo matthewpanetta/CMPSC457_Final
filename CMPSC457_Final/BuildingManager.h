@@ -10,10 +10,11 @@ class BuildingManager
 {
 public:
 	BuildingManager();
-	void add_building(Building& b);
-	Building* get_building(Tile t);
+	void add_building(Building& b, OutputResources& o);
+	Building* get_building(int x, int z);
 	void remove_building(Building& b);
 	void draw_buildings();
+	void next_tick(OutputResources& o);
 	~BuildingManager();
 private:
 	std::vector<Building*> buildings;

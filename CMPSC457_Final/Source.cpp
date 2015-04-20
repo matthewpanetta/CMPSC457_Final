@@ -29,36 +29,36 @@
 
 using namespace std;
 
-#define WinW 500
-#define WinH 500
+int WinW = 500;
+int WinH = 500;
 
 int grid[10][10];
 double rotate = 0;
 bool build_mode = false;
 
 World w(10,10);		// Create a 10x10 world.
-BuildingFactory bf;
 
 /*
 *  This function is called whenever the display needs to redrawn.
 *  First call when program starts.
 */
+
 void Display(void)
 {
-	//Load the identity matrix
+	/* Load the identity matrix */
 	glLoadIdentity();
 
-	//Set the view to follow the cursor
+	/* Set the view to follow the cursor */
 	gluLookAt
 	(
-		0.0 + w.get_cursor()->getPosition()[0], 
-		5.0, 
-		10.0 + w.get_cursor()->getPosition()[1], 
-		w.get_cursor()->getPosition()[0], 
+		0.0 + w.get_cursor()->getPosition()[0],		// eye x
+		5.0,										// eye y
+		10.0 + w.get_cursor()->getPosition()[1],	// eye z
+		w.get_cursor()->getPosition()[0],			// grid x 
+		0.0,										// grid y
+		w.get_cursor()->getPosition()[1],			// grid z
 		0.0, 
-		w.get_cursor()->getPosition()[1], 
-		0.0, 
-		1.0, 
+		1.0,										// up vector
 		0.0
 	);
 
@@ -68,10 +68,8 @@ void Display(void)
 	/* clear the display */
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	/* Draw the grid and buildings */
 	w.draw_world();
-
-	//Set cursor color to white
-	glColor3d(1.0, 1.0, 1.0);
 
 	/* before returning, flush the graphics buffer
 	* so all graphics appear in the window */
@@ -92,6 +90,9 @@ void Reshape(int w, int h)
 	gluPerspective(30.0, (GLfloat)w / (GLfloat)h, 1.0, 200.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+
+	WinW = w;
+	WinH = h;
 }
 
 /*
@@ -119,31 +120,29 @@ void Keyboard(unsigned char key, int x, int y)
 		switch (key)
 		{
 		case 13:
-			build_mode = true;	break;
+			build_mode = true;	break;		// Switch to build mode, allowing user to type in a number (0-4) to build a building.
 		case 'q':
 			exit(0);
 		}
 	}
 	else
 	{
-		int x_pos = w.get_cursor()->getPosition()[0];
-		int z_pos = w.get_cursor()->getPosition()[1];
 		int choice = 0;
 
-		if (key >= 48 && key <= 52)
+		if (key >= 48 && key <= 52)			// 0 = Bank; 1 = Farm; 2 = House; 3 = Mill; 4 = Mine
 		{
-			choice = key - 48;
-			w.create_building(choice, x_pos, -0.5, z_pos);
+			choice = key - 48;				// 0 = key code 48.
+			w.create_building(choice);		// create a building
 		}
 		else
 		{
-			cout << "Invalid building type" << endl;
+			cout << "Invalid building type" << endl;	// Invalid building
 		}
 
-		build_mode = false;
+		build_mode = false;					// reset build mode to false
 	}
 
-	glutPostRedisplay();	
+	glutPostRedisplay();					// redraw scene with building
 }
 
 void SpecialKeys(int key, int x, int y)
@@ -151,13 +150,13 @@ void SpecialKeys(int key, int x, int y)
 	switch (key)
 	{
 	case GLUT_KEY_UP:
-		w.get_cursor()->moveUp();		break;
+		w.get_cursor()->moveUp();		break;		// Move up one tile		
 	case GLUT_KEY_DOWN:
-		w.get_cursor()->moveDown();		break;
+		w.get_cursor()->moveDown();		break;		// Move down one tile
 	case GLUT_KEY_LEFT:
-		w.get_cursor()->moveLeft();		break;
+		w.get_cursor()->moveLeft();		break;		// Move left one tile
 	case GLUT_KEY_RIGHT:
-		w.get_cursor()->moveRight();	break;
+		w.get_cursor()->moveRight();	break;		// Move right one tile
 	}
 
 	glutPostRedisplay();
@@ -184,7 +183,10 @@ void Timer(int value)
 	* function to invoke at that time, and
 	* the value to be passed to that function.
 	*/
-	glutTimerFunc(100, Timer, 1);
+	w.next_tick();
+	glutPostRedisplay();
+
+	glutTimerFunc(1000, Timer, 1);
 }
 
 /*
@@ -201,7 +203,6 @@ void myInit()
 	/* set up orthographic projection */
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	//glOrtho(-2, 2, -2, 2, -10.0, 10.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
@@ -234,6 +235,7 @@ void main(int argc, char ** argv)
 	glutSpecialFunc(SpecialKeys);
 	glutMouseFunc(Mouse);
 	glutReshapeFunc(Reshape);
+	glutTimerFunc(1000, Timer, 1);
 
 	/* set window attributes */
 	myInit();
