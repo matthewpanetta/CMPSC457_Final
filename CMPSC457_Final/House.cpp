@@ -49,10 +49,18 @@ void House::apply_initial_cost(OutputResources &o)
 	o.set_bricks(o.get_bricks() - 20);
 }
 
-void House::apply_cost_per_tick(OutputResources &o)
+bool House::apply_cost_per_tick(OutputResources &o)
 {
-	o.set_food(o.get_food() - 6);
-	o.set_wood(o.get_wood() - 5);
+	if (o.get_wood() >= 5 && o.get_food() >= 6)
+	{
+		o.set_food(o.get_food() - 6);
+		o.set_wood(o.get_wood() - 5);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 House::~House()

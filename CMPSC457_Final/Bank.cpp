@@ -116,10 +116,18 @@ void Bank::apply_initial_cost(OutputResources &o)
 	o.set_bricks(o.get_bricks() - 30);
 }
 
-void Bank::apply_cost_per_tick(OutputResources &o)
+bool Bank::apply_cost_per_tick(OutputResources &o)
 {
-	o.set_food(o.get_food() - 10);
-	o.set_wood(o.get_wood() - 3);
+	if (o.get_food() >= 10 && o.get_wood() >= 3)
+	{
+		o.set_food(o.get_food() - 10);
+		o.set_wood(o.get_wood() - 3);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 Bank::~Bank()

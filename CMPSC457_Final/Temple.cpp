@@ -32,9 +32,9 @@ void Temple::apply_initial_cost(OutputResources &o)
 
 }
 
-void Temple::apply_cost_per_tick(OutputResources &o)
+bool Temple::apply_cost_per_tick(OutputResources &o)
 {
-
+	return false;
 }
 
 Temple::~Temple()

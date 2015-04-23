@@ -61,8 +61,10 @@ void BuildingManager::next_tick(OutputResources& o)
 {
 	for (std::vector<Building*>::iterator it = buildings.begin(); it != buildings.end(); ++it)
 	{
-		(*it)->apply_cost_per_tick(o);
-		(*it)->apply_perk(o);
+		if ((*it)->apply_cost_per_tick(o))
+		{
+			(*it)->apply_perk(o);
+		}
 	}
 }
 
