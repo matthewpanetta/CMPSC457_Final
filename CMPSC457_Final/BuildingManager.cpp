@@ -7,23 +7,24 @@ BuildingManager::BuildingManager()
 
 }
 
-void BuildingManager::add_building(Building& b, OutputResources& o)
+char* BuildingManager::add_building(Building& b, OutputResources& o)
 {
 	if (get_building(b.get_x(), b.get_z()) == NULL)
 	{
-		if (b.check_cost(o) == "Good")
+		if (b.check_cost(o) == "Good")		
 		{
 			buildings.push_back(&b);
 			b.apply_initial_cost(o);
+			return "Good";
 		}
 		else
 		{
-			std::cout << b.check_cost(o) << std::endl;
+			return &b.check_cost(o)[0u];
 		}
 	}
 	else
 	{
-		std::cout << "There is already a building in that position" << std::endl;
+		return "There is already a building in that position";
 	}
 }
 
@@ -60,8 +61,10 @@ void BuildingManager::next_tick(OutputResources& o)
 {
 	for (std::vector<Building*>::iterator it = buildings.begin(); it != buildings.end(); ++it)
 	{
-		(*it)->apply_cost_per_tick(o);
-		(*it)->apply_perk(o);
+		if ((*it)->apply_cost_per_tick(o))
+		{
+			(*it)->apply_perk(o);
+		}
 	}
 }
 

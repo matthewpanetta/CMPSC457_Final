@@ -44,9 +44,17 @@ void Mill::apply_initial_cost(OutputResources &o)
 	o.set_unemployed(o.get_unemployed() - 3);
 }
 
-void Mill::apply_cost_per_tick(OutputResources &o)
+bool Mill::apply_cost_per_tick(OutputResources &o)
 {
-	o.set_money(o.get_money() - 1 * ((o.get_employed() / 15) + 1));
+	if (o.get_money() >= 1 * ((o.get_employed() / 15) + 1))
+	{
+		o.set_money(o.get_money() - 1 * ((o.get_employed() / 15) + 1));
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 Mill::~Mill()

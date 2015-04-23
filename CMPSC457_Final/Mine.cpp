@@ -44,9 +44,17 @@ void Mine::apply_initial_cost(OutputResources &o)
 	o.set_unemployed(o.get_unemployed() - 4);
 }
 
-void Mine::apply_cost_per_tick(OutputResources &o)
+bool Mine::apply_cost_per_tick(OutputResources &o)
 {
-	o.set_money(o.get_money() - 3 * ((o.get_employed() / 25) + 1));
+	if (o.get_money() >= 3 * ((o.get_employed() / 25) + 1))
+	{
+		o.set_money(o.get_money() - 3 * ((o.get_employed() / 25) + 1));
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 Mine::~Mine()

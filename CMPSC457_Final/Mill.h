@@ -13,7 +13,7 @@ public:
 	void draw_building();
 	void apply_perk(OutputResources &);
 	void apply_initial_cost(OutputResources &);
-	void apply_cost_per_tick(OutputResources &);
+	bool apply_cost_per_tick(OutputResources &);
 	std::string check_cost(OutputResources &);
 	~Mill();
 private:

@@ -30,7 +30,7 @@ public:
 	virtual void draw_building() = 0;
 	virtual void apply_perk(OutputResources &) = 0;
 	virtual void apply_initial_cost(OutputResources &) = 0;
-	virtual void apply_cost_per_tick(OutputResources &) = 0;
+	virtual bool apply_cost_per_tick(OutputResources &) = 0;
 	~Building();
 private:
 	GLdouble x, y, z;

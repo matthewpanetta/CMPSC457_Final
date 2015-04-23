@@ -39,7 +39,12 @@ void World::create_building(int choice)
 	GLfloat z = c.getPosition()[1];
 	Tile tile = (*get_selected_tile());
 
-	bm.add_building(*bf.create_building(choice, x, y, z, tile), o);
+	char* message = bm.add_building(*bf.create_building(choice, x, y, z, tile), o);
+
+	if (message != "Good")
+	{
+		//hud.displayEvent(message);
+	}
 }
 
 void World::next_tick()

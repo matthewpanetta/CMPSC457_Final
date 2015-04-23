@@ -8,6 +8,7 @@
 #include "BuildingFactory.h"
 #include "Grid.h"
 #include "Cursor.h"
+#include "HUD.h"
 #include <vector>
 
 using namespace std;
@@ -32,6 +33,7 @@ private:
 	BuildingManager bm;
 	BuildingFactory bf;
 	OutputResources o;
+	HUD hud;
 };
 
 #endif
