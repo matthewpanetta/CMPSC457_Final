@@ -104,9 +104,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="Header Files">
       <UniqueIdentifier>{171f2414-ef27-442c-8a58-afdb2c936b44}</UniqueIdentifier>
     </Filter>
@@ -121,5 +118,8 @@
     <Text Include="..\tile_specs.txt">
       <Filter>Resources</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

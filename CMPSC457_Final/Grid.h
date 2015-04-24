@@ -11,7 +11,7 @@ public:
 	Grid(int row, int column);
 	Tile* getTile(int row, int column);
 	void drawGrid();
-	void drawSubgrid(double xi, double zi, double color[3]);
+	void drawSubgrid(double xi, double zi);
 	~Grid();
 private:
 	int rows, columns;

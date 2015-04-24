@@ -25,16 +25,14 @@ Grid::Grid(int rows, int columns)
 	}
 }
 
-void Grid::drawSubgrid(double xi, double zi, double color[3])
+void Grid::drawSubgrid(double xi, double zi)
 {
-
-	glColor3d(color[0], color[1], color[2]);
-
 	glPushMatrix();
 
 	glTranslated(xi, 0, zi);
 
 	glBegin(GL_POLYGON);
+	glNormal3d(0.0, 1.0, 0.0);
 	glVertex3d(-0.5, 0, -0.5);
 	glVertex3d(0.5, 0, -0.5);
 	glVertex3d(0.5, 0, 0.5);
@@ -46,15 +44,13 @@ void Grid::drawSubgrid(double xi, double zi, double color[3])
 
 void Grid::drawGrid()
 {
-	double color[3] = { 255, 0, 0 };
+	glColor3d(0.0, 0.5, 0.1);
 
 	for (int row = 0; row < rows; row++)
 	{
 		for (int column = 0; column < columns; column++)
 		{
-			color[1] = row * 0.1;
-			color[2] = column * 0.1;
-			drawSubgrid(column, row, color);
+			drawSubgrid(column, row);
 		}
 	}
 }

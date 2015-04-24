@@ -41,6 +41,7 @@ Building* BuildingFactory::create_building(int building_type, GLdouble x, GLdoub
 	case 2: return new House(x, y, z, t);
 	case 3: return new Mill(x, y, z, t);
 	case 4: return new Mine(x, y, z, t);
+	case 5: return new Temple(x, y, z, t);
 	}
 }
 

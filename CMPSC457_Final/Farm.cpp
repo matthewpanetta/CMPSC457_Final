@@ -11,14 +11,15 @@ Farm::Farm(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 void Farm::draw_building()
 {
 	glPushMatrix();
-	
-	glTranslatef(x, y*-1, z);
-	glTranslatef(0.0, -0.12, 0.0);
+
+	glTranslatef(x, y*-1, z + 0.0);
+	glTranslatef(0.0, -0.4, 0.0);
 	glScalef(0.9, 1.0, 0.9);
 	// barn
 	glPushMatrix();
 	glColor3f(0.89, 0.13, 0.11);
 	glScalef(1.0, 0.75, 1.0);
+	glScaled(0.2, 0.2, 0.2);
 	glutSolidCube(1);
 	glPopMatrix();
 
@@ -26,8 +27,9 @@ void Farm::draw_building()
 
 	// window
 	glColor3f(1.0, 1.0, 1.0);
-	glTranslatef(-0.15, -0.05, 0.53);
+	glTranslatef(-0.03, 0.00, 0.101);
 	glScalef(1.5, 3.0, 1.0);
+	glScaled(0.2, 0.2, 0.2);
 
 	glBegin(GL_LINE_STRIP);
 	glVertex3f(0.0, 0.0, 0.0);
@@ -51,30 +53,36 @@ void Farm::draw_building()
 
 	// roof
 	glPushMatrix();
-	glTranslatef(0.0, 0.58, 0.0);
+	glTranslatef(0.0, 0.115, 0.0);
 	glScalef(0.55, 0.2, 0.5);
+	glScaled(0.2, 0.2, 0.2);
 	glBegin(GL_TRIANGLES);
 
 	// Front
+	glNormal3d(0.0, 0.5, 0.5);
 	glVertex3f(0.0f, 0.5f, 0.0f);
 	glVertex3f(-1.0f, -1.0f, 1.0f);
 	glVertex3f(1.0f, -1.0f, 1.0f);
 
 	// Right
+	glNormal3d(0.5, 0.5, 0.0);
 	glVertex3f(0.0f, 0.5f, 0.0f);
 	glVertex3f(1.0f, -1.0f, 1.0f);
 	glVertex3f(1.0f, -1.0f, -1.0f);
 
 	// Back
+	glNormal3d(0.0, 0.5, -0.5);
 	glVertex3f(0.0f, 0.5f, 0.0f);
 	glVertex3f(1.0f, -1.0f, -1.0f);
 	glVertex3f(-1.0f, -1.0f, -1.0f);
 
 	// Left
+	glNormal3d(-0.5, 0.5, 0.0);
 	glVertex3f(0.0f, 0.5f, 0.0f);
 	glVertex3f(-1.0f, -1.0f, -1.0f);
 	glVertex3f(-1.0f, -1.0f, 1.0f);
 	glEnd();
+
 	glPopMatrix();
 	glPopMatrix();
 }

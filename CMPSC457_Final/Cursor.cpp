@@ -8,8 +8,8 @@ Cursor::Cursor(int r, int c)
 	this->rows = r;
 	this->cols = c;
 
-	coordinate[0] = 0;
-	coordinate[1] = 0;
+	coordinate[0] = 5;
+	coordinate[1] = 5;
 }
 
 //Return array containing the current position of the cursor

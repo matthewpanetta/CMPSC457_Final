@@ -33,7 +33,7 @@ private:
 	BuildingManager bm;
 	BuildingFactory bf;
 	OutputResources o;
-	HUD hud;
+	//HUD hud;
 };
 
 #endif

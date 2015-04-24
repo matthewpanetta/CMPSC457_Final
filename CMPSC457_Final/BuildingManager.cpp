@@ -1,10 +1,10 @@
 #include "BuildingManager.h"
+#include "Temple.h"
 #include <algorithm>
 #include <iostream>
 
 BuildingManager::BuildingManager()
 {
-
 }
 
 char* BuildingManager::add_building(Building& b, OutputResources& o)

@@ -1,8 +1,10 @@
 #include "World.h"
+#include <iostream>
 
 World::World(int rows, int cols) : gr(rows, cols), c(rows, cols)
 {
 	tick = 0;
+	create_building(5);
 }
 
 void World::draw_world()

@@ -38,6 +38,11 @@ bool build_mode = false;
 
 World w(10,10);		// Create a 10x10 world.
 
+GLfloat diffuse0[4] = { 0.7, 0.7, 0.7, 1.0f };
+GLfloat position0[4] = { 0.0, 0.0, 0.0, 1.0f };
+GLfloat ambient0[4] = { 0.2, 0.2, 0.2, 1.0f };
+GLfloat specular0[4] = { 1.0, 0.1, 0.1, 1.0f };
+
 /*
 *  This function is called whenever the display needs to redrawn.
 *  First call when program starts.
@@ -52,8 +57,8 @@ void Display(void)
 	gluLookAt
 	(
 		0.0 + w.get_cursor()->getPosition()[0],		// eye x
-		5.0,										// eye y
-		10.0 + w.get_cursor()->getPosition()[1],	// eye z
+		4.0,										// eye y
+		5.0 + w.get_cursor()->getPosition()[1],		// eye z
 		w.get_cursor()->getPosition()[0],			// grid x 
 		0.0,										// grid y
 		w.get_cursor()->getPosition()[1],			// grid z
@@ -67,6 +72,15 @@ void Display(void)
 
 	/* clear the display */
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	/*Position and set the lighting*/
+	glPushMatrix();
+	glTranslated(5.0, 5.0, 5.0);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse0);
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient0);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, specular0);
+	glLightfv(GL_LIGHT0, GL_POSITION, position0);
+	glPopMatrix();
 
 	/* Draw the grid and buildings */
 	w.draw_world();
@@ -129,7 +143,7 @@ void Keyboard(unsigned char key, int x, int y)
 	{
 		int choice = 0;
 
-		if (key >= 48 && key <= 52)			// 0 = Bank; 1 = Farm; 2 = House; 3 = Mill; 4 = Mine
+		if (key >= 48 && key <= 53)			// 0 = Bank; 1 = Farm; 2 = House; 3 = Mill; 4 = Mine
 		{
 			choice = key - 48;				// 0 = key code 48.
 			w.create_building(choice);		// create a building
@@ -196,6 +210,18 @@ void myInit()
 {
 	/* set color used when clearing the window to black */
 	glClearColor(0.0, 0.0, 0.0, 0.0);
+
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_MAP2_VERTEX_3);
+	glEnable(GL_AUTO_NORMAL);
+	glEnable(GL_NORMALIZE);
+	glEnable(GL_SMOOTH);
+	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_LINE_SMOOTH);
+	glDepthFunc(GL_LEQUAL);
+
+	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHTING);
 
 	/* set drawing color to white */
 	glColor3f(1.0, 1.0, 1.0);
