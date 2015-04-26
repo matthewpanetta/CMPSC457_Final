@@ -85,6 +85,7 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Temple.cpp" />
     <ClCompile Include="Text.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -103,6 +104,7 @@
     <ClInclude Include="OutputResources.h" />
     <ClInclude Include="Temple.h" />
     <ClInclude Include="Text.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>

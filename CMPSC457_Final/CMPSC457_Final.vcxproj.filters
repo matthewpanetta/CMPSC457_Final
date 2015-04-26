@@ -52,6 +52,7 @@
     <ClCompile Include="BuildingManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bank.h">
@@ -102,6 +103,7 @@
     <ClInclude Include="BuildingManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

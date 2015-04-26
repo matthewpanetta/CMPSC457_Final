@@ -3,6 +3,7 @@
 #define FARM_H
 
 #include "Building.h"
+#include "Texture.h"
 
 class Farm :
 	public Building
