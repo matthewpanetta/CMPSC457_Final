@@ -2,18 +2,19 @@
 #include "GL\freeglut.h"
 
 Text::Text(){
-	this->r = 1.0;
-	this->g = 1.0;
-	this->b = 1.0;
+	this->r = 1.0f;
+	this->g = 1.0f;
+	this->b = 1.0f;
 }
 
 //default text color is white (can change in function call) 
 void Text::textToScreenLarge(float x, float y, unsigned char* text){
 	// Draw text at screen coordinates (x, y), where (0, 0) is the top-left of the
 	// screen in an 18-point Helvetica font
-	glRasterPos2i(x, y);
-	glColor4f(this->r, this->g, this->b, 1.0f);
+	glColor3d(this->r, this->g, this->b);
+	glRasterPos2f(x, y);
 	glutBitmapString(GLUT_BITMAP_HELVETICA_18, text);
+	
 }
 
 //choose text color to be displayed

@@ -12,6 +12,7 @@ void World::draw_world()
 	gr.drawGrid();
 	c.draw();
 	bm.draw_buildings();
+	displayHUD();
 }
 
 Cursor* World::get_cursor()
@@ -63,6 +64,20 @@ void World::next_tick()
 OutputResources* World::get_resources()
 {
 	return &o;
+}
+
+void World::displayHUD(){
+	/*//#camelCaseRules
+	//"Wood: + # + ( + # + /tick)"
+	char txt2[24];
+	_itoa(o.get_wood(), txt2, 10);
+	//strcat(txt1, txt2);
+	char* txt1 = "Wood: " + txt2;
+	//*txt1 = *txt1 + *txt2;
+	unsigned char mem[20];
+	unsigned char* text = mem;
+	strcpy((char*)text, txt1);
+	hud.displayWood(text, c);*/
 }
 
 World::~World()

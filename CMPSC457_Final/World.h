@@ -25,6 +25,7 @@ public:
 	OutputResources* get_resources();
 	void create_building(int);
 	void next_tick();
+	void displayHUD();
 	~World();
 private:
 	long tick;
@@ -33,7 +34,7 @@ private:
 	BuildingManager bm;
 	BuildingFactory bf;
 	OutputResources o;
-	//HUD hud;
+	HUD hud;
 };
 
 #endif

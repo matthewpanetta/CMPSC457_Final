@@ -26,6 +26,7 @@
 #include <iostream>
 #include <vector> 
 #include <time.h>
+#include <string>
 
 using namespace std;
 
@@ -47,6 +48,8 @@ GLfloat specular0[4] = { 1.0, 0.1, 0.1, 1.0f };
 *  This function is called whenever the display needs to redrawn.
 *  First call when program starts.
 */
+
+Text typeWriter;
 
 void Display(void)
 {
@@ -83,7 +86,25 @@ void Display(void)
 	glPopMatrix();
 
 	/* Draw the grid and buildings */
+
+
 	w.draw_world();
+
+	/*glDisable(GL_LIGHTING);
+	glPushMatrix();
+	glTranslated(-1.0, 1.0, 2.0);
+	glRotated(90, 1.0, 0.0, 0.0);
+	
+
+	int h = 8;
+	unsigned char stuff[20];
+	unsigned char* convertchar = stuff;
+
+	stuff[0] = 'h';
+
+	typeWriter.textToScreenLarge(0.0f + w.get_cursor()->getPosition()[0], 0.0f + w.get_cursor()->getPosition()[1], textYo);
+	glPopMatrix();
+	glEnable(GL_LIGHTING);*/
 
 	/* before returning, flush the graphics buffer
 	* so all graphics appear in the window */
