@@ -37,7 +37,7 @@ int grid[10][10];
 double rotate = 0;
 bool build_mode = false;
 
-World w(10,10);		// Create a 10x10 world.
+World w(10,10, WinW, WinH);		// Create a 10x10 world.
 
 GLfloat diffuse0[4] = { 0.7, 0.7, 0.7, 1.0f };
 GLfloat position0[4] = { 0.0, 0.0, 0.0, 1.0f };
@@ -86,7 +86,6 @@ void Display(void)
 	glPopMatrix();
 
 	/* Draw the grid and buildings */
-
 
 	w.draw_world();
 

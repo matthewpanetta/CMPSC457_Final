@@ -5,6 +5,7 @@ OutputResources::OutputResources()
 {
 	food		= 5;
 	money		= 1000;
+	wood		= 100;
 	unemployed	= 20;
 }
 

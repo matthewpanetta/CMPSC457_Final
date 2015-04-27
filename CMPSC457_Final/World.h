@@ -16,7 +16,7 @@ using namespace std;
 class World
 {
 public:
-	World(int, int);
+	World(int, int, int, int);
 	void draw_world();
 	Cursor* get_cursor();
 	Grid* get_grid();
@@ -28,6 +28,7 @@ public:
 	void displayHUD();
 	~World();
 private:
+	int WinW, WinH;
 	long tick;
 	Grid gr;
 	Cursor c;
