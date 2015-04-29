@@ -32,6 +32,11 @@ BuildingFactory* World::get_building_factory()
 	return &bf;
 }
 
+Building* World::get_building_at_position()
+{
+	return bm.get_building(c.getPosition()[0], c.getPosition()[1]);
+}
+
 Tile* World::get_selected_tile()
 {
 	return gr.getTile(c.getPosition()[0], c.getPosition()[1]);
@@ -44,11 +49,11 @@ void World::create_building(int choice)
 	GLfloat z = c.getPosition()[1];
 	Tile tile = (*get_selected_tile());
 
-	char* message = bm.add_building(*bf.create_building(choice, x, y, z, tile), o);
+	std::string message = bm.add_building(*bf.create_building(choice, x, y, z, tile), o);
 
 	if (message != "Good")
 	{
-		//hud.displayEvent(message);
+		std::cout << message << std::endl;
 	}
 }
 
@@ -57,10 +62,10 @@ void World::next_tick()
 	tick++;
 	bm.next_tick(o);
 
-	if (tick % 10 == 0)
-	{
-		o.set_money(o.get_money() + 100);
-	}
+	//if (tick % 10 == 0)
+	//{
+	//	o.set_money(o.get_money() + 100);
+	//}
 }
 
 OutputResources* World::get_resources()

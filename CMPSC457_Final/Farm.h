@@ -20,6 +20,7 @@ private:
 	GLdouble x, y, z;
 	Tile t;
 	GLuint texture[1];
+	Texture tex;
 };
 
 #endif

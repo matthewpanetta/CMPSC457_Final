@@ -10,7 +10,7 @@ class BuildingManager
 {
 public:
 	BuildingManager();
-	char* add_building(Building& b, OutputResources& o);
+	std::string add_building(Building& b, OutputResources& o);
 	Building* get_building(int x, int z);
 	void remove_building(Building& b);
 	void draw_buildings();

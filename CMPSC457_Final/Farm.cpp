@@ -1,30 +1,11 @@
 #include "Farm.h"
 
-Farm::Farm(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
+Farm::Farm(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t), tex("../Pictures/farm_four_tile.bmp")
 {
 	this->t = t;
 	this->x = x;
 	this->y = y;
 	this->z = z;
-
-	Texture tex("../Pictures/farm_grass.bmp");
-	Image* image1 = tex.get_image();
-
-	//Set Texture Parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // scale linearly when image bigger than texture
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // scale linearly when image smaller than texture
-
-	// Load texture into OpenGL RC!
-	glTexImage2D(GL_TEXTURE_2D,		// 2D texture
-		0,					// level of detail 0 (normal)
-		3,					// 3 color components
-		image1->sizeX,		// x size from image
-		image1->sizeY,		// y size from image
-		0,					// border 0 (normal)
-		GL_RGB,				// rgb color data order
-		GL_UNSIGNED_BYTE,	// color componente types
-		image1->data		// image data itself
-	);
 }
 
 void Farm::draw_building()
@@ -100,54 +81,14 @@ void Farm::draw_building()
 	glEnd();
 	glPopMatrix();
 
-	glPushMatrix();
-	glTranslatef(0.0, -0.38, 0.45);
+	// texture
+	glTranslatef(0.0, -0.38, 0.5);
 	glScalef(0.9, 0.01, 0.9);
 
-	glEnable(GL_TEXTURE_2D);
+	draw_plane(tex.get_image());
 
-	glBegin(GL_QUADS);		                // begin drawing a cube
-
-	// Front Face (note that the texture's corners have to match the quad's corners)
-	glTexCoord2f(0.0f, 0.5f); glVertex3f(-1.0f, -1.0f, 1.0f);	// Bottom Left Of The Texture and Quad
-	glTexCoord2f(0.5f, 0.5f); glVertex3f(1.0f, -1.0f, 1.0f);	// Bottom Right Of The Texture and Quad
-	glTexCoord2f(0.5f, 0.0f); glVertex3f(1.0f, 1.0f, 1.0f);	// Top Right Of The Texture and Quad
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, 1.0f, 1.0f);	// Top Left Of The Texture and Quad
-
-	// Back Face
-	glTexCoord2f(0.0f, 0.2f); glVertex3f(-1.0f, -1.0f, -1.0f);	// Bottom Right Of The Texture and Quad
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, 1.0f, -1.0f);	// Top Right Of The Texture and Quad
-	glTexCoord2f(0.2f, 0.0f); glVertex3f(1.0f, 1.0f, -1.0f);	// Top Left Of The Texture and Quad
-	glTexCoord2f(0.2f, 0.2f); glVertex3f(1.0f, -1.0f, -1.0f);	// Bottom Left Of The Texture and Quad
-
-	// Top Face
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);	// Top Left Of The Texture and Quad
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, 1.0f, 1.0f);	// Bottom Left Of The Texture and Quad
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, 1.0f, 1.0f);	// Bottom Right Of The Texture and Quad
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);	// Top Right Of The Texture and Quad
-
-	// Bottom Face
-	glTexCoord2f(0.5f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);	// Top Right Of The Texture and Quad
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);	// Top Left Of The Texture and Quad
-	glTexCoord2f(0.0f, 0.5f); glVertex3f(1.0f, -1.0f, 1.0f);	// Bottom Left Of The Texture and Quad
-	glTexCoord2f(0.5f, 0.5f); glVertex3f(-1.0f, -1.0f, 1.0f);	// Bottom Right Of The Texture and Quad
-
-	// Right face
-	glTexCoord2f(0.0f, 0.5f); glVertex3f(1.0f, -1.0f, -1.0f);	// Bottom Right Of The Texture and Quad
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, 1.0f, -1.0f);	// Top Right Of The Texture and Quad
-	glTexCoord2f(0.5f, 0.0f); glVertex3f(1.0f, 1.0f, 1.0f);	// Top Left Of The Texture and Quad
-	glTexCoord2f(0.5f, 0.5f); glVertex3f(1.0f, -1.0f, 1.0f);	// Bottom Left Of The Texture and Quad
-
-	// Left Face
-	glTexCoord2f(0.0f, 0.5f); glVertex3f(-1.0f, -1.0f, -1.0f);	// Bottom Left Of The Texture and Quad
-	glTexCoord2f(0.5f, 0.5f); glVertex3f(-1.0f, -1.0f, 1.0f);	// Bottom Right Of The Texture and Quad
-	glTexCoord2f(0.5f, 0.0f); glVertex3f(-1.0f, 1.0f, 1.0f);	// Top Right Of The Texture and Quad
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, 1.0f, -1.0f);	// Top Left Of The Texture and Quad
-
-	glEnd();	// done with the polygon.
 	glPopMatrix();
 	glPopMatrix();
-	glDisable(GL_TEXTURE_2D);
 }
 
 void Farm::apply_perk(OutputResources &o)

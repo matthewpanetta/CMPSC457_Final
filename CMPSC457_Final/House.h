@@ -3,6 +3,7 @@
 #define HOUSE_H
 
 #include "Building.h"
+#include "Texture.h"
 
 class House :
 	public Building
@@ -16,6 +17,7 @@ public:
 	std::string check_cost(OutputResources &);
 	~House();
 private:
+	Texture tex;
 	GLdouble x, y, z;
 	Tile t;
 };

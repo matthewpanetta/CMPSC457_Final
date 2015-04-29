@@ -6,6 +6,7 @@
 #include "GL\freeglut.h"
 #include "Tile.h"
 #include "OutputResources.h"
+#include "Texture.h"
 
 class Building
 {
@@ -15,6 +16,7 @@ public:
 	GLfloat get_y();
 	GLfloat get_z();
 	bool compare(const Building& b) const;
+	void draw_plane(Image* image);
 
 	bool operator == (const Building& b) const {
 		return compare(b);

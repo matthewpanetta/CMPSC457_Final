@@ -20,6 +20,7 @@ public:
 	void draw_world();
 	Cursor* get_cursor();
 	Grid* get_grid();
+	Building* get_building_at_position();
 	BuildingFactory* get_building_factory();
 	Tile* get_selected_tile();
 	OutputResources* get_resources();

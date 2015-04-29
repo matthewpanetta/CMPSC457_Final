@@ -5,9 +5,10 @@
 
 BuildingManager::BuildingManager()
 {
+
 }
 
-char* BuildingManager::add_building(Building& b, OutputResources& o)
+std::string BuildingManager::add_building(Building& b, OutputResources& o)
 {
 	if (get_building(b.get_x(), b.get_z()) == NULL)
 	{

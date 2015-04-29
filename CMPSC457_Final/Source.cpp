@@ -33,15 +33,14 @@ using namespace std;
 int WinW = 500;
 int WinH = 500;
 
-int grid[10][10];
 double rotate = 0;
 bool build_mode = false;
 
-World w(10,10, WinW, WinH);		// Create a 10x10 world.
+World w(10, 10, WinW, WinH);		// Create a 10x10 world.
 
-GLfloat diffuse0[4] = { 0.7, 0.7, 0.7, 1.0f };
-GLfloat position0[4] = { 0.0, 0.0, 0.0, 1.0f };
-GLfloat ambient0[4] = { 0.2, 0.2, 0.2, 1.0f };
+GLfloat diffuse0[4] = { 0.8, 0.8, 0.8, 1.0f };
+GLfloat position0[4] = { 0.0, 1.0, 8.0, 1.0f };
+GLfloat ambient0[4] = { 0.25, 0.25, 0.25, 1.0f };
 GLfloat specular0[4] = { 1.0, 0.1, 0.1, 1.0f };
 
 /*
@@ -83,30 +82,17 @@ void Display(void)
 	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient0);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, specular0);
 	glLightfv(GL_LIGHT0, GL_POSITION, position0);
+	//
+	//glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse0);
+	//glLightfv(GL_LIGHT1, GL_AMBIENT, ambient0);
+	//glLightfv(GL_LIGHT1, GL_SPECULAR, specular0);
+	//glLightfv(GL_LIGHT1, GL_POSITION, position1);
 	glPopMatrix();
 
 	/* Draw the grid and buildings */
 
 	w.draw_world();
 
-	/*glDisable(GL_LIGHTING);
-	glPushMatrix();
-	glTranslated(-1.0, 1.0, 2.0);
-	glRotated(90, 1.0, 0.0, 0.0);
-	
-
-	int h = 8;
-	unsigned char stuff[20];
-	unsigned char* convertchar = stuff;
-
-	stuff[0] = 'h';
-
-	typeWriter.textToScreenLarge(0.0f + w.get_cursor()->getPosition()[0], 0.0f + w.get_cursor()->getPosition()[1], textYo);
-	glPopMatrix();
-	glEnable(GL_LIGHTING);*/
-
-	/* before returning, flush the graphics buffer
-	* so all graphics appear in the window */
 	glFlush();
 	glutSwapBuffers();
 }
@@ -241,6 +227,7 @@ void myInit()
 	glDepthFunc(GL_LEQUAL);
 
 	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
 	glEnable(GL_LIGHTING);
 
 	/* set drawing color to white */

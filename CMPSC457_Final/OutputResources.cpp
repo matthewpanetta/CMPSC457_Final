@@ -4,8 +4,10 @@
 OutputResources::OutputResources()
 {
 	food		= 5;
-	money		= 1000;
+	money		= 100000;
+	bricks		= 100;
 	wood		= 100;
+	employed	= 0;
 	unemployed	= 20;
 }
 
@@ -58,41 +60,99 @@ int OutputResources::get_population()
 
 void OutputResources::set_food(int food)
 {
-	this->food = food;
+	if (food < 0)
+	{
+		food = 0;
+	}
+	else 
+	{
+		this->food = food;
+	}
 }
 
 void OutputResources::set_wood(int wood)
 {
-	this->wood = wood;
+	if (wood < 0)
+	{
+		wood = 0;
+	}
+	else
+	{
+		this->wood = wood;
+	}
 }
 
 void OutputResources::set_bricks(int bricks)
 {
-	this->bricks = bricks;
+	if (bricks < 0)
+	{
+		bricks = 0;
+	}
+	else
+	{
+		this->bricks = bricks;
+	}
 }
 
 void OutputResources::set_money(int money)
 {
-	this->money = money;
+	if (money < 0)
+	{
+		money = 0;
+	}
+	else
+	{
+		this->money = money;
+	}
 }
 
 void OutputResources::set_unemployed(int unemployed)
 {
-	this->unemployed = unemployed;
+	if (unemployed < 0)
+	{
+		unemployed = 0;
+	}
+	else
+	{
+		this->unemployed = unemployed;
+	}
 }
 
 void OutputResources::set_employed(int employed)
 {
-	this->employed = employed;
+	if (employed < 0)
+	{
+		employed = 0;
+	}
+	else
+	{
+		this->employed = employed;
+	}
 }
 
 void OutputResources::set_population(int unemployed, int employed)
 {
-	this->unemployed	= unemployed;
-	this->employed		= employed;
+	if (unemployed < 0)
+	{
+		unemployed = 0;
+	}
+	else
+	{
+		this->unemployed = unemployed;
+	}
+
+	if (employed < 0)
+	{
+		employed = 0;
+	}
+	else
+	{
+		this->employed = employed;
+	}
 }
 
 
 OutputResources::~OutputResources()
 {
+
 }
