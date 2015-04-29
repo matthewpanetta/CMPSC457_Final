@@ -69,19 +69,10 @@ OutputResources* World::get_resources()
 }
 
 void World::displayHUD(){
-	////#camelCaseRules
-	////"Wood: + # + ( + # + /tick)"
-	//char txt2[24];
-	//_itoa(o.get_wood(), txt2, 10);
-	////strcat(txt1, txt2);
-	//char* txt1 = "Wood: " + txt2;
-	////*txt1 = *txt1 + *txt2;
-	//unsigned char mem[20];
-	//unsigned char* text = mem;
-	//strcpy((char*)text, txt1);
-	//hud.displayWood(text, c);
-
 	hud.displayResources(o);
+	hud.displayPeople(o);
+	Tile t = (*get_selected_tile());
+	hud.displayTileInfo(t);
 }
 
 World::~World()

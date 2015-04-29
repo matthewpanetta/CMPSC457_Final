@@ -21,9 +21,7 @@ void HUD::displayWood(OutputResources& o){
 	glLoadIdentity();
 	gluOrtho2D(0, WinW, 0, WinH);
 
-	glColor3f(1.0, 1.0, 1.0);
-	glRasterPos2i(20, WinH - 20);  // or wherever in window coordinates
-	glutBitmapString(GLUT_BITMAP_9_BY_15, (const unsigned char*)text.c_str());
+	typeWriter.textToScreenLarge(20, WinH - 20, (unsigned char*)text.c_str());
 
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
@@ -45,9 +43,7 @@ void HUD::displayBrick(OutputResources& o){
 	glLoadIdentity();
 	gluOrtho2D(0, WinW, 0, WinH);
 
-	glColor3f(1.0, 1.0, 1.0);
-	glRasterPos2i(20, WinH - 40);  // or wherever in window coordinates
-	glutBitmapString(GLUT_BITMAP_9_BY_15, (const unsigned char*)text.c_str());
+	typeWriter.textToScreenLarge(20, WinH - 40, (unsigned char*)text.c_str());
 
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
@@ -69,9 +65,7 @@ void HUD::displayFood(OutputResources& o){
 	glLoadIdentity();
 	gluOrtho2D(0, WinW, 0, WinH);
 
-	glColor3f(1.0, 1.0, 1.0);
-	glRasterPos2i(20, WinH - 60);  // or wherever in window coordinates
-	glutBitmapString(GLUT_BITMAP_9_BY_15, (const unsigned char*)text.c_str());
+	typeWriter.textToScreenLarge(20, WinH - 60, (unsigned char*)text.c_str());
 
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
@@ -93,9 +87,7 @@ void HUD::displayMoney(OutputResources& o){
 	glLoadIdentity();
 	gluOrtho2D(0, WinW, 0, WinH);
 
-	glColor3f(1.0, 1.0, 1.0);
-	glRasterPos2i(20, WinH - 80);  // or wherever in window coordinates
-	glutBitmapString(GLUT_BITMAP_9_BY_15, (const unsigned char*)text.c_str());
+	typeWriter.textToScreenLarge(20, WinH - 80, (unsigned char*)text.c_str());
 
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
@@ -105,7 +97,7 @@ void HUD::displayMoney(OutputResources& o){
 
 void HUD::displayPeople(OutputResources& o)
 {
-	std::string text = "People: " + std::to_string(o.get_employed());
+	std::string text = std::to_string(o.get_unemployed()) + "/" + std::to_string(o.get_population());
 
 	glDisable(GL_LIGHTING);
 	// Switch to window coordinates to render
@@ -118,9 +110,30 @@ void HUD::displayPeople(OutputResources& o)
 	glLoadIdentity();
 	gluOrtho2D(0, WinW, 0, WinH);
 
-	glColor3f(1.0, 1.0, 1.0);
-	glRasterPos2i(20, WinH - 100);  // or wherever in window coordinates
-	glutBitmapString(GLUT_BITMAP_9_BY_15, (const unsigned char*)text.c_str());
+	typeWriter.textToScreenLarge(WinW - 60, WinH - 20, (unsigned char*)text.c_str());
+
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+	glEnable(GL_LIGHTING);
+}
+
+void HUD::displayTileInfo(Tile& t){
+	std::string text;
+	text = "Trees: " + std::to_string(t.get_trees()) + " Soil: " + std::to_string(t.get_soil()) + " Stone: " + std::to_string(t.get_stone());
+
+	glDisable(GL_LIGHTING);
+	// Switch to window coordinates to render
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, WinW, 0, WinH);
+
+	typeWriter.textToScreenMedium(20, 10, (unsigned char*)text.c_str());
 
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
@@ -134,7 +147,6 @@ void HUD::displayResources(OutputResources& o)
 	displayBrick(o);
 	displayMoney(o);
 	displayFood(o);
-	displayPeople(o);
 }
 
 HUD::~HUD() { }
