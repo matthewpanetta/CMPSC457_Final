@@ -12,7 +12,7 @@ public:
 	BuildingManager();
 	std::string add_building(Building& b, OutputResources& o);
 	Building* get_building(int x, int z);
-	void remove_building(Building& b);
+	void remove_building(Building& b, OutputResources& o);
 	void remove_all_buildings();
 	void draw_buildings();
 	void next_tick(OutputResources& o);

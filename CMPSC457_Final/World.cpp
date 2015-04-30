@@ -75,7 +75,7 @@ void World::delete_building()
 	// Delete the building unless it is the starting building
 	if (c.getPosition()[0] != 5 || c.getPosition()[1] != 5)
 	{
-		bm.remove_building(*bm.get_building(c.getPosition()[0], c.getPosition()[1]));
+		bm.remove_building(*bm.get_building(c.getPosition()[0], c.getPosition()[1]), o);
 		o.set_money(o.get_money() + 100);
 	}
 }

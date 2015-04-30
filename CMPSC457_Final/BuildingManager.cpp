@@ -41,13 +41,13 @@ Building* BuildingManager::get_building(int x, int z)
 	return NULL;
 }
 
-void BuildingManager::remove_building(Building& b)
+void BuildingManager::remove_building(Building& b, OutputResources &o)
 {
 	std::vector<Building*>::iterator position = std::find(buildings.begin(), buildings.end(), &b);
 
 	if (position != buildings.end())
 	{
-		//b.delete_benefit(o);
+		b.delete_benefit(o);
 		buildings.erase(position);	// == vector.end() means the element was not found
 	}
 }
