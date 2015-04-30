@@ -34,7 +34,7 @@ int WinW = 500;
 int WinH = 500;
 
 double rotate = 0;
-bool build_mode = false;
+//bool build_mode = false;
 
 World w(10, 10, WinW, WinH);		// Create a 10x10 world.
 
@@ -138,19 +138,23 @@ void Mouse(int button, int state, int x, int y)
 */
 void Keyboard(unsigned char key, int x, int y)
 {
-	if (!build_mode)
+	if (!w.getBuildable())
 	{
 		switch (key)
 		{
 		case 8:
 			w.delete_building(); break;
 		case 13:
-			build_mode = true;	break;		// Switch to build mode, allowing user to type in a number (0-4) to build a building.
+			w.setBuildable(true);	break;		// Switch to build mode, allowing user to type in a number (0-4) to build a building.
 		case 127:
 			w.delete_building(); break;
 		case 'r':
 			w.restart_world(); break;
 		case 'q':
+			exit(0);
+		case 'R':
+			w.restart_world(); break;
+		case 'Q':
 			exit(0);
 		}
 	}
@@ -168,7 +172,7 @@ void Keyboard(unsigned char key, int x, int y)
 			cout << "Invalid building type" << endl;	// Invalid building
 		}
 
-		build_mode = false;					// reset build mode to false
+		w.setBuildable(false);				// reset build mode to false
 	}
 
 	glutPostRedisplay();					// redraw scene with building
