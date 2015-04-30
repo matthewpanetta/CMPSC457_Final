@@ -4,8 +4,13 @@ Temple::Temple(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t
 {
 	this->t = t;
 	this->x = x;
-	this->y = y;
+	this->y = -0.5;
 	this->z = z;
+}
+
+void Temple::plop_building()
+{
+
 }
 
 void Temple::draw_building()

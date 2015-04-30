@@ -3,12 +3,16 @@
 
 World::World(int rows, int cols, int WinW, int WinH) : gr(rows, cols), c(rows, cols), hud(WinW, WinH)
 {
+	init = true;
 	this->WinW = WinW;
 	this->WinH = WinH;
 	tick = 0;
 	create_building(5);
 	message = "";
 	build_mode = false;
+	is_animating = false;
+	event_displayed = false;
+	init = false;
 }
 
 void World::draw_world()
@@ -23,7 +27,11 @@ void World::restart_world()
 {
 	bm.remove_all_buildings();
 	c.setPosition(5, 5);
+
+	init = true;
 	create_building(5);
+	init = false;
+
 	o.reset();
 }
 
@@ -54,19 +62,23 @@ Tile* World::get_selected_tile()
 
 void World::create_building(int choice)
 {
-	GLfloat x = c.getPosition()[0];
-	GLfloat y = -0.5f;
-	GLfloat z = c.getPosition()[1];
-	Tile tile = (*get_selected_tile());
-
-	message = bm.add_building(*bf.create_building(choice, x, y, z, tile), o);
-
-	if (message != "Good")
+	if (choice < 5 || init)
 	{
-		//cout << message << endl;
-	}
-	else {
-		message = "";
+		GLfloat x = c.getPosition()[0];
+		GLfloat y = -2.7f;
+		GLfloat z = c.getPosition()[1];
+		Tile tile = (*get_selected_tile());
+
+		message = bm.add_building(*bf.create_building(choice, x, y, z, tile), o);
+
+		if (message == "Good")
+		{
+			message = "";
+		}
+		else
+		{
+			event_displayed = true;
+		}
 	}
 }
 
@@ -87,7 +99,7 @@ void World::next_tick()
 
 	if (tick % 5 == 0)
 	{
-		o.set_money(o.get_money() + (2 * o.get_employed()));
+		o.set_money(o.get_money() + (4 * o.get_employed()));
 	}
 }
 
@@ -103,7 +115,10 @@ void World::displayHUD(){
 	hud.displayPeople(o);
 	Tile t = (*get_selected_tile());
 	hud.displayTileInfo(t);
-	hud.displayEvent(message);
+
+	if (event_displayed)
+		hud.displayEvent(message);
+
 	hud.displayHelpInfo(build_mode);
 }
 
@@ -121,6 +136,21 @@ bool World::getBuildable(){
 
 void World::setBuildable(bool booleanie){
 	build_mode = booleanie;
+}
+
+bool World::check_animating()
+{
+	return bm.check_animating();
+}
+
+bool World::is_event_displayed()
+{
+	return event_displayed;
+}
+
+void World::set_event_displayed(bool event_displayed)
+{
+	this->event_displayed = event_displayed;
 }
 
 World::~World()

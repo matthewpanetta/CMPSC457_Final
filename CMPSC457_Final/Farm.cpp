@@ -8,6 +8,11 @@ Farm::Farm(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t), g
 	this->z = z;
 }
 
+void Farm::plop_building()
+{
+
+}
+
 void Farm::draw_building()
 {
 	glPushMatrix();
@@ -63,6 +68,17 @@ void Farm::draw_building()
 
 	glPopMatrix();
 	glPopMatrix();
+
+	if (y < -0.50)
+	{
+		Building::is_animating = true;
+		y = y + 0.05;
+	}
+	else
+	{
+		y = -0.5;
+		Building::is_animating = false;
+	}
 }
 
 void Farm::apply_perk(OutputResources &o)

@@ -10,6 +10,7 @@ class Mill :
 {
 public:
 	Mill(GLdouble, GLdouble, GLdouble, Tile);
+	void plop_building();
 	void draw_building();
 	void apply_perk(OutputResources &);
 	void apply_initial_cost(OutputResources &);

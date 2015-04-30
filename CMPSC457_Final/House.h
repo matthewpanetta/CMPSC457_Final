@@ -10,6 +10,7 @@ class House :
 {
 public:
 	House(GLdouble, GLdouble, GLdouble, Tile);
+	void plop_building();
 	void draw_building();
 	void draw_house();
 	void apply_perk(OutputResources &);

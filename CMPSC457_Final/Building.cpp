@@ -7,6 +7,7 @@ Building::Building(GLdouble x, GLdouble y, GLdouble z, Tile t)
 	this->x = x;
 	this->y = y;
 	this->z = z;
+	is_animating = false;
 }
 
 Tile Building::get_tile()
@@ -27,6 +28,11 @@ GLfloat Building::get_y()
 GLfloat Building::get_z()
 {
 	return z;
+}
+
+bool Building::check_animating()
+{
+	return is_animating;
 }
 
 bool Building::compare(const Building& b) const

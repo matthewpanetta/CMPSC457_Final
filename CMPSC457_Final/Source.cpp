@@ -34,7 +34,7 @@ int WinW = 500;
 int WinH = 500;
 
 double rotate = 0;
-//bool build_mode = false;
+int tick = 0;
 
 World w(10, 10, WinW, WinH);		// Create a 10x10 world.
 
@@ -42,7 +42,6 @@ GLfloat diffuse0[4] = { 0.8, 0.8, 0.8, 1.0f };
 GLfloat position0[4] = { 0.0, 1.0, 8.0, 1.0f };
 GLfloat ambient0[4] = { 0.25, 0.25, 0.25, 1.0f };
 GLfloat specular0[4] = { 1.0, 0.1, 0.1, 1.0f };
-
 /*
 *  This function is called whenever the display needs to redrawn.
 *  First call when program starts.
@@ -82,11 +81,6 @@ void Display(void)
 	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient0);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, specular0);
 	glLightfv(GL_LIGHT0, GL_POSITION, position0);
-	//
-	//glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse0);
-	//glLightfv(GL_LIGHT1, GL_AMBIENT, ambient0);
-	//glLightfv(GL_LIGHT1, GL_SPECULAR, specular0);
-	//glLightfv(GL_LIGHT1, GL_POSITION, position1);
 	glPopMatrix();
 
 	/* Draw the grid and buildings */
@@ -133,6 +127,39 @@ void Mouse(int button, int state, int x, int y)
 
 }
 
+void Timer(int value)
+{
+	/* Set the next timer event to occur.
+	* The arguments 100, Timer, and 1 are
+	* the number of milliseconds until the
+	* event is triggered, the name of the
+	* function to invoke at that time, and
+	* the value to be passed to that function.
+	*/
+	if (w.is_event_displayed())
+	{
+		if (tick == 3)
+		{
+			w.set_event_displayed(false);
+			tick = 0;
+		}
+
+		tick++;
+	}
+
+	if (!w.check_animating())
+	{
+		w.next_tick();
+		glutPostRedisplay();
+		glutTimerFunc(1000, Timer, 1);
+	}
+	else
+	{
+		glutTimerFunc(15, Timer, 1);
+		glutPostRedisplay();
+	}
+}
+
 /*
 *  A keyboard event occurs when the user presses a key.
 */
@@ -172,7 +199,7 @@ void Keyboard(unsigned char key, int x, int y)
 			cout << "Invalid building type" << endl;	// Invalid building
 		}
 
-		w.setBuildable(false);				// reset build mode to false
+		w.setBuildable(false);
 	}
 
 	glutPostRedisplay();					// redraw scene with building
@@ -208,20 +235,7 @@ void Idle(void)
 /*
 * Timer callback function.
 */
-void Timer(int value)
-{
-	/* Set the next timer event to occur.
-	* The arguments 100, Timer, and 1 are
-	* the number of milliseconds until the
-	* event is triggered, the name of the
-	* function to invoke at that time, and
-	* the value to be passed to that function.
-	*/
-	w.next_tick();
-	glutPostRedisplay();
 
-	glutTimerFunc(1000, Timer, 1);
-}
 
 /*
 * Set window attributes
@@ -238,6 +252,8 @@ void myInit()
 	glEnable(GL_SMOOTH);
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_LINE_SMOOTH);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDepthFunc(GL_LEQUAL);
 
 	glEnable(GL_LIGHT0);

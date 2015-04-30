@@ -21,6 +21,14 @@ void HUD::displayWood(OutputResources& o){
 	glLoadIdentity();
 	gluOrtho2D(0, WinW, 0, WinH);
 
+	glColor4f(0.2, 0.2, 0.2, 0.7);
+	glBegin(GL_POLYGON);
+	glVertex3f(0.0, WinH, 0.0);
+	glVertex3f(165.0, WinH, 0.0);
+	glVertex3f(165.0, WinH - 90, 0.0);
+	glVertex3f(0.0, WinH - 90.0, 0.0);
+	glEnd();
+
 	typeWriter.textToScreenLarge(20, WinH - 20, (unsigned char*)text.c_str());
 
 	glPopMatrix();
@@ -110,6 +118,14 @@ void HUD::displayPeople(OutputResources& o)
 	glLoadIdentity();
 	gluOrtho2D(0, WinW, 0, WinH);
 
+	glColor4f(0.2, 0.2, 0.2, 0.7);
+	glBegin(GL_POLYGON);
+	glVertex3f(WinW - textWidth - 45, WinH, 0.0);
+	glVertex3f(WinW, WinH, 0.0);
+	glVertex3f(WinW, WinH - 30, 0.0);
+	glVertex3f(WinW - textWidth - 45, WinH - 30.0, 0.0);
+	glEnd();
+
 	typeWriter.textToScreenLarge(WinW - textWidth - 20, WinH - 20, (unsigned char*)text.c_str());
 
 	glPopMatrix();
@@ -132,6 +148,17 @@ void HUD::displayEvent(std::string text){
 	glPushMatrix();
 	glLoadIdentity();
 	gluOrtho2D(0, WinW, 0, WinH);
+
+	if (textWidth > 0)
+	{
+		glColor4f(0.2, 0.2, 0.2, 0.7);
+		glBegin(GL_POLYGON);
+		glVertex3f((WinW / 2 - textWidth / 2) - 25, WinH - 100, 0.0);
+		glVertex3f((WinW / 2 - textWidth / 2) + (textWidth)+25, WinH - 100, 0.0);
+		glVertex3f((WinW / 2 - textWidth / 2) + (textWidth)+25, WinH - 130, 0.0);
+		glVertex3f((WinW / 2 - textWidth / 2 - 25), WinH - 130, 0.0);
+		glEnd();
+	}
 
 	typeWriter.textToScreenLarge(WinW / 2 - textWidth / 2, WinH - 120, (unsigned char*)text.c_str(), 1.0, 0.0, 0.15);
 
@@ -164,6 +191,14 @@ void HUD::displayTileInfo(Tile& t){
 	glPushMatrix();
 	glLoadIdentity();
 	gluOrtho2D(0, WinW, 0, WinH);
+
+	glColor4f(0.2, 0.2, 0.2, 0.7);
+	glBegin(GL_POLYGON);
+	glVertex3f(0.0, 0.0, 0.0);
+	glVertex3f(WinW, 0.0, 0.0);
+	glVertex3f(WinW, 40.0, 0.0);
+	glVertex3f(0.0, 40.0, 0.0);
+	glEnd();
 
 	typeWriter.textToScreenMedium(10, 25, (unsigned char*)text.c_str());
 

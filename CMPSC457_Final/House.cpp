@@ -31,6 +31,11 @@ void House::draw_building()
 	draw_house();
 }
 
+void House::plop_building()
+{
+
+}
+
 void House::draw_house()
 {
 	glPushMatrix();
@@ -91,6 +96,17 @@ void House::draw_house()
 
 	glPopMatrix();
 	glPopMatrix();
+
+	if (y < -0.50)
+	{
+		Building::is_animating = true;
+		y = y + 0.05;
+	}
+	else
+	{
+		y = -0.5;
+		Building::is_animating = false;
+	}
 }
 
 void House::apply_perk(OutputResources &o)
@@ -100,7 +116,7 @@ void House::apply_perk(OutputResources &o)
 
 std::string House::check_cost(OutputResources &o)
 {
-	if (o.get_money() < 400)
+	if (o.get_money() < 100)
 	{
 		return "Not Enough Money";
 	}
@@ -108,7 +124,7 @@ std::string House::check_cost(OutputResources &o)
 	{
 		return "Not Enough Wood";
 	}
-	else if (o.get_bricks() < 20)
+	else if (o.get_bricks() < 25)
 	{
 		return "Not Enough Bricks";
 	}
@@ -122,7 +138,7 @@ void House::apply_initial_cost(OutputResources &o)
 {
 	o.set_money(o.get_money() - 100);
 	o.set_wood(o.get_wood() - 5);
-	o.set_bricks(o.get_bricks() - 20);
+	o.set_bricks(o.get_bricks() - 25);
 	o.set_unemployed(o.get_unemployed() + 3);
 }
 
@@ -136,8 +152,15 @@ bool House::apply_cost_per_tick(OutputResources &o)
 void House::delete_benefit(OutputResources &o)
 {
 	o.set_money(o.get_money() + 50);
-
-	o.set_unemployed(o.get_unemployed() - 3);
+	
+	if (o.get_employed() > o.get_unemployed())
+	{
+		o.set_employed(o.get_employed() - 3);
+	}
+	else
+	{
+		o.set_unemployed(o.get_unemployed() - 3);
+	}
 }
 
 House::~House()

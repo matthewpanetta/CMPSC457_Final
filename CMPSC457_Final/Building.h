@@ -16,6 +16,7 @@ public:
 	GLfloat get_y();
 	GLfloat get_z();
 	bool compare(const Building& b) const;
+	bool check_animating();
 	void draw_plane(Image* image);
 	void draw_roof();
 
@@ -30,12 +31,15 @@ public:
 	Tile get_tile();
 
 	virtual std::string check_cost(OutputResources& o) = 0;
+	virtual void plop_building() = 0;
 	virtual void draw_building() = 0;
 	virtual void apply_perk(OutputResources &) = 0;
 	virtual void apply_initial_cost(OutputResources &) = 0;
 	virtual bool apply_cost_per_tick(OutputResources &) = 0;
 	virtual void delete_benefit(OutputResources&) = 0;
 	~Building();
+protected:
+	bool is_animating;
 private:
 	GLdouble x, y, z;
 	Tile t;

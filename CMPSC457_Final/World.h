@@ -33,6 +33,9 @@ public:
 	void updateWinH(int height);
 	bool getBuildable();
 	void setBuildable(bool booleanie);
+	bool check_animating();
+	bool is_event_displayed();
+	void set_event_displayed(bool);
 	~World();
 private:
 	int WinW, WinH;
@@ -45,6 +48,9 @@ private:
 	HUD hud;
 	std::string message;
 	bool build_mode;
+	bool is_animating;
+	bool event_displayed;
+	bool init;
 };
 
 #endif

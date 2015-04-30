@@ -76,6 +76,19 @@ void BuildingManager::next_tick(OutputResources& o)
 	}
 }
 
+bool BuildingManager::check_animating()
+{
+	for (std::vector<Building*>::iterator it = buildings.begin(); it != buildings.end(); ++it)
+	{
+		if ((*it)->check_animating())
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 BuildingManager::~BuildingManager()
 {
 

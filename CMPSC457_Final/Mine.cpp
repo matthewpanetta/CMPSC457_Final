@@ -11,10 +11,125 @@ Mine::Mine(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 void Mine::draw_building()
 {
 	glPushMatrix();
-	glColor3f(1.00, 0.94, 0.00);
 	glTranslatef(x, y*-1, z);
-	glutSolidCube(1);
+
+	glColor3d(0.5, 0.2, 0.1);
+
+	glPushMatrix();
+	glTranslated(0.0, -0.35, 0.0);
+
+	glPushMatrix();
+	glTranslated(0.1, 0.0, 0.0);
+	glScaled(0.03, 0.25, 0.2);
+	glutSolidCube(1.0);
 	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(-0.1, 0.0, 0.0);
+	glScaled(0.03, 0.25, 0.2);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0.0, 0.1, 0.0);
+	glScaled(0.2, 0.03, 0.2);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0.0, 0.0, -0.1);
+	glScaled(0.2, 0.25, 0.03);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glColor3d(0.2, 0.2, 0.2);
+	//Rails
+	glPushMatrix();
+	glTranslated(0.03, -0.15, 0.1);
+	glScaled(0.01, 0.01, 0.4);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(-0.03, -0.15, 0.1);
+	glScaled(0.01, 0.01, 0.4);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0.0, -0.15, 0.1);
+	glScaled(0.1, 0.01, 0.01);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0.0, -0.15, 0.14);
+	glScaled(0.1, 0.01, 0.01);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0.0, -0.15, 0.18);
+	glScaled(0.1, 0.01, 0.01);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0.0, -0.15, 0.22);
+	glScaled(0.1, 0.01, 0.01);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0.0, -0.15, 0.26);
+	glScaled(0.1, 0.01, 0.01);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+
+	glPushMatrix();
+	glTranslated(0.0, -0.15, 0.06);
+	glScaled(0.1, 0.01, 0.01);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0.0, -0.15, 0.02);
+	glScaled(0.1, 0.01, 0.01);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0.0, -0.15, -0.02);
+	glScaled(0.1, 0.01, 0.01);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0.0, -0.15, -0.06);
+	glScaled(0.1, 0.01, 0.01);
+	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glPopMatrix();
+
+	glPopMatrix();
+
+	if (y < -0.50)
+	{
+		Building::is_animating = true;
+		y = y + 0.05;
+	}
+	else
+	{
+		y = -0.5;
+		Building::is_animating = false;
+	}
+}
+
+void Mine::plop_building()
+{
+
 }
 
 void Mine::apply_perk(OutputResources &o)

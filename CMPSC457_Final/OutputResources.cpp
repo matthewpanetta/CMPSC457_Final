@@ -3,9 +3,9 @@
 
 OutputResources::OutputResources()
 {
-	food		= 300;
-	money		= 2000;
-	bricks		= 300;
+	food		= 250;
+	money		= 1000;
+	bricks		= 100;
 	wood		= 300;
 	employed	= 0;
 	unemployed	= 3;
@@ -153,9 +153,9 @@ void OutputResources::set_population(int unemployed, int employed)
 
 void OutputResources::reset()
 {
-	food = 300;
-	money = 2000;
-	bricks = 300;
+	food = 250;
+	money = 1000;
+	bricks = 100;
 	wood = 300;
 	employed = 0;
 	unemployed = 3;

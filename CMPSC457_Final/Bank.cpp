@@ -8,6 +8,11 @@ Bank::Bank(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 	this->z = z;
 }
 
+void Bank::plop_building()
+{
+
+}
+
 void Bank::draw_building()
 {
 	glPushMatrix();
@@ -59,6 +64,17 @@ void Bank::draw_building()
 	glTranslatef(0.0, -0.25, 0.0);
 	draw_roof();
 	glPopMatrix();
+
+	if (y < -0.50)
+	{
+		Building::is_animating = true;
+		y = y + 0.05;
+	}
+	else
+	{
+		y = -0.5;
+		Building::is_animating = false;
+	}
 }
 
 void Bank::apply_perk(OutputResources &o)

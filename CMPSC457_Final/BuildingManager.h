@@ -16,6 +16,7 @@ public:
 	void remove_all_buildings();
 	void draw_buildings();
 	void next_tick(OutputResources& o);
+	bool check_animating();
 	~BuildingManager();
 private:
 	std::vector<Building*> buildings;
