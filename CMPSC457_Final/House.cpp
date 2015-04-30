@@ -121,7 +121,7 @@ std::string House::check_cost(OutputResources &o)
 
 void House::apply_initial_cost(OutputResources &o)
 {
-	o.set_money(o.get_money() - 400);
+	o.set_money(o.get_money() - 100);
 	o.set_wood(o.get_wood() - 5);
 	o.set_bricks(o.get_bricks() - 20);
 	o.set_unemployed(o.get_unemployed() + 3);
@@ -129,8 +129,8 @@ void House::apply_initial_cost(OutputResources &o)
 
 bool House::apply_cost_per_tick(OutputResources &o)
 {
-	o.set_food(o.get_food() - 3);
-	o.set_wood(o.get_wood() - 2);
+	o.set_food(o.get_food() - 2);
+	o.set_wood(o.get_wood() - 1);
 	return true;
 }
 
