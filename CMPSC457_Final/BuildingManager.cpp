@@ -1,5 +1,4 @@
 #include "BuildingManager.h"
-#include "Temple.h"
 #include <algorithm>
 #include <iostream>
 
@@ -48,6 +47,11 @@ void BuildingManager::remove_building(Building& b)
 
 	if (position != buildings.end()) // == vector.end() means the element was not found
 		buildings.erase(position);
+}
+
+void BuildingManager::remove_all_buildings()
+{
+	buildings.clear();
 }
 
 void BuildingManager::draw_buildings()

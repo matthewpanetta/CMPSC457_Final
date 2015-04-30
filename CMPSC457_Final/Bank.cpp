@@ -111,6 +111,10 @@ std::string Bank::check_cost(OutputResources& o)
 	{
 		return "Not Enough Bricks";
 	}
+	else if (o.get_unemployed() < 2)
+	{
+		return "Not Enough Unemployed";
+	}
 	else
 	{
 		return "Good";
@@ -122,6 +126,8 @@ void Bank::apply_initial_cost(OutputResources &o)
 	o.set_money(o.get_money() - 1000);
 	o.set_wood(o.get_wood() - 40);
 	o.set_bricks(o.get_bricks() - 30);
+	o.set_unemployed(o.get_unemployed() - 2);
+	o.set_employed(o.get_employed() + 2);
 }
 
 bool Bank::apply_cost_per_tick(OutputResources &o)

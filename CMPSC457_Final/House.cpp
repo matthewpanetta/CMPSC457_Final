@@ -129,8 +129,8 @@ void House::apply_initial_cost(OutputResources &o)
 
 bool House::apply_cost_per_tick(OutputResources &o)
 {
-	o.set_food(o.get_food() - 6);
-	o.set_wood(o.get_wood() - 5);
+	o.set_food(o.get_food() - 3);
+	o.set_wood(o.get_wood() - 2);
 	return true;
 }
 

@@ -139,8 +139,14 @@ void Keyboard(unsigned char key, int x, int y)
 	{
 		switch (key)
 		{
+		case 8:
+			w.delete_building(); break;
 		case 13:
 			build_mode = true;	break;		// Switch to build mode, allowing user to type in a number (0-4) to build a building.
+		case 127:
+			w.delete_building(); break;
+		case 'r':
+			w.restart_world(); break;
 		case 'q':
 			exit(0);
 		}
@@ -177,6 +183,7 @@ void SpecialKeys(int key, int x, int y)
 		w.get_cursor()->moveLeft();		break;		// Move left one tile
 	case GLUT_KEY_RIGHT:
 		w.get_cursor()->moveRight();	break;		// Move right one tile
+	
 	}
 
 	glutPostRedisplay();

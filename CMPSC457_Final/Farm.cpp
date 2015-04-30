@@ -116,6 +116,7 @@ void Farm::apply_initial_cost(OutputResources &o)
 {
 	o.set_money(o.get_money() - 150);
 	o.set_unemployed(o.get_unemployed() - 2);
+	o.set_employed(o.get_employed() + 2);
 }
 
 bool Farm::apply_cost_per_tick(OutputResources &o)

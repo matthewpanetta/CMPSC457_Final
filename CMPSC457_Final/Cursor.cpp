@@ -18,6 +18,12 @@ int* Cursor::getPosition()
 	return coordinate;
 }
 
+void Cursor::setPosition(int x, int y)
+{
+	coordinate[0] = x;
+	coordinate[1] = y;
+}
+
 //x = x + 1
 void Cursor::moveRight()
 {

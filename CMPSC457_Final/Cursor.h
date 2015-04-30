@@ -8,6 +8,7 @@ public:
 	Cursor(int, int);
 	void ChangeState();
 	int* getPosition();
+	void setPosition(int, int);
 	void moveRight();
 	void moveLeft();
 	void moveUp();

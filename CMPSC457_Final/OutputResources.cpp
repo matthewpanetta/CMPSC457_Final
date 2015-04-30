@@ -3,12 +3,12 @@
 
 OutputResources::OutputResources()
 {
-	food		= 5;
-	money		= 100000;
-	bricks		= 100;
-	wood		= 100;
+	food		= 300;
+	money		= 2000;
+	bricks		= 300;
+	wood		= 300;
 	employed	= 0;
-	unemployed	= 20;
+	unemployed	= 3;
 }
 
 std::vector<int> OutputResources::get_resources()
@@ -151,6 +151,15 @@ void OutputResources::set_population(int unemployed, int employed)
 	}
 }
 
+void OutputResources::reset()
+{
+	food = 300;
+	money = 2000;
+	bricks = 300;
+	wood = 300;
+	employed = 0;
+	unemployed = 3;
+}
 
 OutputResources::~OutputResources()
 {

@@ -42,6 +42,7 @@ void Mill::apply_initial_cost(OutputResources &o)
 {
 	o.set_money(o.get_money() - 300);
 	o.set_unemployed(o.get_unemployed() - 3);
+	o.set_employed(o.get_employed() + 3);
 }
 
 bool Mill::apply_cost_per_tick(OutputResources &o)

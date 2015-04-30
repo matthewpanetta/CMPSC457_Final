@@ -22,6 +22,7 @@ public:
 	void set_population(int, int);
 	void set_employed(int);
 	void set_unemployed(int);
+	void reset();
 	~OutputResources();
 private:
 	int food, wood, bricks, money, unemployed, employed;

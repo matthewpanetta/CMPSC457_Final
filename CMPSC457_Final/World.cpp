@@ -17,6 +17,14 @@ void World::draw_world()
 	displayHUD();
 }
 
+void World::restart_world()
+{
+	bm.remove_all_buildings();
+	c.setPosition(5, 5);
+	create_building(5);
+	o.reset();
+}
+
 Cursor* World::get_cursor()
 {
 	return &c;
@@ -57,15 +65,25 @@ void World::create_building(int choice)
 	}
 }
 
+void World::delete_building()
+{
+	// Delete the building unless it is the starting building
+	if (c.getPosition()[0] != 5 || c.getPosition()[1] != 5)
+	{
+		bm.remove_building(*bm.get_building(c.getPosition()[0], c.getPosition()[1]));
+		o.set_money(o.get_money() + 100);
+	}
+}
+
 void World::next_tick()
 {
 	tick++;
 	bm.next_tick(o);
 
-	//if (tick % 10 == 0)
-	//{
-	//	o.set_money(o.get_money() + 100);
-	//}
+	if (tick % 5 == 0)
+	{
+		o.set_money(o.get_money() + (2 * o.get_employed()));
+	}
 }
 
 OutputResources* World::get_resources()

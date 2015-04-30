@@ -42,6 +42,7 @@ void Mine::apply_initial_cost(OutputResources &o)
 {
 	o.set_money(o.get_money() - 350);
 	o.set_unemployed(o.get_unemployed() - 4);
+	o.set_employed(o.get_employed() + 4);
 }
 
 bool Mine::apply_cost_per_tick(OutputResources &o)

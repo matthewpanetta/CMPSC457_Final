@@ -18,6 +18,7 @@ class World
 public:
 	World(int, int, int, int);
 	void draw_world();
+	void restart_world();
 	Cursor* get_cursor();
 	Grid* get_grid();
 	Building* get_building_at_position();
@@ -25,6 +26,7 @@ public:
 	Tile* get_selected_tile();
 	OutputResources* get_resources();
 	void create_building(int);
+	void delete_building();
 	void next_tick();
 	void displayHUD();
 	~World();
