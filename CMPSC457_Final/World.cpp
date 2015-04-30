@@ -7,6 +7,7 @@ World::World(int rows, int cols, int WinW, int WinH) : gr(rows, cols), c(rows, c
 	this->WinH = WinH;
 	tick = 0;
 	create_building(5);
+	message = "";
 }
 
 void World::draw_world()
@@ -57,11 +58,14 @@ void World::create_building(int choice)
 	GLfloat z = c.getPosition()[1];
 	Tile tile = (*get_selected_tile());
 
-	std::string message = bm.add_building(*bf.create_building(choice, x, y, z, tile), o);
+	message = bm.add_building(*bf.create_building(choice, x, y, z, tile), o);
 
 	if (message != "Good")
 	{
-		std::cout << message << std::endl;
+		//cout << message << endl;
+	}
+	else {
+		message = "";
 	}
 }
 
@@ -92,10 +96,21 @@ OutputResources* World::get_resources()
 }
 
 void World::displayHUD(){
+	hud.updateWinW(WinW);
+	hud.updateWinH(WinH);
 	hud.displayResources(o);
 	hud.displayPeople(o);
 	Tile t = (*get_selected_tile());
 	hud.displayTileInfo(t);
+	hud.displayEvent(message);
+}
+
+void World::updateWinW(int width){
+	this->WinW = width;
+}
+
+void World::updateWinH(int height){
+	this->WinH = height;
 }
 
 World::~World()

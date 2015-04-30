@@ -29,6 +29,8 @@ public:
 	void delete_building();
 	void next_tick();
 	void displayHUD();
+	void updateWinW(int width);
+	void updateWinH(int height);
 	~World();
 private:
 	int WinW, WinH;
@@ -39,6 +41,7 @@ private:
 	BuildingFactory bf;
 	OutputResources o;
 	HUD hud;
+	std::string message;
 };
 
 #endif

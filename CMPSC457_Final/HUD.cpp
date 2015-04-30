@@ -75,7 +75,6 @@ void HUD::displayFood(OutputResources& o){
 
 void HUD::displayMoney(OutputResources& o){
 	std::string text = "Money: $" + std::to_string(o.get_money());
-
 	glDisable(GL_LIGHTING);
 	// Switch to window coordinates to render
 	glMatrixMode(GL_MODELVIEW);
@@ -97,7 +96,8 @@ void HUD::displayMoney(OutputResources& o){
 
 void HUD::displayPeople(OutputResources& o)
 {
-	std::string text = std::to_string(o.get_unemployed()) + "/" + std::to_string(o.get_population());
+	std::string text = std::to_string(o.get_unemployed()) + "/" + std::to_string(o.get_population()) + " People";
+	int textWidth = textWidthLarge(text);
 
 	glDisable(GL_LIGHTING);
 	// Switch to window coordinates to render
@@ -110,12 +110,44 @@ void HUD::displayPeople(OutputResources& o)
 	glLoadIdentity();
 	gluOrtho2D(0, WinW, 0, WinH);
 
-	typeWriter.textToScreenLarge(WinW - 60, WinH - 20, (unsigned char*)text.c_str());
+	typeWriter.textToScreenLarge(WinW - textWidth - 20, WinH - 20, (unsigned char*)text.c_str());
 
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
 	glEnable(GL_LIGHTING);
+}
+
+
+void HUD::displayEvent(std::string text){
+	int textWidth = textWidthLarge(text);
+
+	glDisable(GL_LIGHTING);
+	// Switch to window coordinates to render
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, WinW, 0, WinH);
+
+	typeWriter.textToScreenLarge(WinW / 2 - textWidth / 2, WinH - 120, (unsigned char*)text.c_str(), 1.0, 0.0, 0.15);
+
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+	glEnable(GL_LIGHTING);
+}
+
+
+int HUD::textWidthLarge(std::string text){
+	int strWidth = 0;
+	for (int i = 0; i < text.size(); ++i){
+		strWidth += glutBitmapWidth(GLUT_BITMAP_HELVETICA_18, text[i]);
+	}
+	return strWidth;
 }
 
 void HUD::displayTileInfo(Tile& t){
@@ -147,6 +179,14 @@ void HUD::displayResources(OutputResources& o)
 	displayBrick(o);
 	displayMoney(o);
 	displayFood(o);
+}
+
+void HUD::updateWinW(int width){
+	this->WinW = width;
+}
+
+void HUD::updateWinH(int height){
+	this->WinH = height;
 }
 
 HUD::~HUD() { }

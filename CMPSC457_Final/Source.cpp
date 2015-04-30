@@ -102,17 +102,20 @@ void Display(void)
 *  the window and when the window first pops up;
 *  unregistered callback.
 */
-void Reshape(int w, int h)
+void Reshape(int width, int height)
 {
-	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+	glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(30.0, (GLfloat)w / (GLfloat)h, 1.0, 200.0);
+	gluPerspective(30.0, (GLfloat)width / (GLfloat)height, 1.0, 200.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	WinW = w;
-	WinH = h;
+	WinW = width;
+	WinH = height;
+	
+	w.updateWinW(width);
+	w.updateWinH(height);
 }
 
 /*

@@ -12,13 +12,12 @@ public:
 
 	//default text color is white (text is GLUT_BITMAP_HELVETICA_18)
 	void textToScreenLarge(float x, float y, unsigned char* text);
-
 	//choose text color to be displayed
 	void textToScreenLarge(float x, float y, unsigned char* text, float r, float g, float b);
 
 	//(text is GLUT_BITMAP_HELVETICA_12)
 	void textToScreenMedium(float x, float y, unsigned char* text);
-
+	//choose text color to be displayed
 	void textToScreenMedium(float x, float y, unsigned char* text, float r, float g, float b);
 
 	~Text();

@@ -26,7 +26,10 @@ public:
 	void displayPeople(OutputResources& o);
 
 	//middle of screen (towards top of screen) (can be any error/success/event)
-	void displayEvent(unsigned char* text, Cursor c);
+	void displayEvent(std::string text);
+
+	//(text is GLUT_BITMAP_HELVETICA_18)
+	int textWidthLarge(std::string text);
 
 	//bottom left of screen
 	void displayTileInfo(Tile& t);
@@ -35,6 +38,10 @@ public:
 	void displayHelpInfo(unsigned char* text, Cursor c);
 
 	void displayResources(OutputResources &o);
+
+	void updateWinW(int width);
+
+	void updateWinH(int height);
 
 	~HUD();
 private:
