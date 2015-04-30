@@ -8,6 +8,7 @@ World::World(int rows, int cols, int WinW, int WinH) : gr(rows, cols), c(rows, c
 	tick = 0;
 	create_building(5);
 	message = "";
+	build_mode = false;
 }
 
 void World::draw_world()
@@ -103,6 +104,7 @@ void World::displayHUD(){
 	Tile t = (*get_selected_tile());
 	hud.displayTileInfo(t);
 	hud.displayEvent(message);
+	hud.displayHelpInfo(build_mode);
 }
 
 void World::updateWinW(int width){
@@ -111,6 +113,14 @@ void World::updateWinW(int width){
 
 void World::updateWinH(int height){
 	this->WinH = height;
+}
+
+bool World::getBuildable(){
+	return build_mode;
+}
+
+void World::setBuildable(bool booleanie){
+	build_mode = booleanie;
 }
 
 World::~World()

@@ -31,6 +31,8 @@ public:
 	void displayHUD();
 	void updateWinW(int width);
 	void updateWinH(int height);
+	bool getBuildable();
+	void setBuildable(bool booleanie);
 	~World();
 private:
 	int WinW, WinH;
@@ -42,6 +44,7 @@ private:
 	OutputResources o;
 	HUD hud;
 	std::string message;
+	bool build_mode;
 };
 
 #endif

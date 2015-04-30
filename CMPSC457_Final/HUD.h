@@ -35,7 +35,7 @@ public:
 	void displayTileInfo(Tile& t);
 
 	//bottom left of screen (above tile info)
-	void displayHelpInfo(unsigned char* text, Cursor c);
+	void displayHelpInfo(bool build);
 
 	void displayResources(OutputResources &o);
 
@@ -47,8 +47,9 @@ public:
 private:
 	Text typeWriter;
 
-	const char* buildHelp1 = "Press ENTER to build";
-	const char* buildHelp2 = "0-Bank, 1-Farm, 2-House, 3-Mill, 4-Mine, 5-Final, ENTER-Stop Building";
+	const char* buildHelp1 = "ENTER-Build Mode, DELETE/BACKSPACE-Remove Building, r-Restart, q-Quit";
+	//const char* buildHelp2 = "0-Bank, 1-Farm, 2-House, 3-Mill, 4-Mine, 5-Final, ENTER-Stop Building";
+	const char* buildHelp2 = "ENTER-Stop Building, 0-Bank, 1-Farm, 2-House, 3-Mill, 4-Mine";
 	
 	int WinW, WinH;
 };

@@ -58,6 +58,13 @@ bool Mine::apply_cost_per_tick(OutputResources &o)
 	}
 }
 
+void Mine::delete_benefit(OutputResources &o)
+{
+	o.set_money(o.get_money() + 175);
+	o.set_employed(o.get_employed() - 4);
+	o.set_unemployed(o.get_unemployed() + 4);
+}
+
 Mine::~Mine()
 {
 

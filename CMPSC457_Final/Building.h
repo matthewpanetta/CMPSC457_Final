@@ -17,6 +17,7 @@ public:
 	GLfloat get_z();
 	bool compare(const Building& b) const;
 	void draw_plane(Image* image);
+	void draw_roof();
 
 	bool operator == (const Building& b) const {
 		return compare(b);
@@ -33,6 +34,7 @@ public:
 	virtual void apply_perk(OutputResources &) = 0;
 	virtual void apply_initial_cost(OutputResources &) = 0;
 	virtual bool apply_cost_per_tick(OutputResources &) = 0;
+	virtual void delete_benefit(OutputResources&) = 0;
 	~Building();
 private:
 	GLdouble x, y, z;

@@ -15,7 +15,9 @@ struct Image
 class Texture
 {
 public:
+	Texture();
 	Texture(char *filename);
+	void set_filename(char* filename);
 	int image_load();
 	static unsigned int getint(FILE *fp);
 	static unsigned short getshort(FILE *fp);

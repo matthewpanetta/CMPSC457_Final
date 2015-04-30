@@ -58,6 +58,13 @@ bool Mill::apply_cost_per_tick(OutputResources &o)
 	}
 }
 
+void Mill::delete_benefit(OutputResources &o)
+{
+	o.set_money(o.get_money() + 150);
+	o.set_employed(o.get_employed() - 3);
+	o.set_unemployed(o.get_unemployed() + 3);
+}
+
 Mill::~Mill()
 {
 }

@@ -14,13 +14,15 @@ public:
 	void apply_perk(OutputResources &);
 	void apply_initial_cost(OutputResources &);
 	bool apply_cost_per_tick(OutputResources &);
+	void delete_benefit(OutputResources &);
 	std::string check_cost(OutputResources &);
 	~Farm();
 private:
 	GLdouble x, y, z;
 	Tile t;
 	GLuint texture[1];
-	Texture tex;
+	Texture ground_tex;
+	Texture farm_tex;
 };
 
 #endif

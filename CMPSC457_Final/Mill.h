@@ -14,6 +14,7 @@ public:
 	void apply_perk(OutputResources &);
 	void apply_initial_cost(OutputResources &);
 	bool apply_cost_per_tick(OutputResources &);
+	void delete_benefit(OutputResources &);
 	std::string check_cost(OutputResources &);
 	~Mill();
 private:

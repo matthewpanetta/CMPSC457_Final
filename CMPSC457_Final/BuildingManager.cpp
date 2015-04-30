@@ -45,8 +45,11 @@ void BuildingManager::remove_building(Building& b)
 {
 	std::vector<Building*>::iterator position = std::find(buildings.begin(), buildings.end(), &b);
 
-	if (position != buildings.end()) // == vector.end() means the element was not found
-		buildings.erase(position);
+	if (position != buildings.end())
+	{
+		//b.delete_benefit(o);
+		buildings.erase(position);	// == vector.end() means the element was not found
+	}
 }
 
 void BuildingManager::remove_all_buildings()

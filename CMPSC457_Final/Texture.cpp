@@ -1,7 +1,19 @@
 #include "Texture.h"
 
+Texture::Texture()
+{
+
+}
 
 Texture::Texture(char *filename)
+{
+	this->filename = filename;
+	this->image = new Image();
+
+	image_load();
+}
+
+void Texture::set_filename(char* filename)
 {
 	this->filename = filename;
 	this->image = new Image();

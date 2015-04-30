@@ -171,6 +171,11 @@ bool Temple::apply_cost_per_tick(OutputResources &o)
 	return true;
 }
 
+void Temple::delete_benefit(OutputResources &o)
+{
+
+}
+
 Temple::~Temple()
 {
 

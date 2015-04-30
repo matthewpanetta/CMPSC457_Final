@@ -1,96 +1,95 @@
 #include "House.h"
 #include "Texture.h"
 
-House::House(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t), tex("../Pictures/house_grass.bmp")
+House::House(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
 	this->t = t;
 	this->x = x;
 	this->y = y;
 	this->z = z;
+	this->type = rand() % 10 + 1;
+
+	if (type > 7)
+	{
+		house_tex.set_filename("../Pictures/wood_house.bmp");
+		tex.set_filename("../Pictures/house_grass_dark.bmp");
+	}
+	else if (type <= 7 && type > 3)
+	{
+		house_tex.set_filename("../Pictures/brick_house.bmp");
+		tex.set_filename("../Pictures/house_grass.bmp");
+	}
+	else
+	{
+		house_tex.set_filename("../Pictures/house_siding.bmp");
+		tex.set_filename("../Pictures/house_grass.bmp");
+	}
 }
 
 void House::draw_building()
 {
+	draw_house();
+}
+
+void House::draw_house()
+{
 	glPushMatrix();
-		glTranslatef(x, y*-1, z);
-		glTranslatef(0.0, -0.31, -0.25);
-		glScalef(0.5, 0.5, 0.5);
+	glTranslatef(x, y*-1, z);
+	glTranslatef(0.0, -0.31, -0.25);
+	glScalef(0.5, 0.5, 0.5);
 
-		// house
-		glPushMatrix();
-			glColor3f(0.72, 0.72, 0.72);
-			glScalef(1.0, 0.75, 1.0);
-			glutSolidCube(1);
-		glPopMatrix();
+	// house
+	glPushMatrix();
+	glScalef(0.49, 0.38, 0.50);
+	
+	glEnable(GL_TEXTURE_2D);
+	glColor3f(1.0, 1.0, 1.0);
+	
+	draw_plane(house_tex.get_image());
 
-		glPushMatrix();
-			// door
-			glPushMatrix();
-				glColor3f(1.0, 1.0, 1.0);
-				glTranslatef(-0.15, -0.05, 0.53);
-				glScalef(1.5, 3.0, 1.0);
+	glEnd();	// done with the polygon.
+	glDisable(GL_TEXTURE_2D);
+	glPopMatrix();
 
-				glColor3f(0.55, 0.28, 0.15);
-				glTranslatef(0.2, -0.04, -0.1);
-				glScalef(0.15, 0.15, 0.15);
-				glutSolidCube(1);
+	glPushMatrix();
+	// door
+	glPushMatrix();
+	glColor3f(1.0, 1.0, 1.0);
+	glTranslatef(-0.15, -0.05, 0.53);
+	glScalef(1.5, 3.0, 1.0);
 
-				glColor3f(0.55, 0.55, 0.0);
-				glTranslatef(0.0, 0.0, 0.8);
-				glutSolidSphere(0.1, 20, 20);
-			glPopMatrix();
+	glColor3f(0.82, 0.82, 0.82);
+	glTranslatef(0.2, -0.04, -0.1);
+	glScalef(0.15, 0.15, 0.15);
+	glutSolidCube(1);
 
-		// window
-			glPushMatrix();
-				glColor3f(0.55, 0.28, 0.15);
-				glTranslatef(-0.25, 0.1, 0.39);
-				glScalef(0.25, 0.25, 0.25);
-				glutSolidCube(1);
-			glPopMatrix();
+	glColor3f(0.55, 0.55, 0.0);
+	glTranslatef(0.0, 0.0, 0.8);
+	glutSolidSphere(0.1, 20, 20);
+	glPopMatrix();
 
-		glPopMatrix();
+	// window
+	glPushMatrix();
+	glColor3f(0.92, 0.92, 0.92);
+	glTranslatef(-0.25, 0.1, 0.39);
+	glScalef(0.25, 0.25, 0.25);
+	glutSolidCube(1);
+	glPopMatrix();
 
-		// roof
-		glPushMatrix();
-			glColor3f(0.55, 0.27, 0.07);
-			glTranslatef(0.0, 0.58, 0.0);
-			glScalef(0.55, 0.2, 0.5);
-			glBegin(GL_TRIANGLES);
+	glPopMatrix();
 
-			// Front
-			glNormal3d(0.0, 0.5, 0.5);
-			glVertex3f(0.0f, 0.5f, 0.0f);
-			glVertex3f(-1.0f, -1.0f, 1.0f);
-			glVertex3f(1.0f, -1.0f, 1.0f);
+	// roof
+	glColor3f(0.17, 0.17, 0.17);
+	draw_roof();
 
-			// Right
-			glNormal3d(0.5, 0.5, 0.0);
-			glVertex3f(0.0f, 0.5f, 0.0f);
-			glVertex3f(1.0f, -1.0f, 1.0f);
-			glVertex3f(1.0f, -1.0f, -1.0f);
+	glPushMatrix();
+	glTranslatef(0.0, -0.38, 0.5);
+	glScalef(0.9, 0.01, 0.9);
+	glColor3f(1.0, 1.0, 1.0);
 
-			// Back
-			glNormal3d(0.0, 0.5, -0.5);
-			glVertex3f(0.0f, 0.5f, 0.0f);
-			glVertex3f(1.0f, -1.0f, -1.0f);
-			glVertex3f(-1.0f, -1.0f, -1.0f);
+	draw_plane(tex.get_image());
 
-			// Left
-			glNormal3d(-0.5, 0.5, 0.0);
-			glVertex3f(0.0f, 0.5f, 0.0f);
-			glVertex3f(-1.0f, -1.0f, -1.0f);
-			glVertex3f(-1.0f, -1.0f, 1.0f);
-			glEnd();
-		glPopMatrix();
-
-		glPushMatrix();
-		glTranslatef(0.0, -0.38, 0.5);
-		glScalef(0.9, 0.01, 0.9);
-		glColor3f(1.0, 1.0, 1.0);
-
-		draw_plane(tex.get_image());
-
-		glPopMatrix();
+	glPopMatrix();
 	glPopMatrix();
 }
 
@@ -132,6 +131,13 @@ bool House::apply_cost_per_tick(OutputResources &o)
 	o.set_food(o.get_food() - 2);
 	o.set_wood(o.get_wood() - 1);
 	return true;
+}
+
+void House::delete_benefit(OutputResources &o)
+{
+	o.set_money(o.get_money() + 50);
+
+	o.set_unemployed(o.get_unemployed() - 3);
 }
 
 House::~House()

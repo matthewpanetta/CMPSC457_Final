@@ -58,7 +58,7 @@ void Building::draw_plane(Image* image)
 		GL_RGB,				// rgb color data order
 		GL_UNSIGNED_BYTE,	// color componente types
 		image->data		// image data itself
-		);
+	);
 
 	glBegin(GL_QUADS);		                // begin drawing a cube
 	// Front Face (note that the texture's corners have to match the quad's corners)
@@ -99,6 +99,40 @@ void Building::draw_plane(Image* image)
 
 	glEnd();	// done with the polygon.
 	glDisable(GL_TEXTURE_2D);
+	glPopMatrix();
+}
+
+void Building::draw_roof()
+{
+	glPushMatrix();
+	glTranslatef(0.0, 0.58, 0.0);
+	glScalef(0.55, 0.2, 0.5);
+	glBegin(GL_TRIANGLES);
+
+	// Front
+	glNormal3d(0.0, 0.5, 0.5);
+	glVertex3f(0.0f, 0.5f, 0.0f);
+	glVertex3f(-1.0f, -1.0f, 1.0f);
+	glVertex3f(1.0f, -1.0f, 1.0f);
+
+	// Right
+	glNormal3d(0.5, 0.5, 0.0);
+	glVertex3f(0.0f, 0.5f, 0.0f);
+	glVertex3f(1.0f, -1.0f, 1.0f);
+	glVertex3f(1.0f, -1.0f, -1.0f);
+
+	// Back
+	glNormal3d(0.0, 0.5, -0.5);
+	glVertex3f(0.0f, 0.5f, 0.0f);
+	glVertex3f(1.0f, -1.0f, -1.0f);
+	glVertex3f(-1.0f, -1.0f, -1.0f);
+
+	// Left
+	glNormal3d(-0.5, 0.5, 0.0);
+	glVertex3f(0.0f, 0.5f, 0.0f);
+	glVertex3f(-1.0f, -1.0f, -1.0f);
+	glVertex3f(-1.0f, -1.0f, 1.0f);
+	glEnd();
 	glPopMatrix();
 }
 

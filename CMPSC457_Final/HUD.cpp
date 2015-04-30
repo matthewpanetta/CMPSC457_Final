@@ -165,7 +165,36 @@ void HUD::displayTileInfo(Tile& t){
 	glLoadIdentity();
 	gluOrtho2D(0, WinW, 0, WinH);
 
-	typeWriter.textToScreenMedium(20, 10, (unsigned char*)text.c_str());
+	typeWriter.textToScreenMedium(10, 25, (unsigned char*)text.c_str());
+
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+	glEnable(GL_LIGHTING);
+}
+
+void HUD::displayHelpInfo(bool build){
+	std::string text;
+
+	if (build){
+		text = buildHelp2;
+	}
+	else {
+		text = buildHelp1;
+	}
+
+	glDisable(GL_LIGHTING);
+	// Switch to window coordinates to render
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, WinW, 0, WinH);
+
+	typeWriter.textToScreenMedium(10, 10, (unsigned char*)text.c_str());
 
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);

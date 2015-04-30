@@ -1,6 +1,6 @@
 #include "Farm.h"
 
-Farm::Farm(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t), tex("../Pictures/farm_four_tile.bmp")
+Farm::Farm(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t), ground_tex("../Pictures/farm_four_tile.bmp"), farm_tex("../Pictures/barn.bmp")
 {
 	this->t = t;
 	this->x = x;
@@ -18,8 +18,10 @@ void Farm::draw_building()
 	// barn
 	glPushMatrix();
 	glColor3f(0.89, 0.13, 0.11);
-	glScalef(1.0, 0.75, 1.0);
-	glutSolidCube(1);
+	glScalef(0.49, 0.38, 0.50);
+	
+	draw_plane(farm_tex.get_image());
+
 	glPopMatrix();
 
 	glPushMatrix();
@@ -50,42 +52,14 @@ void Farm::draw_building()
 	glPopMatrix();
 
 	// roof
-	glPushMatrix();
-	glTranslatef(0.0, 0.58, 0.0);
-	glScalef(0.55, 0.2, 0.5);
-	glBegin(GL_TRIANGLES);
-
-	// Front
-	glNormal3d(0.0, 0.5, 0.5);
-	glVertex3f(0.0f, 0.5f, 0.0f);
-	glVertex3f(-1.0f, -1.0f, 1.0f);
-	glVertex3f(1.0f, -1.0f, 1.0f);
-
-	// Right
-	glNormal3d(0.5, 0.5, 0.0);
-	glVertex3f(0.0f, 0.5f, 0.0f);
-	glVertex3f(1.0f, -1.0f, 1.0f);
-	glVertex3f(1.0f, -1.0f, -1.0f);
-
-	// Back
-	glNormal3d(0.0, 0.5, -0.5);
-	glVertex3f(0.0f, 0.5f, 0.0f);
-	glVertex3f(1.0f, -1.0f, -1.0f);
-	glVertex3f(-1.0f, -1.0f, -1.0f);
-
-	// Left
-	glNormal3d(-0.5, 0.5, 0.0);
-	glVertex3f(0.0f, 0.5f, 0.0f);
-	glVertex3f(-1.0f, -1.0f, -1.0f);
-	glVertex3f(-1.0f, -1.0f, 1.0f);
-	glEnd();
-	glPopMatrix();
+	glColor3f(0.92, 0.92, 0.92);
+	draw_roof();
 
 	// texture
 	glTranslatef(0.0, -0.38, 0.5);
 	glScalef(0.9, 0.01, 0.9);
-
-	draw_plane(tex.get_image());
+	glColor3f(1.0, 1.0, 1.0);
+	draw_plane(ground_tex.get_image());
 
 	glPopMatrix();
 	glPopMatrix();
@@ -123,6 +97,13 @@ bool Farm::apply_cost_per_tick(OutputResources &o)
 {
 	o.set_money(o.get_money() - 1);
 	return true;
+}
+
+void Farm::delete_benefit(OutputResources &o)
+{
+	o.set_money(o.get_money() + 75);
+	o.set_employed(o.get_employed() - 2);
+	o.set_unemployed(o.get_unemployed() + 2);
 }
 
 Farm::~Farm()
