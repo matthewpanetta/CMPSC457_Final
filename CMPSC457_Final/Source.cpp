@@ -11,6 +11,7 @@
 #else
 #include <windows.h>
 #include <GL/glut.h>
+#include <math.h>
 #endif
 
 #include "Grid.h"
@@ -32,6 +33,9 @@ using namespace std;
 
 int WinW = 500;
 int WinH = 500;
+
+double theta = 0;
+double zoom = 0;
 
 double rotate = 0;
 int tick = 0;
@@ -57,9 +61,9 @@ void Display(void)
 	/* Set the view to follow the cursor */
 	gluLookAt
 	(
-		0.0 + w.get_cursor()->getPosition()[0],		// eye x
+		cos(theta) * (5.0 + zoom) + 0.0 + w.get_cursor()->getPosition()[0],		// eye x
 		4.0,										// eye y
-		5.0 + w.get_cursor()->getPosition()[1],		// eye z
+		sin(theta) * (5.0 + zoom) + w.get_cursor()->getPosition()[1],		// eye z
 		w.get_cursor()->getPosition()[0],			// grid x 
 		0.0,										// grid y
 		w.get_cursor()->getPosition()[1],			// grid z
@@ -182,7 +186,13 @@ void Keyboard(unsigned char key, int x, int y)
 		case 'R':
 			w.restart_world(); break;
 		case 'Q':
-			exit(0);
+			exit(0); break;
+		case 't':
+			theta = theta + 0.2; break;
+		case 'z':
+			zoom = zoom + 0.2; break;
+		case 'Z':
+			zoom = zoom - 0.2; break;
 		}
 	}
 	else
