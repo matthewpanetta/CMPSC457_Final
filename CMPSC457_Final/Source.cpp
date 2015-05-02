@@ -34,7 +34,7 @@ using namespace std;
 int WinW = 500;
 int WinH = 500;
 
-double theta = 0;
+double theta = 1.57;
 double zoom = 0;
 
 double rotate = 0;
