@@ -42,6 +42,7 @@ Program Description and User Manual --------------------------------------------
     End              - Rotate Right
     Page Up          - Zoom In
     Page Down        - Zoom Out
+    V                - Reset Camera
     R                - Restart Game
     Q                - Quit Game
 
@@ -96,7 +97,7 @@ Program Description and User Manual --------------------------------------------
 
   You can restart the game at any time by pressing the 'r' key.
 
-  Camera Controls: Rotate the view using the 'Home' and 'End' keys. Zoom in using 'Page Up' and Zoom out using 'Page Down'.
+  Camera Controls: Rotate the view using the 'Home' and 'End' keys. Zoom in using 'Page Up' and Zoom out using 'Page Down'. Reset the camera by hitting the 'v' key.
 
 Online Resources -------------------------------------------------------------------------------------------------------
   OpenGL documentation   - https://www.opengl.org/sdk/docs/

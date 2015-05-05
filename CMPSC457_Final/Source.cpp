@@ -42,7 +42,7 @@
 *	
 *	You can restart the game at any time by pressing the 'r' key.
 *
-*	Camera Controls: Rotate the view using the 't' key. Zoom in with the 'z' key. Press Shift + 'z' to zoom out.
+*	Camera Controls: Rotate the view using the 'Home' and 'End' keys. Zoom in and out using the 'Page Up' and 'Page Down' keys respectively. Reset the camera by hitting the 'v' key.
 */
 
 #ifdef __APPLE__
@@ -203,24 +203,18 @@ void Keyboard(unsigned char key, int x, int y)
 		case 127:								// Delete key
 			w.delete_building(); break;			// Remove building
 
+		case 'R':
 		case 'r':									// R key
 			w.restart_world(); break;				// Restart the world
-		case 'R':									// Same as above
-			w.restart_world(); break;
+
+		case 'Q':
 		case 'q':								// Q key
 			exit(0);							// Quit the program
 
-		case 'Q':								// Same as above
-			exit(0); break;
-
-		case 't':									// T key
-			theta = theta + 0.2; break;				// Rotate the screen display
-
-		case 'z':								// lower case Z key
-			zoom = zoom + 0.2; break;			// Zoom in camera
-
-		case 'Z':									// Upper case Z key (Shift + Z)
-			zoom = zoom - 0.2; break;				// Zoom out camera
+		case 'V':
+		case 'v':									// V key
+			theta = 1.57;
+			zoom  = 0.0;	   break;				// Reset the screen display
 		}
 	}
 	else											// If the user IS currently in build mode
@@ -257,13 +251,13 @@ void SpecialKeys(int key, int x, int y)
 	case GLUT_KEY_RIGHT:
 		w.get_cursor()->moveRight();	break;		// Move right one tile
 	case GLUT_KEY_HOME:
-		theta = theta + PI / 8;	break;				// Rotate around tile clockwise
+		theta = theta + PI / 8;			break;		// Rotate around tile clockwise
 	case GLUT_KEY_END:
-		theta = theta - PI / 8;	break;				// Rotate around tile counter clockwise
+		theta = theta - PI / 8;			break;		// Rotate around tile counter clockwise
 	case GLUT_KEY_PAGE_UP:
-		zoom = zoom - 0.2;	break;					// Zoom in on tile
+		zoom = zoom - 0.2;				break;		// Zoom in on tile
 	case GLUT_KEY_PAGE_DOWN:
-		zoom = zoom + 0.2;	break;					// Zoom out on tile
+		zoom = zoom + 0.2;				break;		// Zoom out on tile
 	}
 
 	glutPostRedisplay();
