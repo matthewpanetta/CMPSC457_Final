@@ -31,10 +31,12 @@
 
 using namespace std;
 
+#define PI 3.14159265
+
 int WinW = 500;
 int WinH = 500;
 
-double theta = 1.57;
+float theta = PI / 2;
 double zoom = 0;
 
 double rotate = 0;
@@ -62,13 +64,13 @@ void Display(void)
 	gluLookAt
 	(
 		cos(theta) * (5.0 + zoom) + 0.0 + w.get_cursor()->getPosition()[0],		// eye x
-		4.0,										// eye y
-		sin(theta) * (5.0 + zoom) + w.get_cursor()->getPosition()[1],		// eye z
-		w.get_cursor()->getPosition()[0],			// grid x 
-		0.0,										// grid y
-		w.get_cursor()->getPosition()[1],			// grid z
+		4.0,																	// eye y
+		sin(theta) * (5.0 + zoom) + w.get_cursor()->getPosition()[1],			// eye z
+		w.get_cursor()->getPosition()[0],										// grid x 
+		0.0,																	// grid y
+		w.get_cursor()->getPosition()[1],										// grid z
 		0.0, 
-		1.0,										// up vector
+		1.0,																	// up vector
 		0.0
 	);
 
@@ -187,12 +189,6 @@ void Keyboard(unsigned char key, int x, int y)
 			w.restart_world(); break;
 		case 'Q':
 			exit(0); break;
-		case 't':
-			theta = theta + 0.2; break;
-		case 'z':
-			zoom = zoom + 0.2; break;
-		case 'Z':
-			zoom = zoom - 0.2; break;
 		}
 	}
 	else
@@ -227,7 +223,14 @@ void SpecialKeys(int key, int x, int y)
 		w.get_cursor()->moveLeft();		break;		// Move left one tile
 	case GLUT_KEY_RIGHT:
 		w.get_cursor()->moveRight();	break;		// Move right one tile
-	
+	case GLUT_KEY_HOME:
+		theta = theta + PI / 8;	break;				// Rotate around tile clockwise
+	case GLUT_KEY_END:
+		theta = theta - PI / 8;	break;				// Rotate around tile counter clockwise
+	case GLUT_KEY_PAGE_UP:
+		zoom = zoom - 0.2;	break;					// Zoom in on tile
+	case GLUT_KEY_PAGE_DOWN:
+		zoom = zoom + 0.2;	break;					// Zoom out on tile
 	}
 
 	glutPostRedisplay();
