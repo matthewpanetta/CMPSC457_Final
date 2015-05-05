@@ -52,8 +52,8 @@ Building* BuildingManager::get_building(int x, int z)
 /* Remove building from the vector */
 void BuildingManager::remove_building(int x, int z, OutputResources &o)
 {
-	Building* b = get_building(x, z);				// Get building at specified location.
-	std::vector<Building*>::iterator position = std::find(buildings.begin(), buildings.end(), &b);	// Find the building's position in the building vector.
+	Building* b = get_building(x, z);			// Get building at specified location.
+	std::vector<Building*>::iterator position = std::find(buildings.begin(), buildings.end(), b);	// Find the building's position in the building vector.
 
 	if (position != buildings.end())				// If the building's position is within the vector
 	{
