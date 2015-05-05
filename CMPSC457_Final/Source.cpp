@@ -71,21 +71,13 @@
 
 using namespace std;
 
-<<<<<<< HEAD
 int WinW = 500;			// window width
 int WinH = 500;			// window height
 
 double theta = 1.57;	// window rotation factor
 double zoom = 0;		// window zoom
-=======
+
 #define PI 3.14159265
-
-int WinW = 500;
-int WinH = 500;
-
-float theta = PI / 2;
-double zoom = 0;
->>>>>>> 65fb49c742d709bdd69bbf38ce30e94a68d1729a
 
 double rotate = 0;		// window rotation
 int tick = 0;			// global time
@@ -112,15 +104,9 @@ void Display(void)
 		cos(theta) * (5.0 + zoom) + 0.0 + w.get_cursor()->getPosition()[0],		// eye x
 		4.0,																	// eye y
 		sin(theta) * (5.0 + zoom) + w.get_cursor()->getPosition()[1],			// eye z
-<<<<<<< HEAD
 		w.get_cursor()->getPosition()[0],			// grid x 
 		0.0,										// grid y
 		w.get_cursor()->getPosition()[1],			// grid z
-=======
-		w.get_cursor()->getPosition()[0],										// grid x 
-		0.0,																	// grid y
-		w.get_cursor()->getPosition()[1],										// grid z
->>>>>>> 65fb49c742d709bdd69bbf38ce30e94a68d1729a
 		0.0, 
 		1.0,																	// up vector
 		0.0
@@ -223,9 +209,10 @@ void Keyboard(unsigned char key, int x, int y)
 			w.restart_world(); break;
 		case 'q':								// Q key
 			exit(0);							// Quit the program
+
 		case 'Q':								// Same as above
 			exit(0); break;
-<<<<<<< HEAD
+
 		case 't':									// T key
 			theta = theta + 0.2; break;				// Rotate the screen display
 
@@ -234,8 +221,6 @@ void Keyboard(unsigned char key, int x, int y)
 
 		case 'Z':									// Upper case Z key (Shift + Z)
 			zoom = zoom - 0.2; break;				// Zoom out camera
-=======
->>>>>>> 65fb49c742d709bdd69bbf38ce30e94a68d1729a
 		}
 	}
 	else											// If the user IS currently in build mode
