@@ -5,7 +5,7 @@
 *	Description: This program executes a city simulation game. Players can build/remove buildings and manage their
 *	city's economy. Each building has a benefit and a cost per tick. A tick is the game's time system. One tick = One second.
 *	The world is set up as a grid. You can move around in the grid using the arrow keys on your keyboard. 
-
+*
 *	Each grid location is called a tile. Each tile has a set of raw resources (randomly generated numbers). 
 *	There are three raw resources in the game: Trees, Soil, and Stone. Buildings use these resources to 
 *	provide their benefits. For example, building a farm on a tile with 9 soil will provide 9 food per tick.

@@ -3,6 +3,7 @@
 *	This class is responsible for loading textures from a .bmp file and returning them as an Image object.
 *	The majority of the code was taken from the texture example given in lab 9 (bmpTexture.cpp). All credit goes to Jeff Molofee. */
 
+#define _CRT_SECURE_NO_WARNINGS
 #include "Texture.h"
 
 /* Default Constructor */
