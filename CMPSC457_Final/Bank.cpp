@@ -1,5 +1,10 @@
+/*	Bank.cpp
+*
+*	This class is responsible for creating a Bank object and drawing it to the screen. */
+
 #include "Bank.h"
 
+/* Default Constructor - initialize the superclass of Building */
 Bank::Bank(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
 	this->t = t;
@@ -8,11 +13,7 @@ Bank::Bank(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 	this->z = z;
 }
 
-void Bank::plop_building()
-{
-
-}
-
+/* Draw the building to screen */
 void Bank::draw_building()
 {
 	glPushMatrix();
@@ -65,80 +66,88 @@ void Bank::draw_building()
 	draw_roof();
 	glPopMatrix();
 
-	if (y < -0.50)
+	// Animation checking
+	// Each building will fly in from the sky and continue to fall until it lands on the grid.
+
+	if (y < -0.50)		// If the building's Y position is below -0.50 (grid Y coordinate)
 	{
-		Building::is_animating = true;
-		y = y + 0.05;
+		Building::is_animating = true;		// The building is animating
+		y = y + 0.05;						// Increment the Y value (moving it up). This is because the Y value is inverted in the draw_building function.
 	}
-	else
+	else				// If the building's Y position is on the ground (or above -0.50)
 	{
-		y = -0.5;
-		Building::is_animating = false;
+		y = -0.50;							// Set the Y coordinate to -0.50
+		Building::is_animating = false;		// Set the animation flag to false.
 	}
 }
 
+/* Apply the Bank's benefit per tick */
 void Bank::apply_perk(OutputResources &o)
 {
-	o.set_money(o.get_money() + (t.get_stone() - t.get_trees()));
+	o.set_money(o.get_money() + (t.get_stone() - t.get_trees()));		// Give (tile stone - tile trees) money per tick.
 }
 
+/* Check if the user has enough resources to build a bank. If not, return a message with needed resource */
+// Note that this function will return on the first failure. So the message will display only one resource.
 std::string Bank::check_cost(OutputResources& o)
 {
-	if (o.get_money() < 1000)
+	if (o.get_money() < 1000)			// Bank costs $1000
 	{
 		return "Not Enough Money";
 	}
-	else if (o.get_wood() < 40)
+	else if (o.get_wood() < 40)			// 40 wood
 	{
 		return "Not Enough Wood";
 	}
-	else if (o.get_bricks() < 30)
+	else if (o.get_bricks() < 30)		// 30 bricks
 	{
 		return "Not Enough Bricks";
 	}
-	else if (o.get_unemployed() < 2)
+	else if (o.get_unemployed() < 2)	// 2 unemployed
 	{
 		return "Not Enough Unemployed";
 	}
-	else
+	else								// If the user has enough resources, return a success message that will not be displayed.
 	{
 		return "Good";
 	}
 }
 
+/* Deduct the user's resources based on how much this building costs */
 void Bank::apply_initial_cost(OutputResources &o)
 {
-	o.set_money(o.get_money() - 1000);
-	o.set_wood(o.get_wood() - 40);
-	o.set_bricks(o.get_bricks() - 30);
-	o.set_unemployed(o.get_unemployed() - 2);
-	o.set_employed(o.get_employed() + 2);
+	o.set_money(o.get_money() - 1000);				// Bank costs $1000
+	o.set_wood(o.get_wood() - 40);					// 40 wood
+	o.set_bricks(o.get_bricks() - 30);				// 30 bricks
+	o.set_unemployed(o.get_unemployed() - 2);		// 2 unemployed
+	o.set_employed(o.get_employed() + 2);			// Make 2 new employed
 }
 
+/* Deduct the user's resources based on how much this building costs to operate - Return false if user does not have enough resources */
 bool Bank::apply_cost_per_tick(OutputResources &o)
 {
-	if (o.get_food() >= 10 && o.get_wood() >= 3)
+	if (o.get_food() >= 10 && o.get_wood() >= 3)	// Bank requires 10 food and 3 woord per tick
 	{
-		o.set_food(o.get_food() - 10);
+		o.set_food(o.get_food() - 10);				// Deduct resources
 		o.set_wood(o.get_wood() - 3);
 		return true;
 	}
 	else
 	{
-		return false;
+		return false;								// Return false if user does not have sufficient amount of resources.
 	}
 }
 
+/* Add to the user's resources if they decide to remove a bank */
 void Bank::delete_benefit(OutputResources &o)
 {
-	o.set_money(o.get_money() + 500);
-	o.set_employed(o.get_employed() - 2);
+	o.set_money(o.get_money() + 500);				// Return half of the bank's initial building cost. ($500)
+	o.set_employed(o.get_employed() - 2);			// Take two employed people and make them unemployed.
 	o.set_unemployed(o.get_unemployed() + 2);
 }
 
+/* Destructor */
 Bank::~Bank()
 {
 
 }
-
-

@@ -1,3 +1,7 @@
+/*	Farm.h
+*
+*	This class is responsible for creating a Farm object and drawing it to the screen. */
+
 #pragma once
 #ifndef FARM_H
 #define FARM_H
@@ -9,21 +13,20 @@ class Farm :
 	public Building
 {
 public:
-	Farm(GLdouble, GLdouble, GLdouble, Tile);
-	void plop_building();
-	void draw_building();
-	void apply_perk(OutputResources &);
-	void apply_initial_cost(OutputResources &);
-	bool apply_cost_per_tick(OutputResources &);
-	void delete_benefit(OutputResources &);
-	std::string check_cost(OutputResources &);
-	~Farm();
+	Farm(GLdouble, GLdouble, GLdouble, Tile);			/* Default Constructor - initialize the superclass of Building */
+	void draw_building();								/* Draw the building to screen */
+	void apply_perk(OutputResources &);					/* Apply the Farm's benefit per tick */
+	std::string check_cost(OutputResources &);			/* Check if the user has enough resources to build a farm. If not, return a message with needed resource */
+	void Farm::apply_initial_cost(OutputResources &o);	/* Deduct the user's resources based on how much this building costs */
+	bool apply_cost_per_tick(OutputResources &);		/* Deduct the user's resources based on how much this building costs to operate - Return false if user does not have enough resources */
+	void delete_benefit(OutputResources &);				/* Add to the user's resources if they decide to remove a farm */
+	~Farm();											/* Destructor */
 private:
-	GLdouble x, y, z;
-	Tile t;
-	GLuint texture[1];
-	Texture ground_tex;
-	Texture farm_tex;
+	GLdouble x, y, z;									/* X,Y,Z position of this building */
+	Tile t;												/* Tile building is on */
+	GLuint texture[1];									/* Texture of farm */
+	Texture ground_tex;									/* Ground texture */
+	Texture farm_tex;									/* Barn texture */
 };
 
 #endif

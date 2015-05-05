@@ -1,3 +1,8 @@
+/*	HUD.h
+*
+*	This class is responsible for displaying messages and stats to the user.
+*	There are seperate functions to display each resource/message. However, there is also one function that will call every seperate one. */
+
 #pragma once
 #ifndef HUD_H
 #define HUD_H
@@ -48,7 +53,6 @@ private:
 	Text typeWriter;
 
 	const char* buildHelp1 = "ENTER-Build Mode, DELETE/BACKSPACE-Remove Building, r-Restart, q-Quit";
-	//const char* buildHelp2 = "0-Bank, 1-Farm, 2-House, 3-Mill, 4-Mine, 5-Final, ENTER-Stop Building";
 	const char* buildHelp2 = "ENTER-Stop Building, 0-Bank, 1-Farm, 2-House, 3-Mill, 4-Mine";
 	
 	int WinW, WinH;

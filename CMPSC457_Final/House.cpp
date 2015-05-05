@@ -1,42 +1,38 @@
+/*	House.cpp
+*
+*	This class is responsible for creating a House object and drawing it to the screen. */
+
 #include "House.h"
 #include "Texture.h"
 
+/* Default Constructor - initialize the superclass of Building */
 House::House(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
 	this->t = t;
 	this->x = x;
 	this->y = y;
 	this->z = z;
-	this->type = rand() % 10 + 1;
+	this->type = rand() % 10 + 1;		// There are three different house textures. Choose one randomly.
 
-	if (type > 7)
+	if (type > 7)						// If the random value is greater than 7, display a wooden house
 	{
 		house_tex.set_filename("../Pictures/wood_house.bmp");
 		tex.set_filename("../Pictures/house_grass_dark.bmp");
 	}
-	else if (type <= 7 && type > 3)
+	else if (type <= 7 && type > 3)		// If the random value is within this range, display a brick house.
 	{
 		house_tex.set_filename("../Pictures/brick_house.bmp");
 		tex.set_filename("../Pictures/house_grass.bmp");
 	}
-	else
+	else								// Otherwise, display a house with siding.
 	{
 		house_tex.set_filename("../Pictures/house_siding.bmp");
 		tex.set_filename("../Pictures/house_grass.bmp");
 	}
 }
 
+/* Draw the building to screen */
 void House::draw_building()
-{
-	draw_house();
-}
-
-void House::plop_building()
-{
-
-}
-
-void House::draw_house()
 {
 	glPushMatrix();
 	glTranslatef(x, y*-1, z);
@@ -50,7 +46,7 @@ void House::draw_house()
 	glEnable(GL_TEXTURE_2D);
 	glColor3f(1.0, 1.0, 1.0);
 	
-	draw_plane(house_tex.get_image());
+	draw_plane(house_tex.get_image());		// draw house with texture
 
 	glEnd();	// done with the polygon.
 	glDisable(GL_TEXTURE_2D);
@@ -92,77 +88,89 @@ void House::draw_house()
 	glScalef(0.9, 0.01, 0.9);
 	glColor3f(1.0, 1.0, 1.0);
 
-	draw_plane(tex.get_image());
+	draw_plane(tex.get_image());	// draw grass texture
 
 	glPopMatrix();
 	glPopMatrix();
 
-	if (y < -0.50)
+	// Animation checking
+	// Each building will fly in from the sky and continue to fall until it lands on the grid.
+
+	if (y < -0.50)		// If the building's Y position is below -0.50 (grid Y coordinate)
 	{
-		Building::is_animating = true;
-		y = y + 0.05;
+		Building::is_animating = true;		// The building is animating
+		y = y + 0.05;						// Increment the Y value (moving it up). This is because the Y value is inverted in the draw_building function.
 	}
-	else
+	else				// If the building's Y position is on the ground (or above -0.50)
 	{
-		y = -0.5;
-		Building::is_animating = false;
+		y = -0.50;							// Set the Y coordinate to -0.50
+		Building::is_animating = false;		// Set the animation flag to false.
 	}
 }
 
-void House::apply_perk(OutputResources &o)
-{
-	/*o.set_food(o.get_food() + (t.get_soil() - t.get_stone()));*/
-}
-
+/* Check if the user has enough resources to build a house. If not, return a message with needed resource */
+// Note that this function will return on the first failure. So the message will display only one resource.
 std::string House::check_cost(OutputResources &o)
 {
-	if (o.get_money() < 100)
+	if (o.get_money() < 100)				// House costs $100
 	{
 		return "Not Enough Money";
 	}
-	else if (o.get_wood() < 5)
+	else if (o.get_wood() < 5)				// 5 wood
 	{
 		return "Not Enough Wood";
 	}
-	else if (o.get_bricks() < 25)
+	else if (o.get_bricks() < 25)			// 25 bricks
 	{
 		return "Not Enough Bricks";
 	}
 	else
 	{
-		return "Good";
+		return "Good";						// If the user has enough resources, return a success message that will not be displayed.
 	}
 }
 
-void House::apply_initial_cost(OutputResources &o)
+/* Apply the House's benefit per tick */
+void House::apply_perk(OutputResources &o)
 {
-	o.set_money(o.get_money() - 100);
-	o.set_wood(o.get_wood() - 5);
-	o.set_bricks(o.get_bricks() - 25);
-	o.set_unemployed(o.get_unemployed() + 3);
+	// No benefit per tick
 }
 
+/* Deduct the user's resources based on how much this building costs */
+void House::apply_initial_cost(OutputResources &o)
+{
+	o.set_money(o.get_money() - 100);				// House costs $100
+	o.set_wood(o.get_wood() - 5);					// 5 wood
+	o.set_bricks(o.get_bricks() - 25);				// 25 bricks
+	o.set_unemployed(o.get_unemployed() + 3);		// Receive 3 unemployed workers
+}
+
+/* Deduct the user's resources based on how much this building costs to operate - Return false if user does not have enough resources */
 bool House::apply_cost_per_tick(OutputResources &o)
 {
-	o.set_food(o.get_food() - 2);
-	o.set_wood(o.get_wood() - 1);
+	o.set_food(o.get_food() - 2);					// House requires 2 food per tick and
+	o.set_wood(o.get_wood() - 1);					// 1 wood per tick
 	return true;
 }
 
+/* Add to the user's resources if they decide to remove a house */
 void House::delete_benefit(OutputResources &o)
 {
-	o.set_money(o.get_money() + 50);
+	o.set_money(o.get_money() + 50);				// Get $50 back
 	
+	// BUG in code: Delete a house, take away 3 population. Do we take away from unemployed or employed? Do we need to map each person to an occupation to solve this issue?
+	// If the user deletes houses, the population counter will be wrong.
 	if (o.get_employed() > o.get_unemployed())
 	{
-		o.set_employed(o.get_employed() - 3);
+		o.set_employed(o.get_employed() - 3);		// If there are more employed people than unemployed people, take 3 employed people.
 	}
 	else
 	{
-		o.set_unemployed(o.get_unemployed() - 3);
+		o.set_unemployed(o.get_unemployed() - 3);	// Otherwise, take three unemployed people.
 	}
 }
 
+/* Destructor */
 House::~House()
 {
 

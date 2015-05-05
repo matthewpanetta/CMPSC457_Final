@@ -1,3 +1,7 @@
+/*	Text.cpp
+*
+*	This class is responsible for drawing text to the screen */
+
 #pragma once
 #ifndef TEXT_H
 #define TEXT_H

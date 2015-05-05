@@ -1,3 +1,7 @@
+/*	Building.h
+*
+*	This class is abstract. It is the base class for every other building type in the game. It provides base functions that every building uses. */
+
 #pragma once
 #ifndef BUILDING_H
 #define BUILDING_H
@@ -11,38 +15,40 @@
 class Building
 {
 public:
-	Building(GLdouble, GLdouble, GLdouble, Tile);
-	GLfloat get_x();
-	GLfloat get_y();
-	GLfloat get_z();
-	bool compare(const Building& b) const;
-	bool check_animating();
-	void draw_plane(Image* image);
-	void draw_roof();
+	Building(GLdouble, GLdouble, GLdouble, Tile);		/* Overriden Constructor */
+	bool compare(const Building& b) const;				/* Compare Function - Allows other classes to compare buildings by their x,y,z position */
+	
+	void draw_plane(Image* image);						/* Draw a 3D plane that can have a texture */
+	void draw_roof();									/* Draw a 3D roof */
 
+	bool check_animating();
+	Tile get_tile();									/* Get the building's Tile */
+	GLfloat get_x();									/* Get the building's X position */
+	GLfloat get_y();									/* Get the building's Y position */
+	GLfloat get_z();									/* Get the building's Z position */
+
+	/* ---------- OVERLOADED OPERATORS ---------- */
 	bool operator == (const Building& b) const {
-		return compare(b);
+		return compare(b);		// Compare both buildings when == is called
 	};
 
 	bool operator != (const Building& b) const {
-		return !compare(b);
+		return !compare(b);		// Return opposite of compare when != is called
 	};
 
-	Tile get_tile();
-
-	virtual std::string check_cost(OutputResources& o) = 0;
-	virtual void plop_building() = 0;
-	virtual void draw_building() = 0;
-	virtual void apply_perk(OutputResources &) = 0;
-	virtual void apply_initial_cost(OutputResources &) = 0;
-	virtual bool apply_cost_per_tick(OutputResources &) = 0;
-	virtual void delete_benefit(OutputResources&) = 0;
-	~Building();
+	/* ---------- ABSTRACT FUNCTIONS ---------- */
+	virtual std::string check_cost(OutputResources& o) = 0;			// Check if the user has enough resources for the specific building.
+	virtual void draw_building() = 0;								// Draw the specific building according to its own polygons.
+	virtual void apply_perk(OutputResources &) = 0;					// Apply the specific building's benefit per tick.
+	virtual void apply_initial_cost(OutputResources &) = 0;			// Apply the building's initial cost.
+	virtual bool apply_cost_per_tick(OutputResources &) = 0;		// Apply the building's cost per tick.
+	virtual void delete_benefit(OutputResources&) = 0;				// Apply the building's delete benefit (usually 50% of its initial cost).
+	~Building();										/* Destructor */
 protected:
-	bool is_animating;
+	bool is_animating;			// Flag to see if the building is currently animating.
 private:
-	GLdouble x, y, z;
-	Tile t;
+	GLdouble x, y, z;			// X,Y,Z coordinates of building
+	Tile t;						// Tile that the building is on.
 };
 
 #endif

@@ -1,8 +1,14 @@
+/*	OutputResources.cpp
+*	
+*	This class is responsible for maintaining the user's resources. This class is made up of setters and getters, mostly.
+*	This class also contains a reset function that will reset the user's resources. */
+
 #include "OutputResources.h"
 
-
+/* Default Constructor */
 OutputResources::OutputResources()
 {
+	/* Set initial resources */
 	food		= 250;
 	money		= 1000;
 	bricks		= 100;
@@ -11,6 +17,7 @@ OutputResources::OutputResources()
 	unemployed	= 3;
 }
 
+/* Get resources as a vector */
 std::vector<int> OutputResources::get_resources()
 {
 	std::vector<int> v;
@@ -22,6 +29,19 @@ std::vector<int> OutputResources::get_resources()
 
 	return v;
 }
+
+/* Reset resources to initial values */
+void OutputResources::reset()
+{
+	food		= 250;
+	money		= 1000;
+	bricks		= 100;
+	wood		= 300;
+	employed	= 0;
+	unemployed	= 3;
+}
+
+/* -------------------- SETTERS AND GETTERS -------------------- */
 
 int OutputResources::get_food()
 {
@@ -151,16 +171,7 @@ void OutputResources::set_population(int unemployed, int employed)
 	}
 }
 
-void OutputResources::reset()
-{
-	food = 250;
-	money = 1000;
-	bricks = 100;
-	wood = 300;
-	employed = 0;
-	unemployed = 3;
-}
-
+/* Destructor */
 OutputResources::~OutputResources()
 {
 

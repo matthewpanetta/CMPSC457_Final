@@ -1,5 +1,10 @@
+/*	Temple.cpp
+*
+*	This class is responsible for creating a Temple object and drawing it to the screen. */
+
 #include "Temple.h"
 
+/* Default Constructor - initialize the superclass of Building */
 Temple::Temple(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
 	this->t = t;
@@ -8,11 +13,7 @@ Temple::Temple(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t
 	this->z = z;
 }
 
-void Temple::plop_building()
-{
-
-}
-
+/* Draw the building to screen */
 void Temple::draw_building()
 {
 	glPushMatrix();
@@ -156,31 +157,38 @@ void Temple::draw_building()
 	glPopMatrix();
 }
 
+/* Check if the user has enough resources to build a bank. If not, return a message with needed resource */
+// Note that since the user cannot create a temple, it does not check anything.
 std::string Temple::check_cost(OutputResources& o)
 {
 	return "Good";
 }
 
+/* Apply the Temple's benefit per tick */
 void Temple::apply_perk(OutputResources &o)
 {
-	o.set_money(o.get_money() + 1);
+	o.set_money(o.get_money() + 1);		// Give $1 per tick
 }
 
+/* Deduct the user's resources based on how much this building costs */
 void Temple::apply_initial_cost(OutputResources &o)
 {
-
+	// No initial cost
 }
 
+/* Deduct the user's resources based on how much this building costs to operate - Return false if user does not have enough resources */
 bool Temple::apply_cost_per_tick(OutputResources &o)
 {
-	return true;
+	return true;		// There is no cost per tick, so this will always be true.
 }
 
+/* User cannot remove a temple */
 void Temple::delete_benefit(OutputResources &o)
 {
-
+	// The user cannot delete the temple object. There is nothing here.
 }
 
+/* Destructor */
 Temple::~Temple()
 {
 

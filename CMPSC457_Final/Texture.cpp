@@ -1,10 +1,17 @@
+/*	Texture.cpp
+*	
+*	This class is responsible for loading textures from a .bmp file and returning them as an Image object.
+*	The majority of the code was taken from the texture example given in lab 9 (bmpTexture.cpp). All credit goes to Jeff Molofee. */
+
 #include "Texture.h"
 
+/* Default Constructor */
 Texture::Texture()
 {
 
 }
 
+/* Overriden Constructor which includes a filename string */
 Texture::Texture(char *filename)
 {
 	this->filename = filename;
@@ -13,6 +20,7 @@ Texture::Texture(char *filename)
 	image_load();
 }
 
+/* Set the filename */
 void Texture::set_filename(char* filename)
 {
 	this->filename = filename;
@@ -21,6 +29,7 @@ void Texture::set_filename(char* filename)
 	image_load();
 }
 
+/* Load the image from file (specified by filename string) */
 int Texture::image_load()
 {
 	FILE *file;
@@ -99,6 +108,7 @@ int Texture::image_load()
 	return 1;
 }
 
+/* Used by image_load */
 unsigned int Texture::getint(FILE *fp)
 {
 	int c, c1, c2, c3;
@@ -115,6 +125,7 @@ unsigned int Texture::getint(FILE *fp)
 		(((unsigned int)c3) << 24);
 }
 
+/* Used by image_load */
 unsigned short Texture::getshort(FILE *fp)
 {
 	int c, c1;
@@ -126,11 +137,13 @@ unsigned short Texture::getshort(FILE *fp)
 	return ((unsigned int)c) + (((unsigned int)c1) << 8);
 }
 
+/* Get the image object */
 Image* Texture::get_image()
 {
 	return image;
 }
 
+/* Destructor */
 Texture::~Texture()
 {
 
