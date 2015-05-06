@@ -41,6 +41,18 @@ void OutputResources::reset()
 	unemployed	= 3;
 }
 
+/* Start a random event */
+void OutputResources::start_event()
+{
+	em.initialize_event();
+}
+
+/* Stop all random events */
+void OutputResources::stop_event()
+{
+	em.stop_event();
+}
+
 /* -------------------- SETTERS AND GETTERS -------------------- */
 
 int OutputResources::get_food()
@@ -76,6 +88,11 @@ int OutputResources::get_employed()
 int OutputResources::get_population()
 {
 	return unemployed + employed;
+}
+
+std::string OutputResources::get_current_event()
+{
+	return em.get_current_event();
 }
 
 void OutputResources::set_food(int food)

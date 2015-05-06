@@ -23,7 +23,7 @@ World::World(int rows, int cols, int WinW, int WinH) : gr(rows, cols), c(rows, c
 	build_mode = false;			// Initialize build mode to false, this boolean tracks whether the user is in build mode.
 	is_animating = false;		// Initialize is_animating to false, this boolean tracks whether a building is currently animating.
 	event_displayed = false;	// Initialize event_displayed to false, this boolean tracks whether an event is currently displayed on screen.
-	initialize_textures();
+	initialize_textures();		// Initialize every texture in the game.
 	init = false;				// Set initializer to false, since the World is done initializing.
 }
 
@@ -75,23 +75,78 @@ void World::create_building(int choice)		// Choice = building type
 /* Delete a Building */
 void World::delete_building()
 {
+	
 	// Delete the building unless it is the starting building
 	if (c.getPosition()[0] != 5 || c.getPosition()[1] != 5)
 	{
-		bm.remove_building(c.getPosition()[0], c.getPosition()[1], o);		// Call the BuildingManager's remove_building function. This will remove the building at the current Cursor location.
-	}																		// This will also add any deletion benefit the building has (usually 50% of initial cost).
+		std::string check = bm.check_delete(c.getPosition()[0], c.getPosition()[1], o);
+		if (check == "Good")
+		{
+			bm.remove_building(c.getPosition()[0], c.getPosition()[1], o);		// Call the BuildingManager's remove_building function. This will remove the building at the current Cursor location.
+		}																		// This will also add any deletion benefit the building has (usually 50% of initial cost).
+		else
+		{
+			event_displayed = true;
+			message = check;
+		}
+	}		
 }
 
 /* Process the Next Tick */
 void World::next_tick()
 {
 	tick++;					// Increment tick
-	bm.next_tick(o);		// Call BuildingManager's next_tick function, which will redraw every building.
+
+	/* Take away one of each resource every tick */
+	o.set_bricks(o.get_bricks() - 1);
+	o.set_wood(o.get_wood() - 1);
+	o.set_food(o.get_food() - 1);
+	
+	if (tick % 3 == 0)			// Replenish resources every three ticks.
+	{
+		bm.next_tick(o);		// Call BuildingManager's next_tick function, which will redraw every building.
+	}
 
 	/* Taxes Logic */
-	if (tick % 5 == 0)		// Every five seconds, a small amount of money will be added. This is due to your employed workers paying taxes.
+	if (tick % 5 == 0)			// Every five seconds, a small amount of money will be added. This is due to your employed workers paying taxes.
 	{
 		o.set_money(o.get_money() + (4 * o.get_employed()));	// You will receive $4 for every employed worker in your city, every five seconds.
+	}
+
+	/* Attempt to trigger a random event every 15 ticks. */
+	if (tick % 15 == 0)
+	{
+		int val = rand() % 100;		// Generate a random number from 0 - 99
+
+		if (val > 70)				// If the random value is greater than 65, either start the event or stop the current event.
+		{
+			if (o.get_current_event() == "None")	// If there is no event currently, start one.
+			{
+				o.start_event();
+				event_displayed = true;
+				message = o.get_current_event();
+
+				/* There are two events that can quickly be stopped. */
+				if (o.get_current_event() == "Flood")
+				{
+					o.set_bricks(o.get_bricks() - 30);		// Lose 30 of each resource during a flood.
+					o.set_wood(o.get_wood() - 30);
+					o.set_food(o.get_food() - 30);
+					o.stop_event();
+				}
+				else if (o.get_current_event() == "Festival")
+				{
+					o.set_money(o.get_money() + (10 * o.get_employed()));	// Gain $10 per employed person during a festival.
+					o.stop_event();
+				}
+			}
+			else					// If there is an event going on, stop it.
+			{
+				o.stop_event();
+				event_displayed = true;
+				message = "Event has ended.";
+			}
+		}
 	}
 }
 

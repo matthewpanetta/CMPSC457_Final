@@ -7,6 +7,7 @@
 #ifndef OUTPUTRESOURCES_H
 #define OUTPUTRESOURCES_H
 
+#include "EventManager.h"
 #include <vector>
 class OutputResources
 {
@@ -14,6 +15,8 @@ public:
 	OutputResources();					/* Default Constructor */
 	std::vector<int> get_resources();	/* Get all resources as a vector */
 	void reset();						/* Reset resources to initial values */
+	void start_event();					/* Start a random event */
+	void stop_event();					/* Stop all random events */
 
 	/* -------------------- SETTERS AND GETTERS -------------------- */
 
@@ -24,6 +27,7 @@ public:
 	int get_population();
 	int get_unemployed();
 	int get_employed();
+	std::string get_current_event();
 	void set_food(int);
 	void set_wood(int);
 	void set_bricks(int);
@@ -34,7 +38,8 @@ public:
 
 	~OutputResources();					/* Destructor */
 private:
-	int food, wood, bricks, money, unemployed, employed;
+	int food, wood, bricks, money, unemployed, employed;	/* User Resources */
+	EventManager em;										/* Event Manager object */
 };
 
 #endif

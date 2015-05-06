@@ -92,7 +92,19 @@ void Farm::draw_building()
 /* Apply the Farm's benefit per tick */
 void Farm::apply_perk(OutputResources &o)
 {
-	o.set_food(o.get_food() + t.get_soil());		// Give (tile soil) food per tick.
+	if (o.get_current_event() == "Famine")
+	{
+		o.set_food(o.get_food() + (t.get_soil() * 0.50));		// Farms operate at 50% efficiency during a famine.
+	}
+	else if (o.get_current_event() == "Drought")
+	{
+		o.set_food(o.get_food() + (t.get_soil() * 0.75));		// Farms operate at 75% efficiency during a drought.
+	}
+	else
+	{
+		o.set_food(o.get_food() + t.get_soil());				// Give (tile soil) food per tick.
+	}
+	
 }
 
 /* Check if the user has enough resources to build a farm. If not, return a message with needed resource */
@@ -111,6 +123,12 @@ std::string Farm::check_cost(OutputResources& o)
 	{
 		return "Good";							// If the user has enough resources, return a success message that will not be displayed.
 	}
+}
+
+/* Check to see if the building can be deleted. */
+std::string Farm::check_delete(OutputResources& o)
+{
+	return "Good";						// Farms can always be deleted, so return success.
 }
 
 /* Deduct the user's resources based on how much this building costs */

@@ -115,13 +115,26 @@ std::string House::check_cost(OutputResources &o)
 	{
 		return "Not Enough Wood";
 	}
-	else if (o.get_bricks() < 25)			// 25 bricks
+	else if (o.get_bricks() < 40)			// 40 bricks
 	{
 		return "Not Enough Bricks";
 	}
 	else
 	{
 		return "Good";						// If the user has enough resources, return a success message that will not be displayed.
+	}
+}
+
+/* Check to see if the building can be deleted. */
+std::string House::check_delete(OutputResources& o)
+{
+	if (o.get_unemployed() >= 3)			// When deleting a house, you lose three unemployed. If there are not at least three unemployed, you cannot delete the house.
+	{
+		return "Good";
+	}
+	else
+	{
+		return "Can't Delete - Not Enough Unemployed";
 	}
 }
 
@@ -136,7 +149,7 @@ void House::apply_initial_cost(OutputResources &o)
 {
 	o.set_money(o.get_money() - 100);				// House costs $100
 	o.set_wood(o.get_wood() - 5);					// 5 wood
-	o.set_bricks(o.get_bricks() - 25);				// 25 bricks
+	o.set_bricks(o.get_bricks() - 40);				// 40 bricks
 	o.set_unemployed(o.get_unemployed() + 3);		// Receive 3 unemployed workers
 }
 
@@ -152,17 +165,7 @@ bool House::apply_cost_per_tick(OutputResources &o)
 void House::delete_benefit(OutputResources &o)
 {
 	o.set_money(o.get_money() + 50);				// Get $50 back
-	
-	// BUG in code: Delete a house, take away 3 population. Do we take away from unemployed or employed? Do we need to map each person to an occupation to solve this issue?
-	// If the user deletes houses, the population counter will be wrong.
-	if (o.get_employed() > o.get_unemployed())
-	{
-		o.set_employed(o.get_employed() - 3);		// If there are more employed people than unemployed people, take 3 employed people.
-	}
-	else
-	{
-		o.set_unemployed(o.get_unemployed() - 3);	// Otherwise, take three unemployed people.
-	}
+	o.set_unemployed(o.get_unemployed() - 3);		// Remove 3 unemployed
 }
 
 /* Destructor */

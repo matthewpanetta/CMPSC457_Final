@@ -16,6 +16,7 @@ public:
 	Mill(GLdouble, GLdouble, GLdouble, Tile);			/* Default Constructor - initialize the superclass of Building */
 	void draw_building();								/* Draw the building to screen */
 	std::string check_cost(OutputResources &);			/* Check if the user has enough resources to build a mill. If not, return a message with needed resource */
+	std::string check_delete(OutputResources &);		/* Check to see if the building can be deleted */
 	void apply_perk(OutputResources &);					/* Apply the Mill's benefit per tick */
 	void apply_initial_cost(OutputResources &);			/* Deduct the user's resources based on how much this building costs */
 	bool apply_cost_per_tick(OutputResources &);		/* Deduct the user's resources based on how much this building costs to operate - Return false if user does not have enough resources */

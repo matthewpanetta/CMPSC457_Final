@@ -75,6 +75,7 @@
     <ClCompile Include="BuildingFactory.cpp" />
     <ClCompile Include="BuildingManager.cpp" />
     <ClCompile Include="Cursor.cpp" />
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Farm.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="House.cpp" />
@@ -95,6 +96,7 @@
     <ClInclude Include="BuildingFactory.h" />
     <ClInclude Include="BuildingManager.h" />
     <ClInclude Include="Cursor.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="Farm.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="House.h" />

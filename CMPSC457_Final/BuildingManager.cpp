@@ -49,6 +49,21 @@ Building* BuildingManager::get_building(int x, int z)
 	return NULL;											// Return null if no building exists at specified location.
 }
 
+/* Check to see if the desired building can be deleted */
+std::string BuildingManager::check_delete(int x, int z, OutputResources &o)
+{
+	Building* b = get_building(x, z);
+
+	if (b->check_delete(o) == "Good")
+	{
+		return "Good";
+	}
+	else
+	{
+		return b->check_delete(o);
+	}
+}
+
 /* Remove building from the vector */
 void BuildingManager::remove_building(int x, int z, OutputResources &o)
 {

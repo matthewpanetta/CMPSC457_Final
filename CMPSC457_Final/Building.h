@@ -43,6 +43,7 @@ public:
 	virtual void apply_perk(OutputResources &) = 0;					// Apply the specific building's benefit per tick.
 	virtual void apply_initial_cost(OutputResources &) = 0;			// Apply the building's initial cost.
 	virtual bool apply_cost_per_tick(OutputResources &) = 0;		// Apply the building's cost per tick.
+	virtual std::string check_delete(OutputResources& o) = 0;		// Check to see if the building can be deleted.
 	virtual void delete_benefit(OutputResources&) = 0;				// Apply the building's delete benefit (usually 50% of its initial cost).
 	~Building();										/* Destructor */
 protected:

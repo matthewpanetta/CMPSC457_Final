@@ -171,6 +171,12 @@ std::string Temple::check_cost(OutputResources& o)
 	return "Good";
 }
 
+/* Check to see if the building can be deleted. */
+std::string Temple::check_delete(OutputResources& o)
+{
+	return "Can't Delete Temple";						// Temples cannot be deleted.
+}
+
 /* Apply the Temple's benefit per tick */
 void Temple::apply_perk(OutputResources &o)
 {

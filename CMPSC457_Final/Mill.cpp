@@ -376,7 +376,18 @@ void Mill::draw_building()
 /* Apply the Mill's benefit per tick */
 void Mill::apply_perk(OutputResources &o)
 {
-	o.set_wood(o.get_wood() + t.get_trees());		// Give (tree rating) wood per tick
+	if (o.get_current_event() == "Forest Fire")
+	{
+		o.set_wood(o.get_wood() + (t.get_trees() * 0.50));	// Mills operate at 50% efficiency during forest fire.
+	}
+	else if (o.get_current_event() == "Drought")
+	{
+		o.set_wood(o.get_wood() + (t.get_trees() * 0.75));	// Mills operate at 75% efficiency during drought.
+	}
+	else
+	{
+		o.set_wood(o.get_wood() + t.get_trees());		// Give (tree rating) wood per tick
+	}
 }
 
 /* Check if the user has enough resources to build a mill. If not, return a message with needed resource */
@@ -395,6 +406,12 @@ std::string Mill::check_cost(OutputResources& o)
 	{
 		return "Good";						// If the user has enough resources, return a success message that will not be displayed.
 	}
+}
+
+/* Check to see if the building can be deleted. */
+std::string Mill::check_delete(OutputResources& o)
+{
+	return "Good";						// Mills can always be deleted, so return success.
 }
 
 /* Deduct the user's resources based on how much this building costs */

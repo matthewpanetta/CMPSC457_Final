@@ -17,6 +17,7 @@ public:
 	BuildingManager();											/* Default Constructor */
 	std::string add_building(Building& b, OutputResources& o);	/* Add building to vector */
 	Building* get_building(int x, int z);						/* Get pointer to building at a specified X and Y coordinate */
+	std::string check_delete(int x, int z, OutputResources& o);	/* Check to see if the desired building can be deleted */
 	void remove_building(int x, int z, OutputResources& o);		/* Remove building from the vector */
 	void remove_all_buildings();								/* Remove every building */
 	void draw_buildings();										/* Draw each building in the vector */

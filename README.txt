@@ -58,12 +58,28 @@ Program Description and User Manual --------------------------------------------
   Last Modified: 5/5/15
 
   Description: This program executes a city simulation game. Players can build/remove buildings and manage their
-  city's economy. Each building has a benefit and a cost per tick. A tick is the game's time system. One tick = One second.
-  The world is set up as a grid. You can move around in the grid using the arrow keys on your keyboard.
+	city's economy. Each building has a benefit and a cost every three ticks. A tick is the game's time system. One tick = One second.
+	The world is set up as a grid. You can move around in the grid using the arrow keys on your keyboard.
 
   Each grid location is called a tile. Each tile has a set of raw resources (randomly generated numbers).
-  There are three raw resources in the game: Trees, Soil, and Stone. Buildings use these resources to
-  provide their benefits. For example, building a farm on a tile with 9 soil will provide 9 food per tick.
+	There are three raw resources in the game: Trees, Soil, and Stone. Buildings use these resources to
+	provide their benefits. For example, building a farm on a tile with 5 soil will provide 5 food per tick.
+	Tiles can have at most a rating of 5 for each resource, and at least a rating of 0 for each resource.
+
+  Random events are things every city needs to deal with. They will test your city planning skills to see
+	if you can truly lead a civilization. A random event has a chance to occur every 20 ticks. Once an event is activated,
+	it has a chance to become deactivated once every 20 ticks. There can only be one event active at a time. Some
+	events provide instant benefits/costs and will end instantly.
+
+	There are a total of eight events in the game:
+		- Fraud:			     Banks operate at 25% efficiency
+		- Forest Fire:		 Mills operate at 50% efficiency
+		- Famine:			     Farms operate at 50% efficiency
+		- Mine Collapse:	 Mines operate at 50% efficiency
+		- Drought:			   Mills and Farms operate at 75% efficiency
+		- Flood:			     Lose 10 of each resource instantly (event ends instantly)
+		- Depression:		   Banks do not generate income
+		- Festival:			   Gain $10 per employed person instantly (event ends instantly)	** This is the only positive event in the game!
 
   To build a building, press 'Enter' to go into build mode. From build mode, press the corresponding number to each building:
 
@@ -79,7 +95,7 @@ Program Description and User Manual --------------------------------------------
    			- Benefit Per Tick:		Amount of food depends on the tile's soil rating.
 
    		- [2] House: Each house provides an additional three unemployed people to your city.
-   			- Initial Build Cost:	$100, 5 wood, 25 bricks
+   			- Initial Build Cost:	$100, 5 wood, 40 bricks
    			- Cost Per Tick:		  2 food, 1 wood
    			- Benefit Per Tick:		None
 
@@ -94,6 +110,7 @@ Program Description and User Manual --------------------------------------------
    			- Benefit Per Tick:		Amount of brick depends on the tile's stone rating.
 
   You can delete a building at any time by navigating to it and pressing either the delete or backspace key. You will receive 50% of the building's initial cost back.
+  You may only delete a house if there are at least three unemployed people in your city. Otherwise, you cannot delete the house. Try deleting other buildings first.
 
   You can restart the game at any time by pressing the 'r' key.
 

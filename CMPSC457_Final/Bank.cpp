@@ -100,7 +100,15 @@ void Bank::draw_building()
 /* Apply the Bank's benefit per tick */
 void Bank::apply_perk(OutputResources &o)
 {
-	o.set_money(o.get_money() + (t.get_stone() - t.get_trees()));		// Give (tile stone - tile trees) money per tick.
+	if (o.get_current_event() == "Fraud")
+	{
+		o.set_money(o.get_money() + ((t.get_stone() - t.get_trees()) * 0.25));		// Banks operate at 25% efficiency during fraud.
+	}
+	// Note: During depression, banks do not generate any money.
+	else if (o.get_current_event() != "Depression")
+	{
+		o.set_money(o.get_money() + (t.get_stone() - t.get_trees()));				// Give (tile stone - tile trees) money per tick.
+	}
 }
 
 /* Check if the user has enough resources to build a bank. If not, return a message with needed resource */
@@ -127,6 +135,12 @@ std::string Bank::check_cost(OutputResources& o)
 	{
 		return "Good";
 	}
+}
+
+/* Check to see if the building can be deleted. */
+std::string Bank::check_delete(OutputResources& o)
+{
+	return "Good";						// Banks can always be deleted, so return success.
 }
 
 /* Deduct the user's resources based on how much this building costs */

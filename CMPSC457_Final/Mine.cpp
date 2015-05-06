@@ -142,7 +142,14 @@ void Mine::draw_building()
 /* Apply the Mine's benefit per tick */
 void Mine::apply_perk(OutputResources &o)
 {
-	o.set_bricks(o.get_bricks() + t.get_stone());	// Give (tile's bricks rating) stone per tick.
+	if (o.get_current_event() == "Mine Collapse")
+	{
+		o.set_bricks(o.get_bricks() + (t.get_stone() * 0.50));	// Mines operate at 50% efficiency during mine collapse.
+	}
+	else
+	{
+		o.set_bricks(o.get_bricks() + t.get_stone());	// Give (tile's bricks rating) stone per tick.
+	}
 }
 
 /* Check if the user has enough resources to build a mine. If not, return a message with needed resource */
@@ -161,6 +168,12 @@ std::string Mine::check_cost(OutputResources& o)
 	{
 		return "Good";								// If the user has enough resources, return a success message that will not be displayed.
 	}
+}
+
+/* Check to see if the building can be deleted. */
+std::string Mine::check_delete(OutputResources& o)
+{
+	return "Good";						// Mines can always be deleted, so return success.
 }
 
 /* Deduct the user's resources based on how much this building costs */

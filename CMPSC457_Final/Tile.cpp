@@ -19,12 +19,12 @@ Tile::Tile(int trees, int soil, int stone)
 	this->stone - stone;
 }
 
-/* Set the values of each raw resource from 0 - 9 using rand() */
+/* Set the values of each raw resource from 0 - 5 using rand() */
 void Tile::set_values()
 {
-	trees	= rand() % 10;	// Restrict value to 0-9 range.
-	soil	= rand() % 10;
-	stone	= rand() % 10;
+	trees	= rand() % 6;	// Restrict value to 0-5 range.
+	soil	= rand() % 6;
+	stone	= rand() % 6;
 }
 
 /* Get the values of the tile by vector */
