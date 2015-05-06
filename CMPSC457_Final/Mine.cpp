@@ -6,7 +6,7 @@
 #include "World.h"
 
 /* Default Constructor - initialize the superclass of Building */
-Mine::Mine(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
+Mine::Mine(GLdouble x, GLdouble y, GLdouble z, Tile t, std::vector<Texture> &images) : Building(x, y, z, t, images)
 {
 	this->t = t;
 	this->x = x;
@@ -126,7 +126,7 @@ void Mine::draw_building()
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, test_material);
 	glTranslatef(0.000, -0.152, 0.000);
 	glScalef(0.446, 0.005, 0.445);
-	draw_plane(World::images.at(12).get_image());
+	draw_plane(this->images.at(12).get_image());
 	glPopMatrix();
 
 	glPopMatrix();

@@ -6,13 +6,14 @@
 #include "GL\freeglut.h"
 
 /* Overriden Constructor */
-Building::Building(GLdouble x, GLdouble y, GLdouble z, Tile t)
+Building::Building(GLdouble x, GLdouble y, GLdouble z, Tile t, std::vector<Texture> &images)
 {
 	this->t = t;
 	this->x = x;
 	this->y = y;
 	this->z = z;
 	is_animating = false;
+	this->images = images;
 }
 
 /* Compare Function - Allows other classes to compare buildings by their x,y,z position */

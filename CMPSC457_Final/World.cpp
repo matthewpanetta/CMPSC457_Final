@@ -18,12 +18,13 @@ World::World(int rows, int cols, int WinW, int WinH) : gr(rows, cols), c(rows, c
 	this->WinW = WinW;			// Set window width
 	this->WinH = WinH;			// Set window height
 	tick = 0;					// Initialize tick count
+
+	bf.initialize_textures();	// Initialize every texture in the game
 	create_building(5);			// Create starting temple in the center of the screen
 	message = "";				// Initialize message variable
 	build_mode = false;			// Initialize build mode to false, this boolean tracks whether the user is in build mode.
 	is_animating = false;		// Initialize is_animating to false, this boolean tracks whether a building is currently animating.
 	event_displayed = false;	// Initialize event_displayed to false, this boolean tracks whether an event is currently displayed on screen.
-	initialize_textures();		// Initialize every texture in the game.
 	init = false;				// Set initializer to false, since the World is done initializing.
 }
 
@@ -167,48 +168,6 @@ void World::displayHUD()
 		hud.displayEvent(message);		// Display that event to screen
 
 	hud.displayHelpInfo(build_mode);	// If the user is in build mode, display help text. This text tells the user which key corresponds to which building at the bottom of the screen.
-}
-
-vector<Texture> World::images;			// Initialize the static vector of textures.
-
-/* Initialize every texture in the game */
-// Note that this function solves the case where textures were being loaded in every time a building was created.
-// Access the static vector by World::images
-void World::initialize_textures()
-{
-	/* Create a texture object for every texture */
-	Texture wood_house("../Pictures/wood_house.bmp");
-	Texture house_grass_dark("../Pictures/house_grass_dark.bmp");
-	Texture house_roof("../Pictures/house_roof.bmp");
-	Texture brick_house("../Pictures/brick_house.bmp");
-	Texture house_grass("../Pictures/house_grass.bmp");
-	Texture tile_house_roof("../Pictures/tile_house_roof.bmp");
-	Texture house_siding("../Pictures/house_siding.bmp");
-	Texture wood_door("../Pictures/wood_door.bmp");
-	Texture house_window("../Pictures/house_window.bmp");
-	Texture farm_ground("../Pictures/farm_four_tile.bmp");
-	Texture barn("../Pictures/barn.bmp");
-	Texture grass_dirt("../Pictures/grass_dirt.bmp");
-	Texture mine_tex("../Pictures/mine_tex.bmp");
-	Texture bank_tex("../Pictures/bank_tex.bmp");
-	Texture temple_tex("../Pictures/temple_tex.bmp");
-
-	/* Push the texture into the vector */
-	images.push_back(wood_house);			// 0
-	images.push_back(house_grass_dark);		// 1
-	images.push_back(house_roof);			// 2
-	images.push_back(brick_house);			// 3
-	images.push_back(house_grass);			// 4
-	images.push_back(tile_house_roof);		// 5
-	images.push_back(house_siding);			// 6
-	images.push_back(wood_door);			// 7
-	images.push_back(house_window);			// 8
-	images.push_back(farm_ground);			// 9
-	images.push_back(barn);					// 10
-	images.push_back(grass_dirt);			// 11
-	images.push_back(mine_tex);				// 12
-	images.push_back(bank_tex);				// 13
-	images.push_back(temple_tex);			// 14
 }
 
 /* --------------------- GETTERS AND SETTERS --------------------- */

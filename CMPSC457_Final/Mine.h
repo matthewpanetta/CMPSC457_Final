@@ -13,7 +13,7 @@ class Mine :
 	public Building
 {
 public:
-	Mine(GLdouble, GLdouble, GLdouble, Tile);			/* Default Constructor - initialize the superclass of Building */
+	Mine(GLdouble, GLdouble, GLdouble, Tile, std::vector<Texture> &images);			/* Default Constructor - initialize the superclass of Building */
 	void draw_building();								/* Draw the building to screen */
 	void apply_perk(OutputResources &);					/* Apply the Mine's benefit per tick */
 	std::string check_cost(OutputResources &);			/* Check if the user has enough resources to build a mine. If not, return a message with needed resource */

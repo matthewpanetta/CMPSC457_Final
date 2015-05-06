@@ -6,12 +6,13 @@
 #include "World.h"
 
 /* Default Constructor - initialize the superclass of Building */
-Temple::Temple(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
+Temple::Temple(GLdouble x, GLdouble y, GLdouble z, Tile t, std::vector<Texture> &images) : Building(x, y, z, t, images)
 {
 	this->t = t;
 	this->x = x;
 	this->y = -0.5;
 	this->z = z;
+	ground_tex = this->images.at(14);
 }
 
 /* Draw the building to screen */
@@ -166,7 +167,7 @@ void Temple::draw_building()
 	glPushMatrix();
 	glTranslatef(0.00, -0.005, 0.00);
 	glScalef(0.47, 0.01, 0.47);
-	draw_plane(World::images.at(14).get_image());
+	draw_plane(ground_tex.get_image());
 	glPopMatrix();
 
 	glPopMatrix();

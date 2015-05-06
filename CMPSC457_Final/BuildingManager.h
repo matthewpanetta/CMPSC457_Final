@@ -26,6 +26,7 @@ public:
 	~BuildingManager();											/* Destructor */
 private:
 	std::vector<Building*> buildings;							/* Vector of buildings */
+	std::vector<Texture*> textures;								/* Vector of textures */
 };
 
 #endif

@@ -33,7 +33,7 @@ public:
 	void next_tick();				/* Process the Next Tick */
 	void displayHUD();				/* Display the HUD, as well as any event */
 	void initialize_textures();		/* Initialize every texture in the game */
-	void initialize_images(std::string filename);	/* Initialize every texture in the game */
+	static void initialize_images(std::string filename);	/* Initialize every texture in the game */
 
 	Cursor* get_cursor();			/* Get a pointer to the Cursor object */
 	Grid* get_grid();				/* Get a pointer to the Grid object */
@@ -49,9 +49,6 @@ public:
 	bool getBuildable();			/* Get the build mode variable, which shows if the user is currently in build mode */
 	bool check_animating();			/* Check if any building is currently animating */
 	bool is_event_displayed();		/* Check if an event is currently being displayed */
-
-	static vector<Texture> images;	/* static vector of every texture in the game */
-
 	~World();						/* Destructor */
 private:
 	int WinW, WinH;					/* Window width and height variables */

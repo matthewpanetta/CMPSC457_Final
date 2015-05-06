@@ -15,7 +15,7 @@
 class Building
 {
 public:
-	Building(GLdouble, GLdouble, GLdouble, Tile);		/* Overriden Constructor */
+	Building(GLdouble, GLdouble, GLdouble, Tile, std::vector<Texture> &);		/* Overriden Constructor */
 	bool compare(const Building& b) const;				/* Compare Function - Allows other classes to compare buildings by their x,y,z position */
 	
 	void draw_plane(Image* image);						/* Draw a 3D plane that can have a texture */
@@ -48,6 +48,7 @@ public:
 	~Building();										/* Destructor */
 protected:
 	bool is_animating;			// Flag to see if the building is currently animating.
+	std::vector<Texture> images;		// Vector of textures 
 private:
 	GLdouble x, y, z;			// X,Y,Z coordinates of building
 	Tile t;						// Tile that the building is on.

@@ -12,7 +12,7 @@ class Bank :
 	public Building
 {
 public:
-	Bank(GLdouble, GLdouble, GLdouble, Tile);		/* Default Constructor - initialize the superclass of Building */
+	Bank(GLdouble, GLdouble, GLdouble, Tile, std::vector<Texture> &images);		/* Default Constructor - initialize the superclass of Building */
 	void draw_building();							/* Draw the building to screen */
 	void apply_perk(OutputResources &);				/* Apply the Bank's benefit per tick */
 	std::string check_cost(OutputResources &);		/* Check if the user has enough resources to build a bank. If not, return a message with needed resource */

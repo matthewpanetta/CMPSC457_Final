@@ -6,7 +6,7 @@
 #include "World.h"
 
 /* Default Constructor - initialize the superclass of Building */
-Farm::Farm(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
+Farm::Farm(GLdouble x, GLdouble y, GLdouble z, Tile t, std::vector<Texture> &images) : Building(x, y, z, t, images)
 {
 	this->t = t;
 	this->x = x;
@@ -31,7 +31,7 @@ void Farm::draw_building()
 	glScalef(0.49, 0.38, 0.50);
 	
 	glDisable(GL_LIGHTING);
-	draw_plane(World::images.at(10).get_image());	// apply texture to the barn
+	draw_plane(this->images.at(10).get_image());	// apply texture to the barn
 	glEnable(GL_LIGHTING);
 
 	glPopMatrix();
@@ -71,7 +71,7 @@ void Farm::draw_building()
 	glTranslatef(0.0, -0.38, 0.5);
 	glScalef(0.9, 0.01, 0.9);
 	glColor3f(1.0, 1.0, 1.0);
-	draw_plane(World::images.at(9).get_image());
+	draw_plane(this->images.at(9).get_image());
 
 	glPopMatrix();
 	glPopMatrix();

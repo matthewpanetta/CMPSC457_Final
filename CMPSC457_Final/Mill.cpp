@@ -6,7 +6,7 @@
 #include "World.h"
 
 /* Default Constructor - initialize the superclass of Building */
-Mill::Mill(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
+Mill::Mill(GLdouble x, GLdouble y, GLdouble z, Tile t, std::vector<Texture> &images) : Building(x, y, z, t, images)
 {
 	this->t = t;
 	this->x = x;
@@ -362,7 +362,7 @@ void Mill::draw_building()
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, test_material);
 	glTranslatef(-0.08, -0.20, -0.12);
 	glScalef(0.65, 0.01, 0.56);
-	draw_plane(World::images.at(11).get_image());
+	draw_plane(this->images.at(11).get_image());
 	//glEnable(GL_LIGHTING);
 	glPopMatrix();
 

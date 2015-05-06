@@ -6,7 +6,7 @@
 #include "World.h"
 
 /* Default Constructor - initialize the superclass of Building */
-Bank::Bank(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
+Bank::Bank(GLdouble x, GLdouble y, GLdouble z, Tile t, std::vector<Texture> &images) : Building(x, y, z, t, images)
 {
 	this->t = t;
 	this->x = x;
@@ -80,7 +80,7 @@ void Bank::draw_building()
 	glPushMatrix();
 	glTranslatef(0.00, -0.62, 0.00);
 	glScalef(1.13, 0.01, 1.11);
-	draw_plane(World::images.at(13).get_image());
+	draw_plane(this->images.at(13).get_image());
 	glPopMatrix();
 
 	// draw roof

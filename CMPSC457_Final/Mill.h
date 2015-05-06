@@ -13,7 +13,7 @@ class Mill :
 	public Building
 {
 public:
-	Mill(GLdouble, GLdouble, GLdouble, Tile);			/* Default Constructor - initialize the superclass of Building */
+	Mill(GLdouble, GLdouble, GLdouble, Tile, std::vector<Texture> &images);			/* Default Constructor - initialize the superclass of Building */
 	void draw_building();								/* Draw the building to screen */
 	std::string check_cost(OutputResources &);			/* Check if the user has enough resources to build a mill. If not, return a message with needed resource */
 	std::string check_delete(OutputResources &);		/* Check to see if the building can be deleted */

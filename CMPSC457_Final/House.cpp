@@ -7,7 +7,7 @@
 #include "World.h"
 
 /* Default Constructor - initialize the superclass of Building */
-House::House(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
+House::House(GLdouble x, GLdouble y, GLdouble z, Tile t, std::vector<Texture> &images) : Building(x, y, z, t, images)
 {
 	this->t = t;
 	this->x = x;
@@ -17,25 +17,25 @@ House::House(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 
 	if (type > 7)						// If the random value is greater than 7, display a wooden house
 	{
-		house_tex = World::images.at(0);	// Get the textures from World's texture vector to avoid loading them in each time.
-		tex = World::images.at(1);
-		roof_tex = World::images.at(2);
+		house_tex = this->images.at(0);	// Get the textures from World's texture vector to avoid loading them in each time.
+		tex = this->images.at(1);
+		roof_tex = this->images.at(2);
 	}
 	else if (type <= 7 && type > 3)		// If the random value is within this range, display a brick house.
 	{
-		house_tex = World::images.at(3);
-		tex = World::images.at(4);
-		roof_tex = World::images.at(5);
+		house_tex = this->images.at(3);
+		tex = this->images.at(4);
+		roof_tex = this->images.at(5);
 	}
 	else								// Otherwise, display a house with siding.
 	{
-		house_tex = World::images.at(6);
-		tex = World::images.at(4);
-		roof_tex = World::images.at(5);
+		house_tex = this->images.at(6);
+		tex = this->images.at(4);
+		roof_tex = this->images.at(5);
 	}
 
-	door_tex = World::images.at(7);
-	window_tex = World::images.at(8);
+	door_tex = this->images.at(7);
+	window_tex = this->images.at(8);
 }
 
 /* Draw the building to screen */

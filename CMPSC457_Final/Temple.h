@@ -12,7 +12,7 @@ class Temple :
 	public Building
 {
 public:
-	Temple(GLdouble, GLdouble, GLdouble, Tile);			/* Default Constructor - initialize the superclass of Building */
+	Temple(GLdouble, GLdouble, GLdouble, Tile, std::vector<Texture> &);			/* Default Constructor - initialize the superclass of Building */
 	void draw_building();								/* Draw the building to screen */
 	std::string check_cost(OutputResources &);			/* Check if the user has enough resources to build a bank. If not, return a message with needed resource */
 	std::string check_delete(OutputResources &);		/* Check to see if the building can be deleted */
@@ -24,6 +24,7 @@ public:
 private:
 	GLdouble x, y, z;									/* X,Y,Z position of this building */
 	Tile t;												/* Tile the building is on */
+	Texture ground_tex;									/* Temple's Ground Texture */
 };
 
 #endif
