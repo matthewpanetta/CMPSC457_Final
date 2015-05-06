@@ -24,9 +24,6 @@ public:
 private:
 	GLdouble x, y, z;									/* X,Y,Z position of this building */
 	Tile t;												/* Tile building is on */
-	GLuint texture[1];									/* Texture of farm */
-	Texture ground_tex;									/* Ground texture */
-	Texture farm_tex;									/* Barn texture */
 };
 
 #endif

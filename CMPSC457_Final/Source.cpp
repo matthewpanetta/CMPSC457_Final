@@ -283,8 +283,6 @@ void myInit()
 
 	/* Enable OpenGL attributes */
 	glEnable(GL_DEPTH_TEST);		// Allows for 3D depth
-	glEnable(GL_MAP2_VERTEX_3);
-	glEnable(GL_AUTO_NORMAL);
 	glEnable(GL_NORMALIZE);			// Automatically normalize
 	glEnable(GL_SMOOTH);
 	glEnable(GL_LINE_SMOOTH);
@@ -305,9 +303,6 @@ void myInit()
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-
-	/* Enable hidden--surface--removal */
-	glEnable(GL_DEPTH_TEST);
 
 	/*Create random seed using the time(doesn't work, the object is initialized before the seed)*/
 	srand(time(NULL));

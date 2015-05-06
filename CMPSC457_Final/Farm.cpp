@@ -3,9 +3,10 @@
 *	This class is responsible for creating a Farm object and drawing it to the screen. */
 
 #include "Farm.h"
+#include "World.h"
 
 /* Default Constructor - initialize the superclass of Building */
-Farm::Farm(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t), ground_tex("../Pictures/farm_four_tile.bmp"), farm_tex("../Pictures/barn.bmp")
+Farm::Farm(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 {
 	this->t = t;
 	this->x = x;
@@ -16,6 +17,9 @@ Farm::Farm(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t), g
 /* Draw the building to screen */
 void Farm::draw_building()
 {
+	GLfloat white_material[4] = { 1.00, 1.00, 1.00, 1.00 };
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, white_material);
+
 	glPushMatrix();
 	glTranslatef(x, y*-1, z);
 	glTranslatef(0.0, -0.31, -0.25);
@@ -26,7 +30,7 @@ void Farm::draw_building()
 	glColor3f(0.89, 0.13, 0.11);
 	glScalef(0.49, 0.38, 0.50);
 	
-	draw_plane(farm_tex.get_image());	// apply texture to the barn
+	draw_plane(World::images.at(10).get_image());	// apply texture to the barn
 
 	glPopMatrix();
 
@@ -34,7 +38,7 @@ void Farm::draw_building()
 
 	// window
 	glColor3f(1.0, 1.0, 1.0);
-	glTranslatef(-0.15, -0.05, 0.53);
+	glTranslatef(-0.15, 0.00, 0.53);
 	glScalef(1.5, 3.0, 1.0);
 
 	glBegin(GL_LINE_STRIP);
@@ -65,7 +69,7 @@ void Farm::draw_building()
 	glTranslatef(0.0, -0.38, 0.5);
 	glScalef(0.9, 0.01, 0.9);
 	glColor3f(1.0, 1.0, 1.0);
-	draw_plane(ground_tex.get_image());
+	draw_plane(World::images.at(9).get_image());
 
 	glPopMatrix();
 	glPopMatrix();

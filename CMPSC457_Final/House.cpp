@@ -4,6 +4,7 @@
 
 #include "House.h"
 #include "Texture.h"
+#include "World.h"
 
 /* Default Constructor - initialize the superclass of Building */
 House::House(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
@@ -16,30 +17,31 @@ House::House(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 
 	if (type > 7)						// If the random value is greater than 7, display a wooden house
 	{
-		house_tex.set_filename("../Pictures/wood_house.bmp");
-		tex.set_filename("../Pictures/house_grass_dark.bmp");
-		roof_tex.set_filename("../Pictures/house_roof.bmp");
+		house_tex = World::images.at(0);	// Get the textures from World's texture vector to avoid loading them in each time.
+		tex = World::images.at(1);
+		roof_tex = World::images.at(2);
 	}
 	else if (type <= 7 && type > 3)		// If the random value is within this range, display a brick house.
 	{
-		house_tex.set_filename("../Pictures/brick_house.bmp");
-		tex.set_filename("../Pictures/house_grass.bmp");
-		roof_tex.set_filename("../Pictures/tile_house_roof.bmp");
+		house_tex = World::images.at(3);
+		tex = World::images.at(4);
+		roof_tex = World::images.at(5);
 	}
 	else								// Otherwise, display a house with siding.
 	{
-		house_tex.set_filename("../Pictures/house_siding.bmp");
-		tex.set_filename("../Pictures/house_grass.bmp");
-		roof_tex.set_filename("../Pictures/tile_house_roof.bmp");
+		house_tex = World::images.at(6);
+		tex = World::images.at(4);
+		roof_tex = World::images.at(5);
 	}
 
-	door_tex.set_filename("../Pictures/wood_door.bmp");
-	window_tex.set_filename("../Pictures/house_window.bmp");
+	door_tex = World::images.at(7);
+	window_tex = World::images.at(8);
 }
 
 /* Draw the building to screen */
 void House::draw_building()
 {
+	glColor3f(1.0, 1.0, 1.0);
 	GLfloat house_material[4] = { 1.00, 1.00, 1.00, 1.00 };
 	GLfloat roof_material[4] = { 0.17, 0.17, 0.17, 1.00 };
 
@@ -75,7 +77,6 @@ void House::draw_building()
 	glPopMatrix();
 
 	// roof
-	//glMaterialfv(GL_FRONT, GL_DIFFUSE, roof_material);
 	draw_roof(roof_tex.get_image());
 
 	glPushMatrix();

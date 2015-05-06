@@ -23,6 +23,7 @@ World::World(int rows, int cols, int WinW, int WinH) : gr(rows, cols), c(rows, c
 	build_mode = false;			// Initialize build mode to false, this boolean tracks whether the user is in build mode.
 	is_animating = false;		// Initialize is_animating to false, this boolean tracks whether a building is currently animating.
 	event_displayed = false;	// Initialize event_displayed to false, this boolean tracks whether an event is currently displayed on screen.
+	initialize_textures();
 	init = false;				// Set initializer to false, since the World is done initializing.
 }
 
@@ -108,6 +109,40 @@ void World::displayHUD()
 		hud.displayEvent(message);		// Display that event to screen
 
 	hud.displayHelpInfo(build_mode);	// If the user is in build mode, display help text. This text tells the user which key corresponds to which building at the bottom of the screen.
+}
+
+vector<Texture> World::images;			// Initialize the static vector of textures.
+
+/* Initialize every texture in the game */
+// Note that this function solves the case where textures were being loaded in every time a building was created.
+// Access the static vector by World::images
+void World::initialize_textures()
+{
+	/* Create a texture object for every texture */
+	Texture wood_house("../Pictures/wood_house.bmp");
+	Texture house_grass_dark("../Pictures/house_grass_dark.bmp");
+	Texture house_roof("../Pictures/house_roof.bmp");
+	Texture brick_house("../Pictures/brick_house.bmp");
+	Texture house_grass("../Pictures/house_grass.bmp");
+	Texture tile_house_roof("../Pictures/tile_house_roof.bmp");
+	Texture house_siding("../Pictures/house_siding.bmp");
+	Texture wood_door("../Pictures/wood_door.bmp");
+	Texture house_window("../Pictures/house_window.bmp");
+	Texture farm_ground("../Pictures/farm_four_tile.bmp");
+	Texture barn("../Pictures/barn.bmp");
+
+	/* Push the texture into the vector */
+	images.push_back(wood_house);
+	images.push_back(house_grass_dark);
+	images.push_back(house_roof);
+	images.push_back(brick_house);
+	images.push_back(house_grass);
+	images.push_back(tile_house_roof);
+	images.push_back(house_siding);
+	images.push_back(wood_door);
+	images.push_back(house_window);
+	images.push_back(farm_ground);
+	images.push_back(barn);
 }
 
 /* --------------------- GETTERS AND SETTERS --------------------- */
