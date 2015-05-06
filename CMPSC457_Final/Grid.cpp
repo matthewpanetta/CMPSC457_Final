@@ -51,7 +51,9 @@ void Grid::drawSubgrid(double xi, double zi)
 /* Draw the entire grid */
 void Grid::drawGrid()
 {
-	glColor3d(0.0, 0.5, 0.1);
+	GLfloat grid_material[4] = { 0.00, 1.00, 0.00, 1.00 };		// Grid's material color
+
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, grid_material);			// Apply the material
 
 	for (int row = 0; row < rows; row++)
 	{

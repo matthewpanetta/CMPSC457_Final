@@ -26,6 +26,9 @@ private:
 	Tile t;												/* Tile that the building is on */
 	Texture tex;										/* Ground texture */
 	Texture house_tex;									/* House texture */
+	Texture door_tex;									/* Door texture */
+	Texture window_tex;									/* Window texture */
+	Texture roof_tex;									/* Roof texture */
 	int type;											/* Type of house */
 };
 

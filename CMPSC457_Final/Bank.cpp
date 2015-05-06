@@ -16,6 +16,16 @@ Bank::Bank(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 /* Draw the building to screen */
 void Bank::draw_building()
 {
+	/* Materials */
+	GLfloat building_material[4] = { 0.52, 0.52, 0.52, 1.00 };
+	GLfloat floor_material[4] = { 0.85, 0.82, 0.89, 1.00 };
+	GLfloat pillar_material[4] = { 0.86, 0.89, 0.91, 1.00 };
+	GLfloat roof_material[4] = { 0.37, 0.37, 0.37, 1.00 };
+
+	/* Lights */
+	GLfloat bank_light_diffuse[4] = { 1.0, 1.0, 1.0, 1.0 };
+	GLfloat bank_light_position[4] = { 0.0, 0.0, 0.0, 1.0 };
+
 	glPushMatrix();
 	glTranslatef(x, y*-1, z);
 	glTranslatef(0.0, -0.25, 0.0);
@@ -23,7 +33,10 @@ void Bank::draw_building()
 
 	// draw building
 	glPushMatrix();
-	glColor3f(0.52, 0.52, 0.52);
+	//glColor3f(0.52, 0.52, 0.52);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, building_material);
+	glLightfv(GL_FRONT, GL_POSITION, bank_light_position);
+	glLightfv(GL_FRONT, GL_DIFFUSE, bank_light_diffuse);
 	glTranslatef(0.0, -0.2, -0.1);
 	glScalef(0.9, 0.6, 0.85);
 	glutSolidCube(1);
@@ -31,13 +44,14 @@ void Bank::draw_building()
 
 	// draw floor
 	glPushMatrix();
-	glColor3f(0.85, 0.82, 0.89);
+	//glColor3f(0.85, 0.82, 0.89);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, floor_material);
 	glTranslatef(0.0, -0.5, 0.0);
 	glScalef(1.0, 0.05, 1.0);
 	glutSolidCube(1);
 
 	// draw elevated floor
-	glColor3f(0.73, 0.70, 0.71);
+	//glColor3f(0.73, 0.70, 0.71);
 	glTranslatef(0.0, 1.0, 0.0);
 	glScalef(0.95, 1.0, 1.0);
 	glutSolidCube(1);
@@ -45,7 +59,8 @@ void Bank::draw_building()
 
 	// draw four pillars
 	glPushMatrix();
-	glColor3f(0.86, 0.89, 0.91);
+	//glColor3f(0.86, 0.89, 0.91);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, pillar_material);
 	glTranslatef(-0.4, -0.2, 0.4);
 	glScalef(0.1, 0.6, 0.1);
 	glutSolidCube(1);
@@ -61,7 +76,8 @@ void Bank::draw_building()
 	glPopMatrix();
 
 	// draw roof
-	glColor3f(0.37, 0.37, 0.37);
+	//glColor3f(0.37, 0.37, 0.37);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, roof_material);
 	glTranslatef(0.0, -0.25, 0.0);
 	draw_roof();
 	glPopMatrix();

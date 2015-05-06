@@ -16,6 +16,12 @@ Mill::Mill(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 /* Draw the building to screen */
 void Mill::draw_building()
 {
+	GLfloat house_material[4] = { 0.72, 0.72, 0.72, 1.00 };
+	GLfloat high_roof_material[4] = { 0.55, 0.27, 0.07, 1.00 };
+	GLfloat window_vert_material[4] = { 0.20, 0.20, 0.20, 1.00 };
+	GLfloat low_roof_material[4] = { 0.55, 0.27, 0.07, 1.00 };
+	GLfloat door_material[4] = { 0.50, 0.30, 0.20, 1.00 };
+
 	glPushMatrix();
 	glTranslatef(x, y*-1, z);
 
@@ -25,13 +31,14 @@ void Mill::draw_building()
 
 	// house
 	glPushMatrix();
-	glColor3f(0.72, 0.72, 0.72);
+	//glColor3f(0.72, 0.72, 0.72);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, house_material);
 	glScalef(0.5, 0.75, 0.5);
 	glutSolidCube(1);
 	glPopMatrix();
 
 	glPushMatrix();
-	glColor3f(0.72, 0.72, 0.72);
+	//glColor3f(0.72, 0.72, 0.72);
 	glTranslated(0.3, -0.125, 0.0);
 	glScalef(0.75, 0.5, 0.25);
 	glutSolidCube(1);
@@ -42,7 +49,8 @@ void Mill::draw_building()
 	// high roof
 	glPushMatrix();
 	glScaled(0.5, 1.0, 0.6);
-	glColor3f(0.55, 0.27, 0.07);
+	//glColor3f(0.55, 0.27, 0.07);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, high_roof_material);
 	glTranslatef(0.0, 0.58, 0.0);
 	glScalef(0.55, 0.2, 0.5);
 
@@ -72,7 +80,8 @@ void Mill::draw_building()
 	glTranslated(0.45, 0.35, 0.0);
 	glRotated(90, 0.0, 1.0, 0.0);
 	glScaled(0.4, 0.0, 0.5);
-	glColor3f(0.55, 0.27, 0.07);
+	//glColor3f(0.55, 0.27, 0.07);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, low_roof_material);
 
 	glScalef(0.55, 0.2, 0.5);
 
@@ -126,21 +135,22 @@ void Mill::draw_building()
 	glPopMatrix();
 
 	//Window vertical
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, window_vert_material);
 	glPushMatrix();
 	glTranslated(-0.2, 0.3, 0.25);
 	glScaled(0.03, 0.3, 0.03);
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.3, 0.25);
 	glScaled(0.03, 0.3, 0.03);
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.14, 0.3, 0.25);
 	glScaled(0.03, 0.3, 0.03);
@@ -148,7 +158,7 @@ void Mill::draw_building()
 	glPopMatrix();
 
 	//horizontal
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.38, 0.25);
 	glRotated(90, 0.0, 0.0, 1.0);
@@ -156,7 +166,7 @@ void Mill::draw_building()
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.3, 0.25);
 	glRotated(90, 0.0, 0.0, 1.0);
@@ -164,7 +174,7 @@ void Mill::draw_building()
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.22, 0.25);
 	glRotated(90, 0.0, 0.0, 1.0);
@@ -176,21 +186,21 @@ void Mill::draw_building()
 	glTranslated(0.1, 0.0, 0.0);
 
 	//Window vertical
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.2, 0.3, 0.25);
 	glScaled(0.03, 0.3, 0.03);
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.3, 0.25);
 	glScaled(0.03, 0.3, 0.03);
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.14, 0.3, 0.25);
 	glScaled(0.03, 0.3, 0.03);
@@ -198,7 +208,7 @@ void Mill::draw_building()
 	glPopMatrix();
 
 	//horizontal
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.38, 0.25);
 	glRotated(90, 0.0, 0.0, 1.0);
@@ -206,7 +216,7 @@ void Mill::draw_building()
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.3, 0.25);
 	glRotated(90, 0.0, 0.0, 1.0);
@@ -214,7 +224,7 @@ void Mill::draw_building()
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.22, 0.25);
 	glRotated(90, 0.0, 0.0, 1.0);
@@ -229,21 +239,21 @@ void Mill::draw_building()
 	glTranslated(0.2, 0.0, 0.0);
 
 	//Window vertical
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.2, 0.3, 0.25);
 	glScaled(0.03, 0.3, 0.03);
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.3, 0.25);
 	glScaled(0.03, 0.3, 0.03);
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.14, 0.3, 0.25);
 	glScaled(0.03, 0.3, 0.03);
@@ -251,7 +261,7 @@ void Mill::draw_building()
 	glPopMatrix();
 
 	//horizontal
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.38, 0.25);
 	glRotated(90, 0.0, 0.0, 1.0);
@@ -259,7 +269,7 @@ void Mill::draw_building()
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.3, 0.25);
 	glRotated(90, 0.0, 0.0, 1.0);
@@ -267,7 +277,7 @@ void Mill::draw_building()
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.22, 0.25);
 	glRotated(90, 0.0, 0.0, 1.0);
@@ -282,21 +292,21 @@ void Mill::draw_building()
 	glTranslated(0.3, 0.0, 0.0);
 
 	//Window vertical
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.2, 0.3, 0.25);
 	glScaled(0.03, 0.3, 0.03);
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.3, 0.25);
 	glScaled(0.03, 0.3, 0.03);
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.14, 0.3, 0.25);
 	glScaled(0.03, 0.3, 0.03);
@@ -304,7 +314,7 @@ void Mill::draw_building()
 	glPopMatrix();
 
 	//horizontal
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.38, 0.25);
 	glRotated(90, 0.0, 0.0, 1.0);
@@ -312,7 +322,7 @@ void Mill::draw_building()
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.3, 0.25);
 	glRotated(90, 0.0, 0.0, 1.0);
@@ -320,7 +330,7 @@ void Mill::draw_building()
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
 	glPushMatrix();
 	glTranslated(-0.17, 0.22, 0.25);
 	glRotated(90, 0.0, 0.0, 1.0);
@@ -329,14 +339,16 @@ void Mill::draw_building()
 	glPopMatrix();
 
 	//Door
-	glColor3d(0.5, 0.3, 0.2);
+	//glColor3d(0.5, 0.3, 0.2);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, door_material);
 	glPushMatrix();
 	glTranslated(0.2, -0.082, 0.12);
 	glScaled(0.2, 0.35, 0.03);
 	glutSolidCube(0.5);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	//glColor3d(0.2, 0.2, 0.2);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, window_vert_material);
 	glPushMatrix();
 	glTranslated(0.2, -0.082, 0.13);
 	glScaled(0.1, 0.1, 0.03);

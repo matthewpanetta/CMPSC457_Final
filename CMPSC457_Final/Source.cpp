@@ -85,10 +85,15 @@ int tick = 0;			// global time
 World w(10, 10, WinW, WinH);		// Create a 10x10 world.
 
 /* World Light Properties */
-GLfloat diffuse0[4] = { 0.8, 0.8, 0.8, 1.0f };
-GLfloat position0[4] = { 0.0, 1.0, 8.0, 1.0f };
-GLfloat ambient0[4] = { 0.25, 0.25, 0.25, 1.0f };
-GLfloat specular0[4] = { 1.0, 0.1, 0.1, 1.0f };
+GLfloat diffuse0[4] = { 0.75, 0.75, 0.75, 1.0f };
+GLfloat position0[4] = { 5.00, 33.00, 11.00, 1.0f };
+GLfloat ambient0[4] = { 0.45, 0.45, 0.45, 1.0f };
+GLfloat specular0[4] = { 0.5, 0.5, 0.5, 1.0f };
+
+GLfloat diffuse1[4] = { 0.60, 0.60, 0.60, 1.0f };
+GLfloat position1[4] = { 5.00, 3.00, 0.00, 1.0f };
+GLfloat ambient1[4] = { 0.35, 0.35, 0.35, 1.0f };
+GLfloat specular1[4] = { 0.5, 0.5, 0.5, 1.0f };
 
 Text typeWriter;		// Text helper
 
@@ -120,11 +125,16 @@ void Display(void)
 
 	/*Position and set the lighting*/
 	glPushMatrix();
-	glTranslated(5.0, 5.0, 5.0);
+	//glTranslated(5.0, 5.0, 5.0);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse0);
 	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient0);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, specular0);
 	glLightfv(GL_LIGHT0, GL_POSITION, position0);
+
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse1);
+	glLightfv(GL_LIGHT1, GL_AMBIENT, ambient1);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, specular1);
+	glLightfv(GL_LIGHT1, GL_POSITION, position1);
 	glPopMatrix();
 
 	/* Draw the grid and buildings */
@@ -269,7 +279,7 @@ void SpecialKeys(int key, int x, int y)
 void myInit()
 {
 	/* set color used when clearing the window to black */
-	glClearColor(0.0, 0.0, 0.0, 0.0);
+	//glClearColor(0.0, 0.0, 0.0, 0.0);
 
 	/* Enable OpenGL attributes */
 	glEnable(GL_DEPTH_TEST);		// Allows for 3D depth
@@ -277,7 +287,6 @@ void myInit()
 	glEnable(GL_AUTO_NORMAL);
 	glEnable(GL_NORMALIZE);			// Automatically normalize
 	glEnable(GL_SMOOTH);
-	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_LINE_SMOOTH);
 	glEnable(GL_BLEND);									// Allow transparency
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);	// Allow transparency
@@ -285,11 +294,11 @@ void myInit()
 
 	/* Enable lights and lighting */
 	glEnable(GL_LIGHT0);
-	glEnable(GL_LIGHT1);
+	//glEnable(GL_LIGHT1);
 	glEnable(GL_LIGHTING);
 
 	/* set drawing color to white */
-	glColor3f(1.0, 1.0, 1.0);
+	//glColor3f(1.0, 1.0, 1.0);
 
 	/* set up orthographic projection */
 	glMatrixMode(GL_PROJECTION);

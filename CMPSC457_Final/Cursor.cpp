@@ -65,11 +65,15 @@ void Cursor::draw()
 {
 	if (selection)
 	{
-		glColor3d(1.0, 0.0, 0.0);
+		GLfloat grid_material[4] = { 1.00, 0.00, 0.00, 1.00 };		// Cursor's material color
+
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, grid_material);			// Apply the material
 	}
 	else
 	{
-		glColor3d(1.0, 1.0, 1.0);		// Set the cursor to white
+		GLfloat grid_material[4] = { 1.00, 1.00, 1.00, 1.00 };		// Cursor's material color
+
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, grid_material);			// Apply the material
 	}
 
 	glPushMatrix();

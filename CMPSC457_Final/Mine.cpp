@@ -16,10 +16,13 @@ Mine::Mine(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 /* Draw the building to screen */
 void Mine::draw_building()
 {
+	GLfloat mine_material[4] = { 0.50, 0.20, 0.10, 1.00 };
+	GLfloat rails_material[4] = { 0.20, 0.20, 0.20, 1.00 };
+
 	glPushMatrix();
 	glTranslatef(x, y*-1, z);
 
-	glColor3d(0.5, 0.2, 0.1);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, mine_material);
 
 	glPushMatrix();
 	glTranslated(0.0, -0.35, 0.0);
@@ -48,7 +51,7 @@ void Mine::draw_building()
 	glutSolidCube(1.0);
 	glPopMatrix();
 
-	glColor3d(0.2, 0.2, 0.2);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, rails_material);
 	//Rails
 	glPushMatrix();
 	glTranslated(0.03, -0.15, 0.1);

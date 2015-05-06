@@ -16,12 +16,19 @@ Temple::Temple(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t
 /* Draw the building to screen */
 void Temple::draw_building()
 {
+	GLfloat stair_material[4] = { 0.54, 0.35, 0.30, 1.00 };
+	GLfloat railing_material[4] = { 0.58, 0.58, 0.58, 1.00 };
+	GLfloat mid_plat_material[4] = { 0.54, 0.35, 0.30, 1.00 };
+	GLfloat side_rail_material[4] = { 0.58, 0.58, 0.58, 1.00 };
+	GLfloat front_rail_material[4] = { 0.25, 0.055, 0.025, 1.00 };
+	GLfloat middle_towers_material[4] = { 0.39, 0.23, 0.19, 1.00 };
+
 	glPushMatrix();
 	glTranslatef(x, y*-1, z);
 	glTranslatef(0.0, -0.5, 0.0);
 
 	//Stairs
-	glColor3d(0.54, 0.35, 0.30);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, stair_material);
 	glPushMatrix();
 	glTranslated(0.0, 0.01, 0.2);
 	glScaled(0.3, 0.005, 0.3);
@@ -53,7 +60,7 @@ void Temple::draw_building()
 	glPopMatrix();
 
 	//railing
-	glColor3d(0.58, 0.58, 0.58);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, railing_material);
 	glPushMatrix();
 	glTranslated(0.175, 0.045, 0.2);
 	glScaled(0.05, 0.075, 0.3);
@@ -67,7 +74,7 @@ void Temple::draw_building()
 	glPopMatrix();
 
 	//middle platform
-	glColor3d(0.54, 0.35, 0.30);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, mid_plat_material);
 	glPushMatrix();
 	glTranslated(0.0, 0.02, -0.15);
 	glScaled(0.7, 0.025, 0.4);
@@ -76,7 +83,7 @@ void Temple::draw_building()
 
 
 	//side railings
-	glColor3d(0.58, 0.58, 0.58);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, side_rail_material);
 	glPushMatrix();
 	glTranslated(0.325, 0.055, -0.15);
 	glScaled(0.05, 0.055, 0.4);
@@ -110,7 +117,7 @@ void Temple::draw_building()
 	glPopMatrix();
 
 	//middle towers
-	glColor3d(0.39, 0.23, 0.19);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, middle_towers_material);
 	glPushMatrix();
 	glTranslated(0.0, 0.06, -0.1);
 	glScaled(0.1, 0.1, 0.05);

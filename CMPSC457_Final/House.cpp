@@ -18,75 +18,69 @@ House::House(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 	{
 		house_tex.set_filename("../Pictures/wood_house.bmp");
 		tex.set_filename("../Pictures/house_grass_dark.bmp");
+		roof_tex.set_filename("../Pictures/house_roof.bmp");
 	}
 	else if (type <= 7 && type > 3)		// If the random value is within this range, display a brick house.
 	{
 		house_tex.set_filename("../Pictures/brick_house.bmp");
 		tex.set_filename("../Pictures/house_grass.bmp");
+		roof_tex.set_filename("../Pictures/tile_house_roof.bmp");
 	}
 	else								// Otherwise, display a house with siding.
 	{
 		house_tex.set_filename("../Pictures/house_siding.bmp");
 		tex.set_filename("../Pictures/house_grass.bmp");
+		roof_tex.set_filename("../Pictures/tile_house_roof.bmp");
 	}
+
+	door_tex.set_filename("../Pictures/wood_door.bmp");
+	window_tex.set_filename("../Pictures/house_window.bmp");
 }
 
 /* Draw the building to screen */
 void House::draw_building()
 {
+	GLfloat house_material[4] = { 1.00, 1.00, 1.00, 1.00 };
+	GLfloat roof_material[4] = { 0.17, 0.17, 0.17, 1.00 };
+
 	glPushMatrix();
 	glTranslatef(x, y*-1, z);
-	glTranslatef(0.0, -0.31, -0.25);
+	glTranslatef(0.0, -0.31, -0.20);
 	glScalef(0.5, 0.5, 0.5);
 
 	// house
 	glPushMatrix();
 	glScalef(0.49, 0.38, 0.50);
-	
-	glEnable(GL_TEXTURE_2D);
-	glColor3f(1.0, 1.0, 1.0);
-	
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, house_material);
 	draw_plane(house_tex.get_image());		// draw house with texture
-
-	glEnd();	// done with the polygon.
-	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 
 	glPushMatrix();
+
 	// door
 	glPushMatrix();
-	glColor3f(1.0, 1.0, 1.0);
-	glTranslatef(-0.15, -0.05, 0.53);
-	glScalef(1.5, 3.0, 1.0);
-
-	glColor3f(0.82, 0.82, 0.82);
-	glTranslatef(0.2, -0.04, -0.1);
-	glScalef(0.15, 0.15, 0.15);
-	glutSolidCube(1);
-
-	glColor3f(0.55, 0.55, 0.0);
+	glTranslatef(0.22, -0.15, 0.47);
+	glScalef(0.15, 0.20, 0.05);
+	draw_plane(door_tex.get_image());		// draw house with texture
 	glTranslatef(0.0, 0.0, 0.8);
-	glutSolidSphere(0.1, 20, 20);
 	glPopMatrix();
 
 	// window
 	glPushMatrix();
-	glColor3f(0.92, 0.92, 0.92);
-	glTranslatef(-0.25, 0.1, 0.39);
-	glScalef(0.25, 0.25, 0.25);
-	glutSolidCube(1);
+	glTranslatef(-0.25, 0.1, 0.47);
+	glScalef(0.15, 0.15, 0.05);
+	draw_plane(window_tex.get_image());
 	glPopMatrix();
 
 	glPopMatrix();
 
 	// roof
-	glColor3f(0.17, 0.17, 0.17);
-	draw_roof();
+	//glMaterialfv(GL_FRONT, GL_DIFFUSE, roof_material);
+	draw_roof(roof_tex.get_image());
 
 	glPushMatrix();
-	glTranslatef(0.0, -0.38, 0.5);
+	glTranslatef(0.0, -0.38, 0.41);
 	glScalef(0.9, 0.01, 0.9);
-	glColor3f(1.0, 1.0, 1.0);
 
 	draw_plane(tex.get_image());	// draw grass texture
 

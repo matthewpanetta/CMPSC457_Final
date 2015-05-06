@@ -20,6 +20,7 @@ public:
 	
 	void draw_plane(Image* image);						/* Draw a 3D plane that can have a texture */
 	void draw_roof();									/* Draw a 3D roof */
+	void draw_roof(Image* image);						/* Draw a 3D roof with a texture */
 
 	bool check_animating();
 	Tile get_tile();									/* Get the building's Tile */
