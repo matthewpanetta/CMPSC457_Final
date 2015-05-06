@@ -3,6 +3,7 @@
 *	This class is responsible for creating a Mill object and drawing it to the screen. */
 
 #include "Mill.h"
+#include "World.h"
 
 /* Default Constructor - initialize the superclass of Building */
 Mill::Mill(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
@@ -16,6 +17,7 @@ Mill::Mill(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 /* Draw the building to screen */
 void Mill::draw_building()
 {
+	GLfloat test_material[4] = { 1.00, 1.00, 1.00, 1.00 };
 	GLfloat house_material[4] = { 0.72, 0.72, 0.72, 1.00 };
 	GLfloat high_roof_material[4] = { 0.55, 0.27, 0.07, 1.00 };
 	GLfloat window_vert_material[4] = { 0.20, 0.20, 0.20, 1.00 };
@@ -353,6 +355,15 @@ void Mill::draw_building()
 	glTranslated(0.2, -0.082, 0.13);
 	glScaled(0.1, 0.1, 0.03);
 	glutSolidCube(0.5);
+	glPopMatrix();
+
+	glPushMatrix();
+	//glDisable(GL_LIGHTING);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, test_material);
+	glTranslatef(-0.08, -0.20, -0.12);
+	glScalef(0.65, 0.01, 0.56);
+	draw_plane(World::images.at(11).get_image());
+	//glEnable(GL_LIGHTING);
 	glPopMatrix();
 
 	glPopMatrix();

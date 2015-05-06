@@ -22,7 +22,7 @@
 *		- Famine:			Farms operate at 50% efficiency
 *		- Mine Collapse:	Mines operate at 50% efficiency
 *		- Drought:			Mills and Farms operate at 75% efficiency
-*		- Flood:			Lose 10 of each resource instantly (event ends instantly)
+*		- Flood:			Lose 30 of each resource instantly (event ends instantly)
 *		- Depression:		Banks do not generate income
 *		- Festival:			Gain $10 per employed person instantly (event ends instantly)	** This is the only positive event in the game!
 *	
@@ -103,7 +103,7 @@ World w(10, 10, WinW, WinH);		// Create a 10x10 world.
 
 /* World Light Properties */
 GLfloat diffuse0[4] = { 0.75, 0.75, 0.75, 1.0f };
-GLfloat position0[4] = { 5.00, 33.00, 11.00, 1.0f };
+GLfloat position0[4] = { 5.00, 13.00, 11.00, 1.0f };
 GLfloat ambient0[4] = { 0.45, 0.45, 0.45, 1.0f };
 GLfloat specular0[4] = { 0.5, 0.5, 0.5, 1.0f };
 
@@ -300,7 +300,6 @@ void myInit()
 
 	/* Enable OpenGL attributes */
 	glEnable(GL_DEPTH_TEST);		// Allows for 3D depth
-	glEnable(GL_NORMALIZE);			// Automatically normalize
 	glEnable(GL_SMOOTH);
 	glEnable(GL_LINE_SMOOTH);
 	glEnable(GL_BLEND);									// Allow transparency
@@ -311,6 +310,7 @@ void myInit()
 	glEnable(GL_LIGHT0);
 	//glEnable(GL_LIGHT1);
 	glEnable(GL_LIGHTING);
+	glEnable(GL_NORMALIZE);			// Automatically normalize
 
 	/* set drawing color to white */
 	//glColor3f(1.0, 1.0, 1.0);

@@ -54,13 +54,20 @@ std::string BuildingManager::check_delete(int x, int z, OutputResources &o)
 {
 	Building* b = get_building(x, z);
 
-	if (b->check_delete(o) == "Good")
+	if (b != NULL)
 	{
-		return "Good";
+		if (b->check_delete(o) == "Good")
+		{
+			return "Good";
+		}
+		else
+		{
+			return b->check_delete(o);
+		}
 	}
 	else
 	{
-		return b->check_delete(o);
+		return "Good";
 	}
 }
 

@@ -77,7 +77,7 @@ Program Description and User Manual --------------------------------------------
 		- Famine:			     Farms operate at 50% efficiency
 		- Mine Collapse:	 Mines operate at 50% efficiency
 		- Drought:			   Mills and Farms operate at 75% efficiency
-		- Flood:			     Lose 10 of each resource instantly (event ends instantly)
+		- Flood:			     Lose 30 of each resource instantly (event ends instantly)
 		- Depression:		   Banks do not generate income
 		- Festival:			   Gain $10 per employed person instantly (event ends instantly)	** This is the only positive event in the game!
 

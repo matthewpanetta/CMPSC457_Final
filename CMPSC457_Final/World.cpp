@@ -43,6 +43,9 @@ void World::restart_world()
 	c.setPosition(5, 5);			// Reset the cursor's position.
 
 	init = true;					// Temples are not aloud to be built unless init is true.
+	event_displayed = false;		// Reset event displayed flag.
+	is_animating = false;			// Reset is animating flag.
+	tick = 0;						// Reset tick count to zero.
 	create_building(5);				// Create a temple at cursor position.
 	init = false;					// Reset init to false.
 
@@ -114,22 +117,22 @@ void World::next_tick()
 	}
 
 	/* Attempt to trigger a random event every 15 ticks. */
-	if (tick % 15 == 0)
+	if (tick % 20 == 0)
 	{
 		int val = rand() % 100;		// Generate a random number from 0 - 99
 
 		if (val > 70)				// If the random value is greater than 65, either start the event or stop the current event.
 		{
-			if (o.get_current_event() == "None")	// If there is no event currently, start one.
+			if (o.get_current_event() == "None")							// If there is no event currently, start one.
 			{
 				o.start_event();
 				event_displayed = true;
-				message = o.get_current_event();
+				message = "New Event: " + o.get_current_event();
 
-				/* There are two events that can quickly be stopped. */
+				/* There are two events that are instantly stopped. */
 				if (o.get_current_event() == "Flood")
 				{
-					o.set_bricks(o.get_bricks() - 30);		// Lose 30 of each resource during a flood.
+					o.set_bricks(o.get_bricks() - 30);						// Lose 30 of each resource during a flood.
 					o.set_wood(o.get_wood() - 30);
 					o.set_food(o.get_food() - 30);
 					o.stop_event();
@@ -140,7 +143,7 @@ void World::next_tick()
 					o.stop_event();
 				}
 			}
-			else					// If there is an event going on, stop it.
+			else															// If there is an event going on, stop it.
 			{
 				o.stop_event();
 				event_displayed = true;
@@ -185,19 +188,27 @@ void World::initialize_textures()
 	Texture house_window("../Pictures/house_window.bmp");
 	Texture farm_ground("../Pictures/farm_four_tile.bmp");
 	Texture barn("../Pictures/barn.bmp");
+	Texture grass_dirt("../Pictures/grass_dirt.bmp");
+	Texture mine_tex("../Pictures/mine_tex.bmp");
+	Texture bank_tex("../Pictures/bank_tex.bmp");
+	Texture temple_tex("../Pictures/temple_tex.bmp");
 
 	/* Push the texture into the vector */
-	images.push_back(wood_house);
-	images.push_back(house_grass_dark);
-	images.push_back(house_roof);
-	images.push_back(brick_house);
-	images.push_back(house_grass);
-	images.push_back(tile_house_roof);
-	images.push_back(house_siding);
-	images.push_back(wood_door);
-	images.push_back(house_window);
-	images.push_back(farm_ground);
-	images.push_back(barn);
+	images.push_back(wood_house);			// 0
+	images.push_back(house_grass_dark);		// 1
+	images.push_back(house_roof);			// 2
+	images.push_back(brick_house);			// 3
+	images.push_back(house_grass);			// 4
+	images.push_back(tile_house_roof);		// 5
+	images.push_back(house_siding);			// 6
+	images.push_back(wood_door);			// 7
+	images.push_back(house_window);			// 8
+	images.push_back(farm_ground);			// 9
+	images.push_back(barn);					// 10
+	images.push_back(grass_dirt);			// 11
+	images.push_back(mine_tex);				// 12
+	images.push_back(bank_tex);				// 13
+	images.push_back(temple_tex);			// 14
 }
 
 /* --------------------- GETTERS AND SETTERS --------------------- */

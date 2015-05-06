@@ -3,6 +3,7 @@
 *	This class is responsible for creating a Temple object and drawing it to the screen. */
 
 #include "Temple.h"
+#include "World.h"
 
 /* Default Constructor - initialize the superclass of Building */
 Temple::Temple(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
@@ -159,6 +160,13 @@ void Temple::draw_building()
 	glTranslated(-0.25, 0.1075, 0.25);
 	glScaled(0.05, 0.2, 0.05);
 	glutSolidCube(1.0);
+	glPopMatrix();
+
+	// draw ground
+	glPushMatrix();
+	glTranslatef(0.00, -0.005, 0.00);
+	glScalef(0.47, 0.01, 0.47);
+	draw_plane(World::images.at(14).get_image());
 	glPopMatrix();
 
 	glPopMatrix();

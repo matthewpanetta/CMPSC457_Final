@@ -3,6 +3,7 @@
 *	This class is responsible for creating a Mine object and drawing it to the screen. */
 
 #include "Mine.h"
+#include "World.h"
 
 /* Default Constructor - initialize the superclass of Building */
 Mine::Mine(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
@@ -16,6 +17,7 @@ Mine::Mine(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
 /* Draw the building to screen */
 void Mine::draw_building()
 {
+	GLfloat test_material[4] = { 1.00, 1.00, 1.00, 1.00 };
 	GLfloat mine_material[4] = { 0.50, 0.20, 0.10, 1.00 };
 	GLfloat rails_material[4] = { 0.20, 0.20, 0.20, 1.00 };
 
@@ -118,6 +120,13 @@ void Mine::draw_building()
 	glTranslated(0.0, -0.15, -0.06);
 	glScaled(0.1, 0.01, 0.01);
 	glutSolidCube(1.0);
+	glPopMatrix();
+
+	glPushMatrix();
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, test_material);
+	glTranslatef(0.000, -0.152, 0.000);
+	glScalef(0.446, 0.005, 0.445);
+	draw_plane(World::images.at(12).get_image());
 	glPopMatrix();
 
 	glPopMatrix();

@@ -30,7 +30,9 @@ void Farm::draw_building()
 	glColor3f(0.89, 0.13, 0.11);
 	glScalef(0.49, 0.38, 0.50);
 	
+	glDisable(GL_LIGHTING);
 	draw_plane(World::images.at(10).get_image());	// apply texture to the barn
+	glEnable(GL_LIGHTING);
 
 	glPopMatrix();
 

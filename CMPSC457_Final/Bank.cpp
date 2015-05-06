@@ -3,6 +3,7 @@
 *	This class is responsible for creating a Bank object and drawing it to the screen. */
 
 #include "Bank.h"
+#include "World.h"
 
 /* Default Constructor - initialize the superclass of Building */
 Bank::Bank(GLdouble x, GLdouble y, GLdouble z, Tile t) : Building(x, y, z, t)
@@ -75,12 +76,21 @@ void Bank::draw_building()
 	glutSolidCube(1);
 	glPopMatrix();
 
+	// draw ground
+	glPushMatrix();
+	glTranslatef(0.00, -0.62, 0.00);
+	glScalef(1.13, 0.01, 1.11);
+	draw_plane(World::images.at(13).get_image());
+	glPopMatrix();
+
 	// draw roof
 	//glColor3f(0.37, 0.37, 0.37);
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, roof_material);
 	glTranslatef(0.0, -0.25, 0.0);
 	draw_roof();
 	glPopMatrix();
+
+	
 
 	// Animation checking
 	// Each building will fly in from the sky and continue to fall until it lands on the grid.

@@ -54,6 +54,7 @@ void House::draw_building()
 	glPushMatrix();
 	glScalef(0.49, 0.38, 0.50);
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, house_material);
+	glColor3f(1.0, 1.0, 1.0);
 	draw_plane(house_tex.get_image());		// draw house with texture
 	glPopMatrix();
 
