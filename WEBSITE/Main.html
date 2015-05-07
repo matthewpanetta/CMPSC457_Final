@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<html>
+<head>
+	<title>Computer Science 457</title>
+	<style>
+
+		body {
+			height: 125%;
+			margin:0px;
+		}
+
+		p {
+
+			margin:0px;
+		}
+
+		h1 {
+			margin-top:0px;
+			color:#DA9090;
+		}
+
+		h3 {
+			text-decoration: underline;
+			margin:0px;
+		}
+
+		h5 {
+			margin-top:10px;
+			margin-bottom:0px;
+			text-align:left;
+			color:white;
+			width:150px;
+		}
+
+		ul {
+			width:10em;
+		}
+
+		#header{
+			color:#EAF3F1;
+			background-color:#00110C;
+			text-align:center;
+			padding:5px;
+			margin:0px;
+		}
+
+		#content{
+			color:#EAF3F1;
+			background-color:#36564D;
+			padding:0px;
+			margin:0px;
+			height: 100%;
+			width: 100%;
+		}
+
+		#team {
+			width:150px;
+			margin-left: auto ;
+  			margin-right: auto ;
+
+		}
+
+		#main_images {
+			width: 85%;
+			min-width: 1250px;
+			margin: 0 auto 0 auto;
+			text-align: center;
+		}
+
+		#models {
+			width:620px;
+			margin-left:auto;
+			margin-right:auto;
+		}
+
+		#description {
+			text-align: center;
+			width: 85%;
+			margin: 0 auto 0 auto;
+		}
+
+		ul {
+			text-align: left;
+			display: block;
+			margin: 0px auto 0px auto;
+		}
+
+		#structure {
+			text-align: center;
+			margin: 0 auto 0 auto;
+		}
+
+		.center_text {
+			text-align:center;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="header">
+		<h5>CMPSC457 Final Project</h5>
+		<h1 class="center_text">iCivilization</h1>
+		<a class="center_text" style="color:white" href="https://github.com/matthewpanetta/CMPSC457_Final/blob/master/README.txt" target="_blank">Readme/Project Source</a>
+	</div>
+	<div id="content">
+		</br></br>
+		<h3 class="center_text">Team Members</h3>
+			<div id="team">
+			<ul>
+				<li>Tyler Jacobs</li>
+				<li>Matt Panetta</li>
+				<li>Eugene Nitka</li>
+			</ul>
+		</div>
+		<div>
+		</br></br>
+			<div id="main_images">
+				<img src="Start.jpg" alt="Start Screen" width="400" height="400">
+				<img src="Alternate View.jpg" alt="Alternate View" width="400" height="400">
+				<img src="Alternate View1.jpg" alt="Alternate View1" width="400" height="400">
+			</div>
+		</br></br>
+			<div id="models">
+				<h3 class="center_text">Models</h3></br>
+				<img src="Temple.jpg" alt="Temple" width="100" height="100">
+				<img src="Farm.jpg" alt="Farm" width="100" height="100">
+				<img src="House.jpg" alt="House" width="100" height="100">
+				<img src="Mill.jpg" alt="Mill" width="100" height="100">
+				<img src="Mine.jpg" alt="Mine" width="100" height="100">
+				<img src="Bank.jpg" alt="Bank" width="100" height="100">
+			</div>
+		</div>
+		<div id="description">
+			<h4 style="text-decoration:underline">Description</h4>
+			<p>
+				This project is a civilization simulation where the user can gather resources and make various buildings. The plane that the buildings are made on is comprised of "tiles" that contain three randomly generated amounts of resources. There is wood, stone, and trees.
+				The more of a resource the "tile" has, the better the output of the building that is placed on that "tile". The buildings then output a resource depending on their type.
+			</p>
+
+		</div>
+
+		<div id="structure">
+			<h4 style="text-decoration:underline">Program Structure</h4>
+			<ul>
+				<li>Building.cpp</li>
+				<ul>
+					<li>Bank.cpp</li>
+					<li>Farm.cpp</li>
+					<li>House.cpp</li>
+					<li>Mill.cpp</li>
+					<li>Mine.cpp</li>
+					<li>Temple.cpp</li>
+				</ul>
+				<li>BuildingFactory.cpp</li>
+				<li>BuildingManager.cpp</li>
+				<li>Cursor.cpp</li>
+				<li>Grid.cpp</li>
+				<li>HUD.cpp</li>
+				<li>OutputResources.cpp</li>
+				<li>Source.cpp</li>
+				<li>Text.cpp</li>
+				<li>Texture.cpp</li>
+				<li>Tile.cpp</li>
+				<li>World.cpp</li>
+			</ul>
+			<br />
+			<br />
+		</div>
+	</div>
+</body>
+</html>

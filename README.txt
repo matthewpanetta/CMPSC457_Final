@@ -28,9 +28,14 @@ List of Source Files -----------------------------------------------------------
   World.cpp           -    The main wrapper class. Contains an instance of most every other class and represents the game environment.
 
 Compile Instructions ------------------------------------------------------------------------------------------------------
-  Double click on CMPSC457_Final.exe to run this program. No installation necessary.
-  If there is no CMPSC457_Final.exe on the root folder, navigate to /Release/ folder and double click on
-  CMPSC457_Final.exe there.
+  The executable file is located in the EXE IN HERE! folder. Due to textures, the executable MUST BE in a location
+  such that the Pictures folder (textures) is one directory up. For example: Final --> Pictures     --> [Textures]
+										   --> EXE IN HERE! --> CMPSC457_Final.exe
+
+  This occurs because of the way we set up the source code. To change this, go into BuildingFactory.cpp and change
+  the file path of each texture.
+
+  If the executable file is not one directory below the Pictures folder, there will be no textures.
 
 Program Description and User Manual ---------------------------------------------------------------------------------------
 

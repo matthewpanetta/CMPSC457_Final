@@ -27,7 +27,7 @@
 *		- Festival:			Gain $10 per employed person instantly (event ends instantly)	** This is the only positive event in the game!
 *	
 *	To build a building, press Enter to go into build mode. From build mode, press the corresponding number to each building:
-*
+*	
 *	There are a total of five buildings in the game:
 *		- [0] Bank: The bank is the most expensive normal building in the game, but it is also the most powerful.
 *			- Initial Build Cost:	$1000, 40 wood, 30 bricks, 2 unemployed
